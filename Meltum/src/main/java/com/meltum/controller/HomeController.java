@@ -10,7 +10,7 @@ import com.meltum.common.WebConstant;
 @RequestMapping("/home")
 public class HomeController { 
 	
-	@RequestMapping(value = { "", "/toto" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "" }, method = RequestMethod.GET)
 	public String display() {
 		return WebConstant.HOME_VIEW;
 	}
