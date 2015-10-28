@@ -40,6 +40,7 @@
 			<version>2.5</version>
 		</dependency>
 
+
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
