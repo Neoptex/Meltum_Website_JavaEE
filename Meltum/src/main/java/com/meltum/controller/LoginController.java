@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.meltum.common.WebConstant;
  
 @Controller
-@RequestMapping("/home")
-public class HomeController { 
+public class LoginController { 
 	
-	@RequestMapping(value = { "" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String display() {
 		return WebConstant.HOME_VIEW;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage() {
+		return WebConstant.LOGIN_VIEW;
 	}
 	
 	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
