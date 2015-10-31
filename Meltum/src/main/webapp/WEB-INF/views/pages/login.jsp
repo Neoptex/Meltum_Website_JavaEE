@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
 </head>
 <style>
 body
 {
-    background: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg') fixed;
+    background: url('http://7-themes.com/data_images/out/46/6929161-black-background-4547.jpg') fixed;
     background-size: cover;
     padding: 0;
     margin: 0;
@@ -13,6 +14,7 @@ body
 
 .wrap
 {
+	margin: 400px 0 0 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -193,31 +195,29 @@ form.login a:hover
         <div class="col-md-12">
             <div class="pr-wrap">
                 <div class="pass-reset">
-                    <label>
-                        Enter the email you signed up with</label>
+                    <label><spring:message code="login.email" /></label>
                     <input type="email" placeholder="Email" />
                     <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
                 </div>
             </div>
             <div class="wrap">
-                <p class="form-title">
-                    Sign In</p>
+                <p class="form-title"><spring:message code="login.signin" /></p>
                 <form class="login" name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>
-                <input id="username" name="username" type="text" placeholder="Username" />
-                <input id="password" name="password" type="password" placeholder="Password" />
+                <input id="j_username" name="j_username" type="text" placeholder="Username" />
+                <input id="j_password" name="j_password" type="password" placeholder="Password" />
                 <input name="submit" type="submit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" />
-                                    Remember Me
+                                    <input type="checkbox" name="_spring_security_remember_me" />
+                                    <spring:message code="login.rememberme" />
                                 </label>
                             </div>
                         </div>
                         <div class="col-md-6 forgot-pass-content">
-                            <a href="javascript:void(0)" class="forgot-pass">Forgot Password</a>
+                            <a href="javascript:void(0)" class="forgot-pass"><spring:message code="login.forgotpwd" /></a>
                         </div>
                     </div>
                 </div>
