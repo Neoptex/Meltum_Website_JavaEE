@@ -14,7 +14,7 @@ body
 
 .wrap
 {
-	margin: 400px 0 0 0;
+	margin: 270px 0 0 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -38,7 +38,7 @@ p.form-title
 
 form
 {
-    width: 250px;
+    width: 300px;
     margin: 0 auto;
 }
 
@@ -108,6 +108,7 @@ form.login a:hover
 
 .pr-wrap
 {
+	margin: 400px 0 0 0;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -126,7 +127,7 @@ form.login a:hover
 .pass-reset
 {
     margin: 0 auto;
-    width: 250px;
+    width: 300px;
     position: relative;
     margin-top: 22%;
     z-index: 999;
@@ -136,6 +137,8 @@ form.login a:hover
 
 .pass-reset label
 {
+	display: block;
+    text-align: center;
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 15px;
@@ -187,6 +190,10 @@ form.login a:hover
     left: 45%;
 }
 
+input[type=checkbox]
+{
+	margin-top: 2px;
+}
 
 </style>
 <body>
@@ -196,16 +203,18 @@ form.login a:hover
             <div class="pr-wrap">
                 <div class="pass-reset">
                     <label><spring:message code="login.email" /></label>
-                    <input type="email" placeholder="Email" />
-                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+	                <input name="email" type="email" placeholder="Email" />
+	                <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
                 </div>
             </div>
             <div class="wrap">
                 <p class="form-title"><spring:message code="login.signin" /></p>
                 <form class="login" name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>
-                <input id="j_username" name="j_username" type="text" placeholder="Username" />
-                <input id="j_password" name="j_password" type="password" placeholder="Password" />
-                <input name="submit" type="submit" value="Sign In" class="btn btn-success btn-sm" />
+                <input id="j_username" name="j_username" type="text" placeholder="Nom d'utilisateur" />
+                <input id="j_password" name="j_password" type="password" placeholder="Mot de passe" />
+                <input name="submit" type="submit" value="Se connecter" class="btn btn-success btn-sm" />
+                <input name="submit" type="submit" value="Se connecter avec Facebook" class="btn btn-primary btn-sm" />
+                <input name="submit" type="submit" value="Se connecter avec Google" class="btn btn-danger btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
                         <div class="col-md-6">
@@ -232,10 +241,6 @@ form.login a:hover
 $(document).ready(function () {
     $('.forgot-pass').click(function(event) {
       $(".pr-wrap").toggleClass("show-pass-reset");
-    }); 
-    
-    $('.pass-reset-submit').click(function(event) {
-      $(".pr-wrap").removeClass("show-pass-reset");
-    }); 
+    });  
 });
 </script>
