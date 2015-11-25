@@ -5,7 +5,6 @@
 <tiles-definitions>
   
     <definition name="template" template="/WEB-INF/views/template/template.jsp">
-   		<put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp" />
   	</definition>
   
     <definition name="home" extends="template">
@@ -13,7 +12,7 @@
   	</definition>
   	
   	<definition name="admin" extends="template">
-    	<put-attribute name="body" value="/WEB-INF/views/pages/admin.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/views/pages/myaccount.jsp" />
   	</definition>
   	
   	<definition name="login" extends="template">

@@ -10,13 +10,14 @@ import com.meltum.model.Quote;
 import com.meltum.service.IService.IUserService;
  
 @Controller
+@RequestMapping("/")
 public class LoginController { 
 	
 	@Autowired
 	IUserService userService = null;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String display() {
+	@RequestMapping(method = RequestMethod.GET)
+	public String displayHome() {
 		Quote quote = userService.getTest();
 		System.out.println("type = " + quote.getType());
 		System.out.println("id of the code is " + quote.getValue().getId());
@@ -27,11 +28,6 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
 		return WebConstant.LOGIN_VIEW;
-	}
-	
-	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
-	public String protec() {
-		return WebConstant.ADMIN_VIEW;
 	}
 	
 }
