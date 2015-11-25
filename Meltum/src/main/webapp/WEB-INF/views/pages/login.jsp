@@ -213,6 +213,7 @@ input[type=checkbox]
                 <input id="j_username" name="j_username" type="text" placeholder="Nom d'utilisateur" />
                 <input id="j_password" name="j_password" type="password" placeholder="Mot de passe" />
                 <input name="submit" type="submit" value="Se connecter" class="btn btn-success btn-sm" />
+                <a href="inscription">Inscris toi sale batard!</a>
                 <input name="submit" type="submit" value="Se connecter avec Facebook" class="btn btn-primary btn-sm" />
                 <input name="submit" type="submit" value="Se connecter avec Google" class="btn btn-danger btn-sm" />
                 <div class="remember-forgot">

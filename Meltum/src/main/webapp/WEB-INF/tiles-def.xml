@@ -19,5 +19,9 @@
   	<definition name="login" extends="template">
   		<put-attribute name="body" value="/WEB-INF/views/pages/login.jsp" />
   	</definition>
+  	
+  	<definition name="inscription" extends="template">
+  		<put-attribute name="body" value="/WEB-INF/views/pages/inscription.jsp" />
+  	</definition>
   
 </tiles-definitions>

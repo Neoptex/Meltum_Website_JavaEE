@@ -34,4 +34,9 @@ public class LoginController {
 		return WebConstant.ADMIN_VIEW;
 	}
 	
+	@RequestMapping(value = { "/inscription" }, method = RequestMethod.GET)
+	public String inscriptionPage() {
+		return WebConstant.INSCRIPTION_VIEW;
+	}
+	
 }
