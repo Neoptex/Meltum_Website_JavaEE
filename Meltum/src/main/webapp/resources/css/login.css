@@ -66,7 +66,24 @@ form.login input[type="submit"]
     letter-spacing: 1px;
 }
 
+form.login input[type="button"]
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
 form.login input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+form.login input[type="button"]:hover
 {
     transition: background-color 0.5s ease;
 }
@@ -169,10 +186,29 @@ form.login a:hover
     letter-spacing: 1px;
 }
 
+.pass-reset input[type="button"]
+{
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
 .pass-reset input[type="submit"]:hover
 {
     transition: background-color 0.5s ease;
 }
+
+.pass-reset input[type="button"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
 .posted-by
 {
     position: absolute;
