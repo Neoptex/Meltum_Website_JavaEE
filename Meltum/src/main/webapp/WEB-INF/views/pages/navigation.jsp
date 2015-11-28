@@ -17,7 +17,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="boutique">Boutique</a></li>
 				<li><a href="#">Mon panier</a></li>
-				<li><a href="#">Mon compte</a></li>
+				<li><a href="mon-compte">Mon compte</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

@@ -5,6 +5,10 @@
 	<link href="<c:url value="/resources/css/myaccount.css" />" rel="stylesheet">
 </head>
 <body>
+
+	<!-- Navigation -->
+    <%@ include file="navigation.jsp" %>
+    
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
 		<h2>
 			Welcome : ${pageContext.request.userPrincipal.name} | <a
@@ -69,6 +73,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Footer -->
+    <%@ include file="footer.jsp" %>
+    
 </body>
 </html>
 <script type="text/javascript">
