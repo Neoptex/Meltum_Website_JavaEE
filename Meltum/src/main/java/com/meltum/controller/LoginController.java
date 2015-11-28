@@ -34,9 +34,4 @@ public class LoginController {
 	public String inscriptionPage() {
 		return WebConstant.INSCRIPTION_VIEW;
 	}
-	
-	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public String boutiquePage() {
-		return WebConstant.NEWS_VIEW;
-	}
 }
