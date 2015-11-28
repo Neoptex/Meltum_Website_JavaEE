@@ -6,4 +6,5 @@ public interface WebConstant {
 	public static final String MYACCOUNT_VIEW = "admin";
 	public static final String LOGIN_VIEW = "login";
 	public static final String INSCRIPTION_VIEW = "inscription";
+	public static final String NEWS_VIEW = "/";
 }

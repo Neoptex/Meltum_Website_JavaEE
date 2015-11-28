@@ -22,5 +22,9 @@
   	<definition name="inscription" extends="template">
   		<put-attribute name="body" value="/WEB-INF/views/pages/inscription.jsp" />
   	</definition>
-  
+  	
+  	<definition name="/" extends="template">
+  		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
+  	</definition>
+  	
 </tiles-definitions>

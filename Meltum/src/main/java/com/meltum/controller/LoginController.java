@@ -10,7 +10,7 @@ import com.meltum.model.Quote;
 import com.meltum.service.IService.IUserService;
  
 @Controller
-@RequestMapping("/")
+@RequestMapping(method = RequestMethod.GET)
 public class LoginController { 
 	
 	@Autowired
@@ -35,4 +35,8 @@ public class LoginController {
 		return WebConstant.INSCRIPTION_VIEW;
 	}
 	
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public String boutiquePage() {
+		return WebConstant.NEWS_VIEW;
+	}
 }
