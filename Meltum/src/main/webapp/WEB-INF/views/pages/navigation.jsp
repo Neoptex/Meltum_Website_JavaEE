@@ -28,11 +28,11 @@
 				<li><a href="/Meltum">Nouveauté</a></li>
 				<li><a href="boutique">Boutique</a></li>
 				<li><a href="#">Mon panier</a></li>
-				<li><a href="mon-compte">Mon compte</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					<li><a>Bonjour <strong>${pageContext.request.userPrincipal.name}</strong></a></li>
+					<li><a href="mon-compte">Mon compte</a></li>
 					<li><a href="<c:url value="/logout" />">déconnexion</a></li>
 				</c:if>
 			</ul>
