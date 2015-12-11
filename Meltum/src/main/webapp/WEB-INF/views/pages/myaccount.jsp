@@ -8,14 +8,7 @@
 
 	<!-- Navigation -->
     <%@ include file="navigation.jsp" %>
-    
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h2>
-			Welcome : ${pageContext.request.userPrincipal.name} | <a
-				href="<c:url value="/logout" />"> Logout</a>
-		</h2>
-	</c:if>
-
+   
 	<div class="container">
 		<div class="row">
 			<div
@@ -72,11 +65,11 @@
 				</form>
 			</div>
 		</div>
-	</div>
+		
+		<!-- Footer -->
+    	<%@ include file="footer.jsp" %>
 	
-	<!-- Footer -->
-    <%@ include file="footer.jsp" %>
-    
+	</div>
 </body>
 </html>
 <script type="text/javascript">

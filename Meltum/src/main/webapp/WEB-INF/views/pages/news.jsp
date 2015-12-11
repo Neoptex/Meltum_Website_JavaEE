@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,9 +21,9 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>A Warm Welcome!</h1>
+            <h1>Bienvenue</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-            <p><a class="btn btn-primary btn-large">Call to action!</a>
+            <p><a class="btn btn-primary btn-large">Suivant</a>
             </p>
         </header>
 
@@ -30,7 +32,7 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Latest Features</h3>
+                <h3>Nouveauté</h3>
             </div>
         </div>
         <!-- /.row -->
@@ -40,12 +42,12 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <img src="<c:url value="/resources/image/massage.jpg" />" />
                     <div class="caption">
-                        <h3>Feature Label</h3>
+                        <h3>Massage</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Acheter!</a> <a href="#" class="btn btn-default">+ d'info</a>
                         </p>
                     </div>
                 </div>
@@ -53,12 +55,12 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <img src="<c:url value="/resources/image/voiture.jpg" />" />
                     <div class="caption">
-                        <h3>Feature Label</h3>
+                        <h3>Voiture</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Acheter!</a> <a href="#" class="btn btn-default">+ d'info</a>
                         </p>
                     </div>
                 </div>
@@ -66,12 +68,12 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <img src="<c:url value="/resources/image/spectacle.jpg" />" />
                     <div class="caption">
-                        <h3>Feature Label</h3>
+                        <h3>Spectacle</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Acheter!</a> <a href="#" class="btn btn-default">+ d'info</a>
                         </p>
                     </div>
                 </div>
@@ -79,12 +81,12 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <img src="<c:url value="/resources/image/restaurant.jpg" />" />
                     <div class="caption">
-                        <h3>Feature Label</h3>
+                        <h3>Restaurant</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Acheter!</a> <a href="#" class="btn btn-default">+ d'info</a>
                         </p>
                     </div>
                 </div>
