@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.meltum.beans.Quote;
 import com.meltum.common.WebConstant;
-import com.meltum.model.Quote;
 import com.meltum.service.IService.IUserService;
  
 @Controller

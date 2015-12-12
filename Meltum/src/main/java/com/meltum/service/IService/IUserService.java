@@ -2,8 +2,8 @@ package com.meltum.service.IService;
 
 import java.util.List;
 
-import com.meltum.model.Quote;
-import com.meltum.model.User;
+import com.meltum.beans.Quote;
+import com.meltum.beans.User;
 
 public interface IUserService {
 

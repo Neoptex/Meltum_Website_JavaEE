@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import com.meltum.model.Quote;
-import com.meltum.model.User;
+import com.meltum.beans.Quote;
+import com.meltum.beans.User;
 import com.meltum.service.IService.IUserService;
 
 @Service

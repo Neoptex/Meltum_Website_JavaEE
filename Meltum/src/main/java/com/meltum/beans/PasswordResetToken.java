@@ -1,4 +1,4 @@
-package com.meltum.model;
+package com.meltum.beans;
 
 import java.util.Date;
 
