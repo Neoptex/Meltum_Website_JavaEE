@@ -5,10 +5,6 @@
 	<link href="<c:url value="/resources/css/myaccount.css" />" rel="stylesheet">
 </head>
 <body>
-
-	<!-- Navigation -->
-    <%@ include file="navigation.jsp" %>
-   
 	<div class="container">
 		<div class="row">
 			<div
@@ -65,10 +61,6 @@
 				</form>
 			</div>
 		</div>
-		
-		<!-- Footer -->
-    	<%@ include file="footer.jsp" %>
-	
 	</div>
 </body>
 </html>

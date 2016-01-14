@@ -1,16 +1,11 @@
 package com.meltum.service.IService;
 
-import java.util.List;
-
-import com.meltum.beans.Quote;
 import com.meltum.beans.User;
+import com.meltum.model.forms.RegisterForm;
 
 public interface IUserService {
 
-	//to remove
-	Quote getTest();
-	List<User> getAllUser();
-	User getUser(String id);
-	void createUser(User user);
-	void updateUser(User user);
+	User createUser(RegisterForm registerForm);
+	
+	User authUser(String email, String password);
 }

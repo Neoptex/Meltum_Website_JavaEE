@@ -12,10 +12,6 @@
 </head>
 
 <body>
-
-	<!-- Navigation -->
-    <%@ include file="navigation.jsp" %>
-
     <!-- Page Content -->
     <div class="container">
 
@@ -93,13 +89,7 @@
             </div>
 
         </div>
-        <!-- /.row -->
-
         <hr>
-
-        <!-- Footer -->
-    	<%@ include file="footer.jsp" %>
-
     </div>
     <!-- /.container -->
 </body>

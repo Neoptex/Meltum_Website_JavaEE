@@ -8,19 +8,19 @@
 
 
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/inscription" access="permitAll" />
 		<intercept-url pattern="/forgotPassword" access="permitAll" /> 
 		<intercept-url pattern="/j_spring_security_check" access="permitAll" />
 		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<form-login 
-		    login-page="/login"
+		    login-page="/"
 		    login-processing-url="/j_spring_security_check"
 		    default-target-url="/"
 		    username-parameter="j_username"
 			password-parameter="j_password"
 			authentication-failure-url="/login?error" ></form-login>
-		<logout logout-success-url="/login?logout" />
+		<logout logout-success-url="/" />
 		<csrf disabled="true"/>
 	</http>
 
