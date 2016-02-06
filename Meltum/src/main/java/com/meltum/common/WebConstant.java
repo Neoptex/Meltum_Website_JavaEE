@@ -11,7 +11,9 @@ public interface WebConstant {
 	
 	//	Objects
 	public static final String REGISTER_FORM = "registerForm";
+	public static final String MYACCOUNT_FORM = "myAccountForm";
 	
 	// Redirect
 	public static final String REDIRECT_NEWS_VIEW = "redirect:/";
+	public static final String REDIRECT_MYACCOUNT_VIEW = "redirect:/mon-compte";
 }

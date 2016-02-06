@@ -10,3 +10,11 @@
 footer {
     margin: 50px 0;
 }
+
+.header-error {
+	background-color: #d2322d;
+}
+
+.icon-white, .text-white {
+	color: white;
+}

@@ -12,6 +12,7 @@
 		<intercept-url pattern="/inscription" access="permitAll" />
 		<intercept-url pattern="/forgotPassword" access="permitAll" /> 
 		<intercept-url pattern="/j_spring_security_check" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<form-login 
 		    login-page="/"

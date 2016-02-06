@@ -138,8 +138,6 @@
 			<artifactId>json</artifactId>
 			<version>20151123</version>
 		</dependency>
-		
-
 
 	</dependencies>
 </project>

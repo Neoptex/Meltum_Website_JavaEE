@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.meltum.beans.User;
 import com.meltum.common.WebConstant;
@@ -31,6 +32,9 @@ public class MainController {
 	
 	@RequestMapping(value = { "/saveUser" }, method = RequestMethod.POST)
 	public String saveUser(@ModelAttribute RegisterForm registerForm, Model model) {
+		if (!registerForm.getPassword().equals(registerForm.getConfirmPassword())) {
+			model.addAttribute("wrongPwd", "wrongPassword");
+		}
 		User user = userService.createUser(registerForm);
 		if (user == null) {
 			System.out.println("cest null");
@@ -38,5 +42,14 @@ public class MainController {
 			System.out.println(user.getPassword());
 		}
 		return WebConstant.REDIRECT_NEWS_VIEW;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(@RequestParam(value = "error", required = false) String error, Model model){
+
+		if (error != null) {
+			model.addAttribute("error", "Invalid username and password!");
+		}
+		return WebConstant.NEWS_VIEW;
 	}
 }

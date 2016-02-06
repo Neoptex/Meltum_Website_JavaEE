@@ -17,16 +17,18 @@
 					</h2>
 					<hr class="colorgraph">
 					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-6">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="form-group">
-								<input type="text" name="first_name" id="first_name"
-									class="form-control input-lg" placeholder="Prénom" tabindex="1">
+								<form:input path="socialName" type="text" name="socialName" id="socialName"
+									class="form-control input-lg" placeholder="Raison Sociale" tabindex="1" />
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6">
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="form-group">
-								<input type="text" name="last_name" id="last_name"
-									class="form-control input-lg" placeholder="Nom" tabindex="2">
+								<form:input path="siren" type="text" name="Siren" id="Siren"
+									class="form-control input-lg" placeholder="Siren" tabindex="2" />
 							</div>
 						</div>
 					</div>
@@ -45,9 +47,10 @@
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="password" name="password_confirmation"
+								<form:input path="confirmPassword" type="password" name="password_confirmation"
 									id="password_confirmation" class="form-control input-lg"
-									placeholder="Confirmer le mot de passe" tabindex="6">
+									placeholder="Confirmer le mot de passe" tabindex="6" />
+								<form:errors path="confirmPassword"></form:errors>
 							</div>
 						</div>
 					</div>

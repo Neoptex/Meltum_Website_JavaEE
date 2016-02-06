@@ -21,7 +21,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/Meltum">Nouveauté</a></li>
-        <li><a href="boutique">Boutique</a></li>
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+        	<li><a href="boutique">Boutique</a></li>
+        </c:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <c:choose>
@@ -54,9 +56,7 @@
 										 </form>
 									</div>
 									<div class="bottom text-center">
-										<a href="/Meltum/inscription">
-   											<input type="button" class="btn btn-warning btn-block" value="Inscrivez-vous" />
-										</a>
+										<a href="/Meltum/inscription" class="btn btn-warning btn-block">Inscrivez-vous</a>
 									</div>
 							 </div>
 						</li>

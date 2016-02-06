@@ -1,71 +1,44 @@
 package com.meltum.model.forms;
 
+import com.meltum.beans.User;
+
 public class MyAccountForm {
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String password;
-	private String confirmPassword;
+	
+	private String socialName;
+	private String siren;
+	
+	public MyAccountForm() {
+		super();
+	}
+	
+	public MyAccountForm(User user) {
+		this.socialName = user.getSocialName();
+		this.siren = user.getSiren();
+	}
 	
 	/**
-	 * @return the firstName
+	 * @return the socialName
 	 */
-	public String getFirstName() {
-		return firstName;
+	public String getSocialName() {
+		return socialName;
 	}
 	/**
-	 * @param firstName the firstName to set
+	 * @param socialName the socialName to set
 	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setSocialName(String socialName) {
+		this.socialName = socialName;
 	}
 	/**
-	 * @return the lastName
+	 * @return the siren
 	 */
-	public String getLastName() {
-		return lastName;
+	public String getSiren() {
+		return siren;
 	}
 	/**
-	 * @param lastName the lastName to set
+	 * @param siren the siren to set
 	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * @return the confirmPassword
-	 */
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	/**
-	 * @param confirmPassword the confirmPassword to set
-	 */
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
+	public void setSiren(String siren) {
+		this.siren = siren;
 	}
 	
 	
