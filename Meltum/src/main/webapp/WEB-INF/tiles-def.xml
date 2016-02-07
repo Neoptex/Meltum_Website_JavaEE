@@ -24,4 +24,7 @@
   		<put-attribute name="body" value="/WEB-INF/views/pages/shop.jsp" />
   	</definition>
   	
+  	<definition name="mycompany" extends="template">
+  		<put-attribute name="body" value="/WEB-INF/views/pages/mycompany.jsp" />
+  	</definition>
 </tiles-definitions>

@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <head>
-	<link href="<c:url value="/resources/css/navigation.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/css/navigation.css" /> "rel="stylesheet">
 </head>
 <body>
 <nav class="navbar-default navbar-inverse" role="navigation">
@@ -23,6 +23,7 @@
         <li class="active"><a href="/Meltum">Nouveauté</a></li>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
         	<li><a href="boutique">Boutique</a></li>
+        	<li><a href="mon-entreprise">Mon entreprise</a></li>
         </c:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">

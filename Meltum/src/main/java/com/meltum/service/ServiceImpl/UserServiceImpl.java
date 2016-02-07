@@ -51,7 +51,6 @@ public class UserServiceImpl implements IUserService {
 		if (response != null) {
 			try {
 				UserServiceImpl.user = mapper.readValue(response, User.class);
-				System.out.println(user.getId());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

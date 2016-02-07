@@ -8,10 +8,12 @@ public interface WebConstant {
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String NEWS_VIEW = "home";
 	public static final String SHOP_VIEW = "/boutique";
+	public static final String MY_COMPANY_VIEW = "mycompany";
 	
 	//	Objects
 	public static final String REGISTER_FORM = "registerForm";
 	public static final String MYACCOUNT_FORM = "myAccountForm";
+	public static final String MYCOMPANY_FORM = "myCompanyForm";
 	
 	// Redirect
 	public static final String REDIRECT_NEWS_VIEW = "redirect:/";
