@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -26,12 +25,7 @@ public class ApiRequest {
 
 		ResponseEntity<String> loginResponse = rt
 			  .exchange("http://185.83.218.101:8080/" + function, methodType, entity, String.class);
-		if (loginResponse.getStatusCode() == HttpStatus.OK) {
-			return loginResponse.getBody();
-		} else if (loginResponse.getStatusCode() == HttpStatus.BAD_REQUEST) {
-			return null;
-		}
-		return null;
+		return loginResponse.getBody();
 	}
 	
 }

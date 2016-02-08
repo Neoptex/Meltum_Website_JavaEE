@@ -10,7 +10,7 @@
 		<div class="row">
 			<div
 				class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				<form:form role="form" action="/Meltum/mon-entreprise/" method='POST' modelAttribute="myCompanyForm">
+				<form:form role="form" action="/Meltum/mon-entreprise/saveCompany/${ myCompanyForm.id }" method='POST' modelAttribute="myCompanyForm">
 					<h2 class="text-center">Mon entreprise</h2>
 					<hr class="colorgraph">
 					<div class="row">

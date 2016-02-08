@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page session="true"%>
 <head>
 	<link href="<c:url value="/resources/css/navigation.css" /> "rel="stylesheet">
@@ -22,8 +23,8 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/Meltum">Nouveauté</a></li>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-        	<li><a href="boutique">Boutique</a></li>
-        	<li><a href="mon-entreprise">Mon entreprise</a></li>
+        	<li><a href="/Meltum/boutique">Boutique</a></li>
+        	<li><a href="/Meltum/mon-entreprise">Mon entreprise</a></li>
         </c:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -65,7 +66,8 @@
 		        </li>
         	</c:when>
         	<c:otherwise>
-        		<li><a>Bonjour <strong>${pageContext.request.userPrincipal.name}</strong></a></li>
+        		<sec:authentication property="principal.mail" var="email"/> 
+        		<li><a>Bonjour <strong>${email}</strong></a></li>
 				<li><a href="mon-compte">Mon compte</a></li>
 				<li><a href="<c:url value="/logout" />">déconnexion</a></li>
         	</c:otherwise>

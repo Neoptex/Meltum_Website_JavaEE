@@ -16,22 +16,6 @@
 						Meltum<small> Inscription</small>
 					</h2>
 					<hr class="colorgraph">
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="form-group">
-								<form:input path="socialName" type="text" name="socialName" id="socialName"
-									class="form-control input-lg" placeholder="Raison Sociale" tabindex="1" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="form-group">
-								<form:input path="siren" type="text" name="Siren" id="Siren"
-									class="form-control input-lg" placeholder="Siren" tabindex="2" />
-							</div>
-						</div>
-					</div>
 					<div class="form-group">
 						<form:input path="email" type="email" name="email" id="email"
 							class="form-control input-lg" placeholder="E-mail"

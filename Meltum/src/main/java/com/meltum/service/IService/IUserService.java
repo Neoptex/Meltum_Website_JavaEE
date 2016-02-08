@@ -13,4 +13,6 @@ public interface IUserService {
 	User getUser(String name);
 
 	User updateUser(MyAccountForm myAccountForm, String email);
+	
+	User getUserCurrent();
 }

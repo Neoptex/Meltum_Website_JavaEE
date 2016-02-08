@@ -9,8 +9,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.meltum.beans.User;
 import com.meltum.service.IService.IUserService;
 import com.meltum.service.ServiceImpl.UserServiceImpl;
 
@@ -24,11 +26,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			
 			final String email = authentication.getName();
 			final String password = authentication.getCredentials().toString();
+			User user = userService.authUser(email, password);
 			
-			if (userService.authUser(email, password) != null) {
+			if (user != null) {
 	            final List<GrantedAuthority> grantedAuths = new ArrayList<>();
 	            grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-	            return new UsernamePasswordAuthenticationToken(email, password, grantedAuths);
+	            Authentication auth = new UsernamePasswordAuthenticationToken(user, password, grantedAuths);
+	            SecurityContextHolder.getContext().setAuthentication(auth);
+	            return auth;
 	        } else {
 	            return null;
 	        }

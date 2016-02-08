@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,7 @@ import com.meltum.service.IService.IUserService;
 public class UserServiceImpl implements IUserService {
 
 	private ObjectMapper mapper = new ObjectMapper();
-	private static User user = new User();
+	private User user = new User();
 	
 	@Override
 	public User createUser(RegisterForm registerForm) {
@@ -50,11 +51,11 @@ public class UserServiceImpl implements IUserService {
 		String response = api.executeRequest("user/auth", HttpMethod.POST, map);
 		if (response != null) {
 			try {
-				UserServiceImpl.user = mapper.readValue(response, User.class);
+				this.user = mapper.readValue(response, User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			return UserServiceImpl.user;
+			return this.user;
 		}
 		return null;
 	}
@@ -65,7 +66,7 @@ public class UserServiceImpl implements IUserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("socialName", myAccountForm.getSocialName());
 		map.put("siren", myAccountForm.getSiren());
-		String response = api.executeRequest("user/update/info/" + user.getId(), HttpMethod.POST, map);
+		String response = api.executeRequest("user/update/info/" + user.getId(), HttpMethod.PUT, map);
 		if (response != null) {
 			User user = new User();
 			try {
@@ -85,7 +86,7 @@ public class UserServiceImpl implements IUserService {
 		String response = api.executeRequest("user/get/" + user.getId(), HttpMethod.GET, map);
 		if (response != null) {
 			try {
-				UserServiceImpl.user = mapper.readValue(response, User.class);
+				this.user = mapper.readValue(response, User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -94,5 +95,7 @@ public class UserServiceImpl implements IUserService {
 		return null;
 	}
 	
-	
+	public User getUserCurrent() {
+		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 }
