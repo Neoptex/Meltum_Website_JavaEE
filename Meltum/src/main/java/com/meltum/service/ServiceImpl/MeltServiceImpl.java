@@ -1,6 +1,8 @@
 package com.meltum.service.ServiceImpl;
 
 import static com.meltum.common.WebConstant.URL_CREATE_MELT;
+import static com.meltum.common.WebConstant.URL_DELETE_MELT;
+import static com.meltum.common.WebConstant.URL_EDIT_MELT;
 import static com.meltum.common.WebConstant.URL_GET_MELT;
 
 import java.io.IOException;
@@ -42,18 +44,37 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public List<Melt> getMelts() {
-
 		ApiRequest api = new ApiRequest();
 		ObjectMapper mapper = new ObjectMapper();
 		List<Melt> melts = new ArrayList<Melt>();
 		Map<String, String> map = new HashMap<String, String>();
 		String response = api.executeRequest(URL_GET_MELT + companyService.getCompanyByUser().getId(), HttpMethod.GET, map);
-		try {
-			melts = mapper.readValue(response, mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (response != null) {
+			try {
+				melts = mapper.readValue(response, mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return melts;
+	}
+
+	public Melt updateMelt(MeltForm form) {
+		ApiRequest api = new ApiRequest();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", form.getName());
+		map.put("description", form.getDescription());
+		String response = api.executeRequest(URL_EDIT_MELT + form.getId(), HttpMethod.PUT, map);
+		System.out.println(response);
+		return melt;
+	}
+
+	public Melt removeMelt(MeltForm form) {
+		ApiRequest api = new ApiRequest();
+		Map<String, String> map = new HashMap<String, String>();
+		String response = api.executeRequest(URL_DELETE_MELT + form.getId(), HttpMethod.DELETE, map);
+		System.out.println(response);
+		return melt;
 	}
 }

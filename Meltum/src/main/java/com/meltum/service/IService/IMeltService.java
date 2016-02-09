@@ -10,4 +10,9 @@ public interface IMeltService {
 	Melt createMelt(MeltForm form);
 
 	List<Melt> getMelts();
+	
+	public Melt updateMelt(MeltForm form);
+	
+	public Melt removeMelt(MeltForm form);
+	
 }

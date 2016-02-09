@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,13 +36,15 @@ public class MeltsController {
 		return REDIRECT_MELT_VIEW;
 	}
 	
-	@RequestMapping("/remove")
-	public String removeMelt(@ModelAttribute MeltForm form, Model model) {
+	@RequestMapping("/remove/{id}")
+	public String removeMelt(@ModelAttribute MeltForm form, @PathVariable String id, Model model) {
+		meltService.removeMelt(form);
 		return REDIRECT_MELT_VIEW;
 	}
 	
-	@RequestMapping("/edit")
-	public String editMelt(@ModelAttribute MeltForm form, Model model) {
+	@RequestMapping("/edit/{id}")
+	public String editMelt(@ModelAttribute MeltForm form, @PathVariable String id, Model model) {
+		meltService.updateMelt(form);
 		return REDIRECT_MELT_VIEW;
 	}
 }

@@ -9,7 +9,7 @@
 				</button>
 				<h4 class="modal-title" id="modalRemoveMeltLabel${melt.id}">Supprimer un melt</h4>
 			</div>
-			<form:form role="form" action="/Meltum/melts/remove" method='DELETE' modelAttribute="meltForm">
+			<form:form role="form" action="/Meltum/melts/remove/${melt.id}" method='POST' modelAttribute="meltForm">
 				<div class="modal-body">
 					<p>Êtes-vous sur de vouloir supprimer le melt : ${melt.name}?
 				</div>

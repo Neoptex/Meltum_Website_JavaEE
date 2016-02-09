@@ -9,16 +9,16 @@
 				</button>
 				<h4 class="modal-title" id="modalEditMeltLabel${melt.id}">Modification</h4>
 			</div>
-			<form:form role="form" action="/Meltum/melts/edit" method='PUT' modelAttribute="meltForm">
+			<form:form role="form" action="/Meltum/melts/edit/${melt.id}" method='POST' modelAttribute="meltForm">
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="name">Nom</label>
-						<form:input path="name" type="text" name="name" id="name" class="form-control" placeholder="${melt.name}" tabindex="4" />
+						<form:input path="name" type="text" name="name" id="name" class="form-control" value="${melt.name}" tabindex="4" />
 					</div>
 					<div class="form-group">
 
 						<label for="description">Description</label>
-						<form:textarea path="description" type="text" name="description" id="description" class="form-control" placeholder="${melt.description}" tabindex="4" rows="5" />
+						<form:input path="description" name="description"  id="description" class="form-control" value="${melt.description}" tabindex="4" rows="5"/>
 					</div>
 				</div>
 				<div class="modal-footer">
