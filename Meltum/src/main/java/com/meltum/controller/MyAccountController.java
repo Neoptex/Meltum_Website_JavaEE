@@ -22,7 +22,7 @@ public class MyAccountController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayMyAccount(Model model, Principal principal) {
-		model.addAttribute(WebConstant.MYACCOUNT_FORM, new MyAccountForm(userService.getUser(principal.getName())));
+		model.addAttribute(WebConstant.MYACCOUNT_FORM, new MyAccountForm(userService.getUserCurrent()));
 		return WebConstant.MYACCOUNT_VIEW;
 	}
 	

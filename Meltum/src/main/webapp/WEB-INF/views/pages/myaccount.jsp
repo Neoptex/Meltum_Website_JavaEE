@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="form-group">
-								<form:input path="socialName" type="text" name="socialName" id="socialName"
+								<input type="text" name="socialName" id="socialName"
 									class="form-control input-lg" placeholder="Raison Sociale" tabindex="1" />
 							</div>
 						</div>
@@ -24,14 +24,14 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12">
 							<div class="form-group">
-								<form:input path="siren" type="text" name="Siren" id="Siren"
+								<input type="text" name="Siren" id="Siren"
 									class="form-control input-lg" placeholder="Siren" tabindex="2" />
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-md-12">
-							<a href="#" class="btn btn-primary btn-block btn-lg">Changer votre mot de passe</a>
+							<a href="#" class="btn btn-primary btn-block btn-lg">Modifier votre mot de passe</a>
 						</div>
 					</div>
 					<hr class="colorgraph">
