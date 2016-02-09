@@ -20,8 +20,8 @@
   		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
   	</definition>
   	
-  	<definition name="/boutique" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/shop.jsp" />
+  	<definition name="melts" extends="template">
+  		<put-attribute name="body" value="/WEB-INF/views/pages/melts/melts.jsp" />
   	</definition>
   	
   	<definition name="myCompanyShow" extends="template">
