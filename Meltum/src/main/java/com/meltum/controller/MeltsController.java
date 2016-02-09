@@ -34,4 +34,14 @@ public class MeltsController {
 		meltService.createMelt(form);
 		return REDIRECT_MELT_VIEW;
 	}
+	
+	@RequestMapping("/remove")
+	public String removeMelt(@ModelAttribute MeltForm form, Model model) {
+		return REDIRECT_MELT_VIEW;
+	}
+	
+	@RequestMapping("/edit")
+	public String editMelt(@ModelAttribute MeltForm form, Model model) {
+		return REDIRECT_MELT_VIEW;
+	}
 }
