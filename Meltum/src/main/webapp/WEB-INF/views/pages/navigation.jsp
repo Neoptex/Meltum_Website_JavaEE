@@ -18,7 +18,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/Meltum">Nouveauté</a></li>
+					<li><a href="/Meltum">Accueil</a></li>
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 						<li><a href="/Meltum/melts">Melts</a></li>
 						<li><a href="/Meltum/mon-entreprise">Mon entreprise</a></li>
