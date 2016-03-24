@@ -8,8 +8,12 @@
     	<put-attribute name="header" value="/WEB-INF/views/pages/navigation.jsp" />
   	</definition>
   	
-  	<definition name="admin" extends="template">
-    	<put-attribute name="body" value="/WEB-INF/views/pages/myaccount.jsp" />
+  	<definition name="myAccount" extends="template">
+    	<put-attribute name="body" value="/WEB-INF/views/pages/my-account/myaccount.jsp" />
+  	</definition>
+  	
+  	<definition name="changePassword" extends="template">
+    	<put-attribute name="body" value="/WEB-INF/views/pages/my-account/changePassword.jsp" />
   	</definition>
   	
   	<definition name="inscription" extends="template">

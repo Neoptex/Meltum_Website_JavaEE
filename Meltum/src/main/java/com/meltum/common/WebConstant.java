@@ -3,7 +3,8 @@ package com.meltum.common;
 public interface WebConstant {
 
 	// Views
-	public static final String MYACCOUNT_VIEW = "admin";
+	public static final String MYACCOUNT_VIEW = "myAccount";
+	public static final String CHANGE_PASSWORD_VIEW = "changePassword";
 	public static final String LOGIN_VIEW = "login";
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String NEWS_VIEW = "home";
@@ -11,11 +12,14 @@ public interface WebConstant {
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";
 
-	// Objects
+	// Forms
 	public static final String REGISTER_FORM = "registerForm";
 	public static final String MYACCOUNT_FORM = "myAccountForm";
 	public static final String MYCOMPANY_FORM = "myCompanyForm";
 	public static final String MELT_FORM = "meltForm";
+	public static final String CHANGE_PASSWORD_FORM = "changePasswordForm";
+	
+	// Objects
 	public static final String MELTS = "melts";
 
 	// Url

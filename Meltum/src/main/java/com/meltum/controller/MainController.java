@@ -34,6 +34,7 @@ public class MainController {
 	public String saveUser(@ModelAttribute RegisterForm registerForm, Model model) {
 		if (!registerForm.getPassword().equals(registerForm.getConfirmPassword())) {
 			model.addAttribute("wrongPwd", "wrongPassword");
+			return WebConstant.INSCRIPTION_VIEW;
 		}
 		User user = userService.createUser(registerForm);
 		if (user == null) {

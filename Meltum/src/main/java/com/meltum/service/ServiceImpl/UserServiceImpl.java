@@ -61,7 +61,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User updateUser(MyAccountForm myAccountForm, String email) {
+	public User updateUser(MyAccountForm myAccountForm) {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("socialName", myAccountForm.getSocialName());

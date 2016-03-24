@@ -1,10 +1,13 @@
 package com.meltum.beans;
 
+import java.util.Date;
+
 public class Company {
 
 	private String id;
 	private String name;
 	private String description;
+	private Date createdDate;
 	
 	/**
 	 * @return the name
@@ -42,4 +45,17 @@ public class Company {
 	public void setId(String id) {
 		this.id = id;
 	}
+	/**
+	 * @return the createdDate
+	 */
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	
 }
