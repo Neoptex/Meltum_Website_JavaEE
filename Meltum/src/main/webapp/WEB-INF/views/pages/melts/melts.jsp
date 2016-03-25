@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <title>Boutique</title>
 <link href="<c:url value="/resources/css/melt/form-elements.css" />" rel="stylesheet">
-<%-- <link href="<c:url value="/resources/css/melt/style.css" />" rel="stylesheet"> --%>
 </head>
 <body>
 	<!-- Page Content -->
