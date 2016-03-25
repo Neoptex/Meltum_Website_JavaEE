@@ -22,8 +22,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-					<button type="submit" class="btn btn-primary">Modifier</button>
+					<button type="submit" class="btn btn-primary">Appliquer les modifications</button>
 				</div>
 			</form:form>
 		</div>

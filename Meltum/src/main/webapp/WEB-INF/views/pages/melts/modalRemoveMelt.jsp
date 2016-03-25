@@ -14,7 +14,6 @@
 					<p>Êtes-vous sur de vouloir supprimer le melt : ${melt.name}?
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
 					<button type="submit" class="btn btn-primary">Supprimer</button>
 				</div>
 			</form:form>
