@@ -59,7 +59,7 @@
 				</div><!-- /col-12 -->
 			</div><!-- /row -->
 			<div id="home-row-2" class="row clearfix">
-				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="<c:url value="/resources/css/vitrine/images/app-store-icon.png"/>"></div><span>APPLE</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="<c:url value="/resources/css/vitrine/images/app-store-icon.png"/>"></div><span>iOS</span></div>
 				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3"><img src="<c:url value="/resources/css/vitrine/images/android-icon.png"/>"></div><span>ANDROID</span></div>
 				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="<c:url value="/resources/css/vitrine/images/windows-phone-icon.png"/>"></div><span>WINDOWS PHONE</span></div>
 			</div><!-- /row -->

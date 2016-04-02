@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
+  	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -74,6 +74,7 @@
 											<form:input path="oldPassword" type="password" name="password" id="password"
 												class="form-control input-lg" placeholder="Ancien mot de passe"
 												tabindex="5" />
+											<form:errors path="oldPassword"/>
 										</div>
 									</div>
 								</div>
@@ -83,6 +84,7 @@
 											<form:input path="password" type="password" name="password" id="password"
 												class="form-control input-lg" placeholder="Nouveau mot de passe"
 												tabindex="5" />
+											<form:errors path="password" cssClass="error"/>
 										</div>
 									</div>
 								</div>
@@ -92,6 +94,7 @@
 											<form:input path="confirmPassword" type="password" name="password_confirmation"
 												id="password_confirmation" class="form-control input-lg"
 												placeholder="Confirmer le mot de passe" tabindex="6" />
+											<form:errors path="confirmPassword"/>
 										</div>
 									</div>
 								</div>

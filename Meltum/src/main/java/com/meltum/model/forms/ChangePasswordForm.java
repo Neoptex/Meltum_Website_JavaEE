@@ -4,13 +4,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class ChangePasswordForm {
 
-	@NotEmpty
+	@NotEmpty(message = "Empty field not allowed")
 	private String oldPassword;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty field not allowed")
 	private String password;
 	
-	@NotEmpty
+	@NotEmpty(message = "Empty field not allowed")
 	private String confirmPassword;
 	
 	public ChangePasswordForm() {
