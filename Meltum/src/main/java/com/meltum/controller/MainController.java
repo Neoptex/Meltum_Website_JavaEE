@@ -1,14 +1,15 @@
 package com.meltum.controller;
  
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.meltum.beans.User;
 import com.meltum.common.WebConstant;
 import com.meltum.model.forms.RegisterForm;
 import com.meltum.service.IService.IUserService;
@@ -31,17 +32,14 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = { "/saveUser" }, method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute RegisterForm registerForm, Model model) {
-		if (!registerForm.getPassword().equals(registerForm.getConfirmPassword())) {
-			model.addAttribute("wrongPwd", "wrongPassword");
+	public String saveUser(@Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
+		if (!registerForm.getConfirmPassword().isEmpty() && !registerForm.getPassword().equals(registerForm.getConfirmPassword())) {
+			bindingResult.rejectValue("confirmPassword", "error.passwordMatching");
+		}
+		if (bindingResult.hasErrors()) {
 			return WebConstant.INSCRIPTION_VIEW;
 		}
-		User user = userService.createUser(registerForm);
-		if (user == null) {
-			System.out.println("cest null");
-		} else {
-			System.out.println(user.getPassword());
-		}
+		userService.createUser(registerForm);
 		return WebConstant.REDIRECT_NEWS_VIEW;
 	}
 	

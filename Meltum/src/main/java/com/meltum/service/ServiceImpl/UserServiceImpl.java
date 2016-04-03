@@ -6,13 +6,14 @@ import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meltum.api.ApiRequest;
 import com.meltum.beans.User;
-import com.meltum.model.forms.MyAccountForm;
+import com.meltum.model.forms.ChangePasswordForm;
 import com.meltum.model.forms.RegisterForm;
 import com.meltum.service.IService.IUserService;
 
@@ -29,11 +30,11 @@ public class UserServiceImpl implements IUserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mail", registerForm.getEmail());
 		map.put("password", registerForm.getPassword());
-		String response = api.executeRequest("user/create", HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest("user/create", HttpMethod.POST, map);
 		if (response != null) {
 			User user = new User();
 			try {
-				user = mapper.readValue(response, User.class);
+				user = mapper.readValue(response.getBody(), User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -48,10 +49,10 @@ public class UserServiceImpl implements IUserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mail", email);
 		map.put("password", password);
-		String response = api.executeRequest("user/auth", HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest("user/auth", HttpMethod.POST, map);
 		if (response != null) {
 			try {
-				this.user = mapper.readValue(response, User.class);
+				this.user = mapper.readValue(response.getBody(), User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -59,18 +60,18 @@ public class UserServiceImpl implements IUserService {
 		}
 		return null;
 	}
-
+	
 	@Override
-	public User updateUser(MyAccountForm myAccountForm) {
+	public User updatePassword(ChangePasswordForm passwordForm) {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("socialName", myAccountForm.getSocialName());
-		map.put("siren", myAccountForm.getSiren());
-		String response = api.executeRequest("user/update/info/" + user.getId(), HttpMethod.PUT, map);
+		map.put("oldPassword", passwordForm.getOldPassword());
+		map.put("password", passwordForm.getPassword());
+		ResponseEntity<String> response = api.executeRequest("user/update/pwd/" + this.getUserCurrent().getId(), HttpMethod.PUT, map);
 		if (response != null) {
 			User user = new User();
 			try {
-				user = mapper.readValue(response, User.class);
+				user = mapper.readValue(response.getBody(), User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -83,10 +84,10 @@ public class UserServiceImpl implements IUserService {
 	public User getUser(String mail) {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
-		String response = api.executeRequest("user/get/" + user.getId(), HttpMethod.GET, map);
+		ResponseEntity<String> response = api.executeRequest("user/get/" + this.getUserCurrent().getId(), HttpMethod.GET, map);
 		if (response != null) {
 			try {
-				this.user = mapper.readValue(response, User.class);
+				this.user = mapper.readValue(response.getBody(), User.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

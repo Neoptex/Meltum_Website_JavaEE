@@ -1,9 +1,16 @@
 package com.meltum.model.forms;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class RegisterForm {
 
+	@NotEmpty
 	String email;
+	
+	@NotEmpty
 	String password;
+	
+	@NotEmpty
 	String confirmPassword;
 	
 	public RegisterForm() {

@@ -14,6 +14,7 @@ import java.util.Map;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +39,7 @@ public class MeltServiceImpl implements IMeltService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", form.getName());
 		map.put("description", form.getDescription());
-		String response = api.executeRequest(URL_CREATE_MELT + companyService.getCompanyByUser().getId(), HttpMethod.POST, map);
-		System.out.println(response);
+		ResponseEntity<String> response = api.executeRequest(URL_CREATE_MELT + companyService.getCompanyByUser().getId(), HttpMethod.POST, map);
 		return melt;
 	}
 
@@ -48,16 +48,19 @@ public class MeltServiceImpl implements IMeltService {
 		ObjectMapper mapper = new ObjectMapper();
 		List<Melt> melts = new ArrayList<Melt>();
 		Map<String, String> map = new HashMap<String, String>();
-		String response = api.executeRequest(URL_GET_MELT + companyService.getCompanyByUser().getId(), HttpMethod.GET, map);
-		if (response != null) {
-			try {
-				melts = mapper.readValue(response, mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (companyService.getCompanyByUser() != null) {
+			ResponseEntity<String> response = api.executeRequest(URL_GET_MELT + companyService.getCompanyByUser().getId(), HttpMethod.GET, map);
+			if (response.getBody() != null) {
+				try {
+					melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}
 		return melts;
+		}
+		return null;
 	}
 
 	public Melt updateMelt(MeltForm form) {
@@ -65,16 +68,14 @@ public class MeltServiceImpl implements IMeltService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", form.getName());
 		map.put("description", form.getDescription());
-		String response = api.executeRequest(URL_EDIT_MELT + form.getId(), HttpMethod.PUT, map);
-		System.out.println(response);
+		ResponseEntity<String> response = api.executeRequest(URL_EDIT_MELT + form.getId(), HttpMethod.PUT, map);
 		return melt;
 	}
 
 	public Melt removeMelt(MeltForm form) {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
-		String response = api.executeRequest(URL_DELETE_MELT + form.getId(), HttpMethod.DELETE, map);
-		System.out.println(response);
+		ResponseEntity<String> response = api.executeRequest(URL_DELETE_MELT + form.getId(), HttpMethod.DELETE, map);
 		return melt;
 	}
 }

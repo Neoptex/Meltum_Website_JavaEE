@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.meltum.common.WebConstant;
 import com.meltum.model.forms.MeltForm;
 import com.meltum.service.IService.IMeltService;
 
@@ -24,8 +26,12 @@ public class MeltsController {
 	private IMeltService meltService = null;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String displayMelts(Model model) {
+	public String displayMelts(Model model, RedirectAttributes redir) {
 		model.addAttribute(MELT_FORM, new MeltForm());
+		if (meltService.getMelts() == null) {
+			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux melts");
+			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
+		}
 		model.addAttribute(MELTS, meltService.getMelts());
 		return MELTS_VIEW;
 	}

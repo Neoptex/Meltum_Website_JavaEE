@@ -37,7 +37,6 @@
 <body>
 
     <div id="wrapper">
-
         <!-- Navigation -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -73,6 +72,31 @@
 
         <div id="page-wrapper">
            		<div class="row">
+					<c:if test="${not empty error}">
+					<!-- Modal error -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header header-error">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title text-white">
+										<span class="glyphicon glyphicon-warning-sign icon-white" aria-hidden="true"></span> Erreur
+									</h4>
+								</div>
+								<div class="modal-body">
+									<c:out value="${ error }" />
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+				</c:if>
+				
 				<c:if test="${ not empty myCompanyForm.socialName}">
 					<div
 						class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -142,9 +166,12 @@ $(function () {
         init();
     });
 });
+
+var error = "${error}";
+if (error != null) {
+	$("#myModal").modal('show');
+}
 </script>
-
-
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js" />"></script>
 

@@ -20,6 +20,7 @@
 						<form:input path="email" type="email" name="email" id="email"
 							class="form-control input-lg" placeholder="E-mail"
 							tabindex="4" />
+						<form:errors path="email"/>
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
@@ -27,6 +28,7 @@
 								<form:input path="password" type="password" name="password" id="password"
 									class="form-control input-lg" placeholder="Mot de passe"
 									tabindex="5" />
+								<form:errors path="password"/>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
@@ -34,7 +36,7 @@
 								<form:input path="confirmPassword" type="password" name="password_confirmation"
 									id="password_confirmation" class="form-control input-lg"
 									placeholder="Confirmer le mot de passe" tabindex="6" />
-								<form:errors path="confirmPassword"></form:errors>
+								<form:errors path="confirmPassword"/>
 							</div>
 						</div>
 					</div>

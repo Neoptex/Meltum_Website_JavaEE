@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class ApiRequest {
 
-	public String executeRequest(String function, HttpMethod methodType, Map<String, String> map) {
+	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, Map<String, String> map) {
 		RestTemplate rt = new RestTemplate();
 		JSONObject request = new JSONObject();
 		for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -25,7 +25,7 @@ public class ApiRequest {
 
 		ResponseEntity<String> loginResponse = rt
 			  .exchange("http://185.83.218.101:8080/" + function, methodType, entity, String.class);
-		return loginResponse.getBody();
+		return loginResponse;
 	}
 	
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.meltum.api.ApiRequest;
@@ -30,10 +31,10 @@ public class CompanyServiceImpl implements ICompanyService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", companyForm.getSocialName());
 		map.put("description", companyForm.getDescription());
-		String response = api.executeRequest("company/create/" + userService.getUserCurrent().getId(), HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest("company/create/" + userService.getUserCurrent().getId(), HttpMethod.POST, map);
 		if (response != null) {
 			try {
-				company = mapper.readValue(response, Company.class);
+				company = mapper.readValue(response.getBody(), Company.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -48,10 +49,10 @@ public class CompanyServiceImpl implements ICompanyService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", companyForm.getSocialName());
 		map.put("description", companyForm.getDescription());
-		String response = api.executeRequest("company/update/info/" + companyForm.getId(), HttpMethod.PUT, map);
+		ResponseEntity<String> response = api.executeRequest("company/update/info/" + companyForm.getId(), HttpMethod.PUT, map);
 		if (response != null) {
 			try {
-				company = mapper.readValue(response, Company.class);
+				company = mapper.readValue(response.getBody(), Company.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -64,10 +65,10 @@ public class CompanyServiceImpl implements ICompanyService {
 	public Company getCompanyById(MyCompanyForm companyForm) {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
-		String response = api.executeRequest("company/get/byId/" + companyForm.getId(), HttpMethod.GET, map);
+		ResponseEntity<String> response = api.executeRequest("company/get/byId/" + companyForm.getId(), HttpMethod.GET, map);
 		if (response != null) {
 			try {
-				company = mapper.readValue(response, Company.class);
+				company = mapper.readValue(response.getBody(), Company.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -80,10 +81,10 @@ public class CompanyServiceImpl implements ICompanyService {
 	public Company getCompanyByUser() {
 		ApiRequest api = new ApiRequest();
 		Map<String, String> map = new HashMap<String, String>();
-		String response = api.executeRequest("company/get/byUserId/" + userService.getUserCurrent().getId(), HttpMethod.GET, map);
-		if (response != null) {
+		ResponseEntity<String> response = api.executeRequest("company/get/byUserId/" + userService.getUserCurrent().getId(), HttpMethod.GET, map);
+		if (response.getBody() != null) {
 			try {
-				company = mapper.readValue(response, Company.class);
+				company = mapper.readValue(response.getBody(), Company.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
