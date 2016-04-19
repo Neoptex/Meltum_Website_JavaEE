@@ -30,7 +30,7 @@ public class UserServiceImpl implements IUserService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("mail", registerForm.getEmail());
 		map.put("password", registerForm.getPassword());
-		ResponseEntity<String> response = api.executeRequest("user/create", HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest("user", HttpMethod.POST, map);
 		if (response != null) {
 			User user = new User();
 			try {
@@ -46,10 +46,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User authUser(String email, String password) {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("mail", email);
-		map.put("password", password);
-		ResponseEntity<String> response = api.executeRequest("user/auth", HttpMethod.POST, map);
+		String url = "user?mail=" + email + "&password=" + password;
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
 				this.user = mapper.readValue(response.getBody(), User.class);
@@ -64,10 +62,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User updatePassword(ChangePasswordForm passwordForm) {
 		ApiRequest api = new ApiRequest();
+		String url = "user/" + this.getUserCurrent().getId() + "/password";
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("oldPassword", passwordForm.getOldPassword());
 		map.put("password", passwordForm.getPassword());
-		ResponseEntity<String> response = api.executeRequest("user/update/pwd/" + this.getUserCurrent().getId(), HttpMethod.PUT, map);
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
 		if (response != null) {
 			User user = new User();
 			try {
@@ -83,8 +82,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User getUser(String mail) {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		ResponseEntity<String> response = api.executeRequest("user/get/" + this.getUserCurrent().getId(), HttpMethod.GET, map);
+		String url = "user/" + this.getUserCurrent().getId();
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
 				this.user = mapper.readValue(response.getBody(), User.class);

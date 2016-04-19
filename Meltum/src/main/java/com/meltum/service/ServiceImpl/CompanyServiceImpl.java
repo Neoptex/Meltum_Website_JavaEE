@@ -28,10 +28,11 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Override
 	public Company createCompany(MyCompanyForm companyForm) {
 		ApiRequest api = new ApiRequest();
+		String url = "user/" + userService.getUserCurrent().getId() + "/company";
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", companyForm.getSocialName());
 		map.put("description", companyForm.getDescription());
-		ResponseEntity<String> response = api.executeRequest("company/create/" + userService.getUserCurrent().getId(), HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, map);
 		if (response != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);
@@ -46,10 +47,11 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Override
 	public Company updateCompany(MyCompanyForm companyForm) {
 		ApiRequest api = new ApiRequest();
+		String url = "company/" + companyForm.getId();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", companyForm.getSocialName());
 		map.put("description", companyForm.getDescription());
-		ResponseEntity<String> response = api.executeRequest("company/update/info/" + companyForm.getId(), HttpMethod.PUT, map);
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
 		if (response != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);
@@ -64,8 +66,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Override
 	public Company getCompanyById(MyCompanyForm companyForm) {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		ResponseEntity<String> response = api.executeRequest("company/get/byId/" + companyForm.getId(), HttpMethod.GET, map);
+		String url = "company/" + companyForm.getId();
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);
@@ -80,8 +82,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	@Override
 	public Company getCompanyByUser() {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		ResponseEntity<String> response = api.executeRequest("company/get/byUserId/" + userService.getUserCurrent().getId(), HttpMethod.GET, map);
+		String url = "user/" + userService.getUserCurrent().getId() + "/company";
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response.getBody() != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);

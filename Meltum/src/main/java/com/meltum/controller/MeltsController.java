@@ -1,6 +1,7 @@
 package com.meltum.controller;
 
 import static com.meltum.common.WebConstant.MELTS;
+import static com.meltum.common.WebConstant.ZONE_VIEW;
 import static com.meltum.common.WebConstant.MELTS_VIEW;
 import static com.meltum.common.WebConstant.MELT_FORM;
 import static com.meltum.common.WebConstant.REDIRECT_MELT_VIEW;
@@ -34,6 +35,11 @@ public class MeltsController {
 		}
 		model.addAttribute(MELTS, meltService.getMelts());
 		return MELTS_VIEW;
+	}
+	
+	@RequestMapping(value = "/diffusion", method = RequestMethod.GET)
+	public String displayDiffusionZone(Model model) {
+		return ZONE_VIEW;
 	}
 
 	@RequestMapping("/add")

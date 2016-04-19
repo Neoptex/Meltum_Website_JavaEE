@@ -1,10 +1,5 @@
 package com.meltum.service.ServiceImpl;
 
-import static com.meltum.common.WebConstant.URL_CREATE_MELT;
-import static com.meltum.common.WebConstant.URL_DELETE_MELT;
-import static com.meltum.common.WebConstant.URL_EDIT_MELT;
-import static com.meltum.common.WebConstant.URL_GET_MELT;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,10 +31,11 @@ public class MeltServiceImpl implements IMeltService {
 	@Override
 	public Melt createMelt(MeltForm form) {
 		ApiRequest api = new ApiRequest();
+		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", form.getName());
 		map.put("description", form.getDescription());
-		ResponseEntity<String> response = api.executeRequest(URL_CREATE_MELT + companyService.getCompanyByUser().getId(), HttpMethod.POST, map);
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, map);
 		return melt;
 	}
 
@@ -47,14 +43,13 @@ public class MeltServiceImpl implements IMeltService {
 		ApiRequest api = new ApiRequest();
 		ObjectMapper mapper = new ObjectMapper();
 		List<Melt> melts = new ArrayList<Melt>();
-		Map<String, String> map = new HashMap<String, String>();
+		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		if (companyService.getCompanyByUser() != null) {
-			ResponseEntity<String> response = api.executeRequest(URL_GET_MELT + companyService.getCompanyByUser().getId(), HttpMethod.GET, map);
+			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 			if (response.getBody() != null) {
 				try {
 					melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -65,17 +60,18 @@ public class MeltServiceImpl implements IMeltService {
 
 	public Melt updateMelt(MeltForm form) {
 		ApiRequest api = new ApiRequest();
+		String url = "melt/" + form.getId();
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", form.getName());
 		map.put("description", form.getDescription());
-		ResponseEntity<String> response = api.executeRequest(URL_EDIT_MELT + form.getId(), HttpMethod.PUT, map);
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
 		return melt;
 	}
 
 	public Melt removeMelt(MeltForm form) {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		ResponseEntity<String> response = api.executeRequest(URL_DELETE_MELT + form.getId(), HttpMethod.DELETE, map);
+		String url = "melt/" + form.getId();
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.DELETE, null);
 		return melt;
 	}
 }

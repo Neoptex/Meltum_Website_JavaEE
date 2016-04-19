@@ -11,6 +11,7 @@ public interface WebConstant {
 	public static final String MELTS_VIEW = "melts";
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";
+	public static final String ZONE_VIEW = "zone";
 
 	// Forms
 	public static final String REGISTER_FORM = "registerForm";
@@ -21,12 +22,6 @@ public interface WebConstant {
 	
 	// Objects
 	public static final String MELTS = "melts";
-
-	// Url
-	public static final String URL_CREATE_MELT = "melt/create/";
-	public static final String URL_GET_MELT = "melts/get/";
-	public static final String URL_EDIT_MELT = "melt/update/info/";
-	public static final String URL_DELETE_MELT = "melt/delete/";
 
 	// Redirect
 	public static final String REDIRECT_NEWS_VIEW = "redirect:/";

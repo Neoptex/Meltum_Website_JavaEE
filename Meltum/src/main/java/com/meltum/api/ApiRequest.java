@@ -15,8 +15,10 @@ public class ApiRequest {
 	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, Map<String, String> map) {
 		RestTemplate rt = new RestTemplate();
 		JSONObject request = new JSONObject();
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			request.put(entry.getKey(), entry.getValue());
+		if (map != null) {
+			for (Map.Entry<String, String> entry : map.entrySet()) {
+				request.put(entry.getKey(), entry.getValue());
+			}
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -24,7 +26,7 @@ public class ApiRequest {
 		HttpEntity<String> entity = new HttpEntity<String>(request.toString(), headers);
 
 		ResponseEntity<String> loginResponse = rt
-			  .exchange("http://185.83.218.101:8080/" + function, methodType, entity, String.class);
+			  .exchange("http://185.83.218.101:8081/" + function, methodType, entity, String.class);
 		return loginResponse;
 	}
 	
