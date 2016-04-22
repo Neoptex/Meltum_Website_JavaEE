@@ -2,11 +2,13 @@ package com.meltum.service.ServiceImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.meltum.api.ApiRequest;
 import com.meltum.beans.Melt;
-import com.meltum.model.forms.MeltForm;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IMeltService;
 
@@ -27,17 +28,6 @@ public class MeltServiceImpl implements IMeltService {
 	private ICompanyService companyService = null;
 
 	private Melt melt = new Melt();
-
-	@Override
-	public Melt createMelt(MeltForm form) {
-		ApiRequest api = new ApiRequest();
-		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("name", form.getName());
-		map.put("description", form.getDescription());
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, map);
-		return melt;
-	}
 
 	public List<Melt> getMelts() {
 		ApiRequest api = new ApiRequest();
@@ -53,25 +43,34 @@ public class MeltServiceImpl implements IMeltService {
 					e.printStackTrace();
 				}
 			}
-		return melts;
+			return melts;
 		}
 		return null;
 	}
 
-	public Melt updateMelt(MeltForm form) {
+	@Override
+	public Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ApiRequest api = new ApiRequest();
-		String url = "melt/" + form.getId();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("name", form.getName());
-		map.put("description", form.getDescription());
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
+		ObjectMapper mapper = new ObjectMapper();
+		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(form));
+		api.executeRequest(url, HttpMethod.POST, jsonObj);
 		return melt;
 	}
 
-	public Melt removeMelt(MeltForm form) {
+	public Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		ApiRequest api = new ApiRequest();
+		ObjectMapper mapper = new ObjectMapper();
+		String url = "melt/" + form.getId();
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(form));
+		api.executeRequest(url, HttpMethod.PUT, jsonObj);
+		return melt;
+	}
+
+	public Melt removeMelt(Melt form) {
 		ApiRequest api = new ApiRequest();
 		String url = "melt/" + form.getId();
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.DELETE, null);
+		api.executeRequest(url, HttpMethod.DELETE, null);
 		return melt;
 	}
 }

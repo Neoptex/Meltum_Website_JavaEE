@@ -1,18 +1,22 @@
 package com.meltum.service.IService;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.json.JSONException;
+
 import com.meltum.beans.Melt;
-import com.meltum.model.forms.MeltForm;
 
 public interface IMeltService {
 
-	Melt createMelt(MeltForm form);
+	Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
 
 	List<Melt> getMelts();
-	
-	public Melt updateMelt(MeltForm form);
-	
-	public Melt removeMelt(MeltForm form);
-	
+
+	Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
+
+	Melt removeMelt(Melt form);
+
 }

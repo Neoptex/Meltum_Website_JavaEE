@@ -28,6 +28,10 @@
   		<put-attribute name="body" value="/WEB-INF/views/pages/melts/melts.jsp" />
   	</definition>
   	
+  	<definition name="shops" extends="template">
+  		<put-attribute name="body" value="/WEB-INF/views/pages/shops/shops.jsp" />
+  	</definition>
+  	
   	<definition name="zone" extends="template">
   		<put-attribute name="body" value="/WEB-INF/views/pages/melts/diffusion.jsp" />
   	</definition>

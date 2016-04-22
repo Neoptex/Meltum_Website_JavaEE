@@ -1,5 +1,8 @@
 package com.meltum.controller;
 
+import java.io.IOException;
+
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,9 +48,19 @@ public class MyCompanyController {
 	@RequestMapping(value = "/saveCompany/{id}", method = RequestMethod.POST)
 	public String saveCompany(@ModelAttribute MyCompanyForm form, @PathVariable String id, Model model) {
 		if (id.equals("0")) {
-			companyService.createCompany(form);
+			try {
+				companyService.createCompany(form);
+			} catch (JSONException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			companyService.updateCompany(form);
+			try {
+				companyService.updateCompany(form);
+			} catch (JSONException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return WebConstant.REDIRECT_MYCOMPANY_VIEW;
 	}

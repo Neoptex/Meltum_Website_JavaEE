@@ -1,7 +1,10 @@
 package com.meltum.controller;
  
+import java.io.IOException;
+
 import javax.validation.Valid;
 
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +42,12 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			return WebConstant.INSCRIPTION_VIEW;
 		}
-		userService.createUser(registerForm);
+		try {
+			userService.createUser(registerForm);
+		} catch (JSONException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return WebConstant.REDIRECT_NEWS_VIEW;
 	}
 	

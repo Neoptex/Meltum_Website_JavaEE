@@ -1,6 +1,7 @@
 package com.meltum.api;
 
-import java.util.Map;
+import static com.meltum.common.WebConstant.API_URL;
+import static com.meltum.common.WebConstant.EMPTY_STRING;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
@@ -12,22 +13,13 @@ import org.springframework.web.client.RestTemplate;
 
 public class ApiRequest {
 
-	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, Map<String, String> map) {
+	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, JSONObject jsonObj) {
 		RestTemplate rt = new RestTemplate();
-		JSONObject request = new JSONObject();
-		if (map != null) {
-			for (Map.Entry<String, String> entry : map.entrySet()) {
-				request.put(entry.getKey(), entry.getValue());
-			}
-		}
-		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> entity = new HttpEntity<String>(request.toString(), headers);
-
-		ResponseEntity<String> loginResponse = rt
-			  .exchange("http://185.83.218.101:8081/" + function, methodType, entity, String.class);
+		String request = jsonObj == null ? EMPTY_STRING : jsonObj.toString();
+		HttpEntity<String> entity = new HttpEntity<String>(request, headers);
+		ResponseEntity<String> loginResponse = rt.exchange(API_URL + function, methodType, entity, String.class);
 		return loginResponse;
 	}
-	
 }

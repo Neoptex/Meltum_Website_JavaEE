@@ -1,10 +1,12 @@
 package com.meltum.service.ServiceImpl;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +28,12 @@ public class CompanyServiceImpl implements ICompanyService {
 	private Company company = new Company();
 	
 	@Override
-	public Company createCompany(MyCompanyForm companyForm) {
+	public Company createCompany(MyCompanyForm companyForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ApiRequest api = new ApiRequest();
+		ObjectMapper mapper = new ObjectMapper();
 		String url = "user/" + userService.getUserCurrent().getId() + "/company";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("name", companyForm.getSocialName());
-		map.put("description", companyForm.getDescription());
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, map);
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(companyForm));
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, jsonObj);
 		if (response != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);
@@ -45,13 +46,12 @@ public class CompanyServiceImpl implements ICompanyService {
 	}
 	
 	@Override
-	public Company updateCompany(MyCompanyForm companyForm) {
+	public Company updateCompany(MyCompanyForm companyForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ApiRequest api = new ApiRequest();
+		ObjectMapper mapper = new ObjectMapper();
 		String url = "company/" + companyForm.getId();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("name", companyForm.getSocialName());
-		map.put("description", companyForm.getDescription());
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(companyForm));	
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		if (response != null) {
 			try {
 				company = mapper.readValue(response.getBody(), Company.class);

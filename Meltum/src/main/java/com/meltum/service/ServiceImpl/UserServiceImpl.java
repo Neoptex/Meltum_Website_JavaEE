@@ -1,10 +1,12 @@
 package com.meltum.service.ServiceImpl;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,12 +27,11 @@ public class UserServiceImpl implements IUserService {
 	private User user = new User();
 	
 	@Override
-	public User createUser(RegisterForm registerForm) {
+	public User createUser(RegisterForm registerForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ApiRequest api = new ApiRequest();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("mail", registerForm.getEmail());
-		map.put("password", registerForm.getPassword());
-		ResponseEntity<String> response = api.executeRequest("user", HttpMethod.POST, map);
+		ObjectMapper mapper = new ObjectMapper();
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(registerForm));
+		ResponseEntity<String> response = api.executeRequest("user", HttpMethod.POST, jsonObj);
 		if (response != null) {
 			User user = new User();
 			try {
@@ -60,13 +61,12 @@ public class UserServiceImpl implements IUserService {
 	}
 	
 	@Override
-	public User updatePassword(ChangePasswordForm passwordForm) {
+	public User updatePassword(ChangePasswordForm passwordForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ApiRequest api = new ApiRequest();
+		ObjectMapper mapper = new ObjectMapper();
 		String url = "user/" + this.getUserCurrent().getId() + "/password";
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("oldPassword", passwordForm.getOldPassword());
-		map.put("password", passwordForm.getPassword());
-		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, map);
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(passwordForm));		
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		if (response != null) {
 			User user = new User();
 			try {

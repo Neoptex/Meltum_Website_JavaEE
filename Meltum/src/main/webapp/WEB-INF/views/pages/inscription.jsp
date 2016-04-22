@@ -9,42 +9,34 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div
-				class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 				<form:form role="form" action="/Meltum/saveUser/" method='POST' modelAttribute="registerForm">
 					<h2>
 						Meltum<small> Inscription</small>
 					</h2>
 					<hr class="colorgraph">
 					<div class="form-group">
-						<form:input path="email" type="email" name="email" id="email"
-							class="form-control input-lg" placeholder="E-mail"
-							tabindex="4" />
-						<form:errors path="email"/>
+						<form:input path="email" type="email" name="email" id="email" class="form-control input-lg" placeholder="E-mail" tabindex="4" />
+						<form:errors path="email" />
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<form:input path="password" type="password" name="password" id="password"
-									class="form-control input-lg" placeholder="Mot de passe"
-									tabindex="5" />
-								<form:errors path="password"/>
+								<form:input path="password" type="password" name="password" id="password" class="form-control input-lg" placeholder="Mot de passe" tabindex="5" />
+								<form:errors path="password" />
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<form:input path="confirmPassword" type="password" name="password_confirmation"
-									id="password_confirmation" class="form-control input-lg"
-									placeholder="Confirmer le mot de passe" tabindex="6" />
-								<form:errors path="confirmPassword"/>
+								<form:input path="confirmPassword" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirmer le mot de passe" tabindex="6" />
+								<form:errors path="confirmPassword" />
 							</div>
 						</div>
 					</div>
 					<hr class="colorgraph">
 					<div class="row">
 						<div class="col-xs-12 col-md-12">
-							<input type="submit" value="S'inscrire"
-								class="btn btn-primary btn-block btn-lg" tabindex="7">
+							<input type="submit" value="S'inscrire" class="btn btn-primary btn-block btn-lg" tabindex="7">
 						</div>
 					</div>
 				</form:form>

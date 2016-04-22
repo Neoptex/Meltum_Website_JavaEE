@@ -9,6 +9,7 @@ public interface WebConstant {
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String NEWS_VIEW = "home";
 	public static final String MELTS_VIEW = "melts";
+	public static final String SHOPS_VIEW = "shops";
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";
 	public static final String ZONE_VIEW = "zone";
@@ -18,15 +19,21 @@ public interface WebConstant {
 	public static final String MYACCOUNT_FORM = "myAccountForm";
 	public static final String MYCOMPANY_FORM = "myCompanyForm";
 	public static final String MELT_FORM = "meltForm";
+	public static final String SHOP_FORM = "shopForm";
 	public static final String CHANGE_PASSWORD_FORM = "changePasswordForm";
 	
 	// Objects
 	public static final String MELTS = "melts";
+	public static final String SHOPS = "shops";
 
 	// Redirect
 	public static final String REDIRECT_NEWS_VIEW = "redirect:/";
 	public static final String REDIRECT_MYACCOUNT_VIEW = "redirect:/mon-compte";
 	public static final String REDIRECT_MYCOMPANY_VIEW = "redirect:/mon-entreprise";
 	public static final String REDIRECT_MELT_VIEW = "redirect:/melts";
-
+	public static final String REDIRECT_SHOP_VIEW = "redirect:/shops";
+	
+	// Miscellaneous
+	public static final String API_URL = "http://185.83.218.101:8081/";
+	public static final String EMPTY_STRING = "";
 }
