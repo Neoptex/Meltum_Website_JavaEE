@@ -55,7 +55,7 @@
                       <!-- /input-group -->
                   </li>
                         <c:choose>
-							<c:when test="${ not empty myCompanyForm.socialName}">
+							<c:when test="${ not empty myCompanyForm.name}">
 		                        <li>
 		                            <a href=""><i class="fa fa-edit fa-fw"></i> Mon entreprise</a>
 		                        </li>
@@ -83,7 +83,7 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="form-group">
-									<form:input path="socialName" type="text" name="socialName" id="socialName"
+									<form:input path="name" type="text" name="name" id="name"
 										class="form-control input-lg" placeholder="Raison Sociale" tabindex="1" />
 								</div>
 							</div>

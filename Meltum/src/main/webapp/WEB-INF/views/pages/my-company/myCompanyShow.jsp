@@ -53,7 +53,7 @@
                             <!-- /input-group -->
                         </li>
                         <c:choose>
-							<c:when test="${ not empty myCompanyForm.socialName}">
+							<c:when test="${ not empty myCompanyForm.name}">
 		                        <li>
 		                            <a href=""><i class="fa fa-edit fa-fw"></i> Mon entreprise</a>
 		                        </li>
@@ -97,7 +97,7 @@
 					<!-- /.modal -->
 				</c:if>
 				
-				<c:if test="${ not empty myCompanyForm.socialName}">
+				<c:if test="${ not empty myCompanyForm.name}">
 					<div
 						class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 						<form:form role="form" action="/Meltum/mon-entreprise/saveCompany/${ myCompanyForm.id }" method='POST' modelAttribute="myCompanyForm">
@@ -107,7 +107,7 @@
 								<div class="col-xs-12 col-sm-12 col-md-12">
 									<div class="form-group">
 										<label class="control-label">Raison sociale : </label>			
-										<p>${ myCompanyForm.socialName }</p>
+										<p>${ myCompanyForm.name }</p>
 									</div>
 								</div>
 							</div>

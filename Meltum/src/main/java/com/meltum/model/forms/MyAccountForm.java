@@ -4,7 +4,7 @@ import com.meltum.beans.User;
 
 public class MyAccountForm {
 	
-	private String socialName;
+	private String name;
 	private String siren;
 	
 	public MyAccountForm() {
@@ -12,22 +12,10 @@ public class MyAccountForm {
 	}
 	
 	public MyAccountForm(User user) {
-		this.socialName = user.getSocialName();
+		this.name = user.getName();
 		this.siren = user.getSiren();
 	}
 	
-	/**
-	 * @return the socialName
-	 */
-	public String getSocialName() {
-		return socialName;
-	}
-	/**
-	 * @param socialName the socialName to set
-	 */
-	public void setSocialName(String socialName) {
-		this.socialName = socialName;
-	}
 	/**
 	 * @return the siren
 	 */
@@ -39,6 +27,14 @@ public class MyAccountForm {
 	 */
 	public void setSiren(String siren) {
 		this.siren = siren;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

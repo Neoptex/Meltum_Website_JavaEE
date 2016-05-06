@@ -1,16 +1,18 @@
 package com.meltum.model.forms;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class RegisterForm {
 
 	@NotEmpty
-	String email;
+	String mail;
 	
 	@NotEmpty
 	String password;
 	
 	@NotEmpty
+	@JsonIgnore
 	String confirmPassword;
 	
 	public RegisterForm() {
@@ -20,14 +22,14 @@ public class RegisterForm {
 	/**
 	 * @return the email
 	 */
-	public String getEmail() {
-		return email;
+	public String getMail() {
+		return mail;
 	}
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMail(String email) {
+		this.mail = email;
 	}
 	/**
 	 * @return the password

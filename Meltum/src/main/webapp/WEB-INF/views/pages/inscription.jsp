@@ -16,8 +16,8 @@
 					</h2>
 					<hr class="colorgraph">
 					<div class="form-group">
-						<form:input path="email" type="email" name="email" id="email" class="form-control input-lg" placeholder="E-mail" tabindex="4" />
-						<form:errors path="email" />
+						<form:input path="mail" type="mail" name="mail" id="mail" class="form-control input-lg" placeholder="E-mail" tabindex="4" />
+						<form:errors path="mail" />
 					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">

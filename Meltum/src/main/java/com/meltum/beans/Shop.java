@@ -8,6 +8,7 @@ public class Shop {
 	Adresse adresse;
 	Location location;
 	String createdDate;
+	String imageUrl;
 	
 	public String getId() {
 		return id;
@@ -50,5 +51,11 @@ public class Shop {
 	}
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 }
