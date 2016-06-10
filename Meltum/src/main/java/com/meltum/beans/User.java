@@ -10,6 +10,7 @@ public class User {
 	private String mail;
 	private String name;
 	private String siren;
+	private AuthToken tokenObj;
 
 	/*
 	 * (non-Javadoc)
@@ -83,6 +84,20 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the tokenObj
+	 */
+	public AuthToken getTokenObj() {
+		return tokenObj;
+	}
+
+	/**
+	 * @param tokenObj the tokenObj to set
+	 */
+	public void setTokenObj(AuthToken tokenObj) {
+		this.tokenObj = tokenObj;
 	}
 
 }

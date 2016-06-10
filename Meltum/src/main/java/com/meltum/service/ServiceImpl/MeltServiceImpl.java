@@ -12,7 +12,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,6 +28,7 @@ import com.meltum.api.ApiRequest;
 import com.meltum.beans.Melt;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IMeltService;
+import com.meltum.service.IService.IUserService;
 
 @Service
 @Transactional
@@ -36,17 +36,20 @@ public class MeltServiceImpl implements IMeltService {
 
 	@Autowired
 	private ICompanyService companyService = null;
+	@Autowired
+	private IUserService userService = null;
 
 	private ApiRequest api = new ApiRequest();
 	private ObjectMapper mapper = new ObjectMapper();
 	private Melt melt = new Melt();
 	private String url = new String();
 	private JSONObject jsonObj = new JSONObject();
-
+	
 	public List<Melt> getMelts() {
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		List<Melt> melts = new ArrayList<Melt>();
-		url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		if (companyService.getCompanyByUser() != null) {
+			url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 			if (response.getBody() != null) {
 				try {
@@ -78,6 +81,7 @@ public class MeltServiceImpl implements IMeltService {
 
 	@Override
 	public Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, jsonObj);
@@ -88,6 +92,7 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		url = "melt/" + form.getId();
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
 		api.executeRequest(url, HttpMethod.PUT, jsonObj);
@@ -95,6 +100,7 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public Melt removeMelt(Melt form) {
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		url = "melt/" + form.getId();
 		api.executeRequest(url, HttpMethod.DELETE, null);
 		return melt;

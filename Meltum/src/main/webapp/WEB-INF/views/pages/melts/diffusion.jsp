@@ -11,18 +11,9 @@
     <meta name="author" content="">
 
 	<link href="<c:url value="/resources/css/mycompany.css" />" rel="stylesheet">
-	
-    <!-- MetisMenu CSS -->
-    <link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css" />" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" />" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="<c:url value="/resources/bower_components/morrisjs/morris.css" />" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
@@ -33,21 +24,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<link href="<c:url value="/resources/css/shop.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/css/melt/form-elements.css" />" rel="stylesheet">
 	
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
-	<script>
-	function initialize() {
-	  var mapProp = {
-	    center:new google.maps.LatLng(48.8534100, 2.3488000),
-	    zoom:10,
-	    mapTypeId:google.maps.MapTypeId.ROADMAP
-	  };
-	  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCHWNArOBPWU4NbT6sMlENXfB5hGSjayfM"></script>
+
 </head>
 <body>
 
@@ -77,18 +56,151 @@
         <!-- /.navbar-static-side -->
         
 	<!-- Page Content -->
-	<div id="page-wrapper">
+	<div id="page-wrapper" >
 		<div class="row">
+			<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="modalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="lineModalLabel">Choisissez votre magasin</h3>
+					</div>
+					<div class="modal-body">
+						
+			            <!-- content goes here -->
+						<form>
+			              <div class="form-group">
+			                <label for="shop">Magasin</label>
+			                <select class="form-control" id="shopList">
+			                	<c:forEach items="${ shopList }" var="shop">
+			                		<option value="${shop.id}">${shop.name}</option>
+			                	</c:forEach>
+			                </select>
+			              </div>
+			            </form>
+			
+					</div>
+					<div class="modal-footer">
+						<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+							<div class="btn-group" role="group">
+								<button onclick="initialize()" type="button" id="select" class="btn btn-default btn-hover-green" data-dismiss="modal" role="button">Enregistrer</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+		
 			<div id="googleMap" style="width:100%;height:900px;"></div>
+			<button type="button" onclick="submitPointsList()">Submit</button>
 		</div>
 	</div>
 </body>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js" />"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="<c:url value="/resources/bower_components/raphael/raphael-min.js" />" ></script>
-
 <!-- Custom Theme JavaScript -->
 <script src="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js" />"></script>
+<script type="text/javascript">
+	$("#shopList option:first").attr('class','selected');
+	$("#squarespaceModal").modal('show');
+</script>
+	<script type="text/javascript">
+	
+	  var poly, map;
+	  var markers = [];
+	  var points = [];
+	  var path = new google.maps.MVCArray;
+	  var currentShop = new google.maps.LatLng(48.864716, 2.349014);
+	  
+	  function getCurrentShopCoord(id) {
+	  	var json = JSON.stringify('${shopListJson}').replace(/\\/g, "");
+		var shopList = $.parseJSON('${shopListJson}');
+		
+		for (i = 0; i < shopList.length; i++) {
+				if (shopList[i].id == id) {
+					var location = shopList[i].location;
+					return new google.maps.LatLng(location.y, location.x);
+				}
+			}
+	  }
+	  
+	  function Point(x, y){
+		  	this.x = x;
+		  	this.y = y;
+		  }
+		  
+	  function fillPathAndMarkers(id) {
+			var json = JSON.stringify('${shopListJson}').replace(/\\/g, "");
+			var shopList = $.parseJSON('${shopListJson}');
+			
+			for (i = 0; i < shopList.length; i++) {
+					if (typeof shopList[i].zone != 'undefined' && shopList[i].id == id) {
+						if (shopList[i].zone.points.length > 0) {
+							var zone = shopList[i].zone;
+							for (var i = 0; i < zone.points.length; i++) {
+								var myLatLng = new google.maps.LatLng(zone.points[i].y, zone.points[i].x);
+								addMarker(myLatLng);
+							}
+						}
+					}
+				}
+		    	return markers;
+		  }
+		  
+		  
+	  function initialize() {
+		//currentShop = getCurrentShopCoord($("#shopList option:selected").val());
+	    map = new google.maps.Map(document.getElementById("googleMap"), {
+	      zoom: 11,
+	      center: currentShop,
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    });
+	    poly = new google.maps.Polygon({
+	      strokeWeight: 3,
+	      fillColor: '#5555FF'
+	    });
+	    poly.setMap(map);
+		poly.setPaths(new google.maps.MVCArray([path]));
+		markers = fillPathAndMarkers($("#shopList option:selected").val());
+	    google.maps.event.addListener(map, 'click', addPoint);
+	  }
+	
+	  function addPoint(event) {
+	    addMarker(event.latLng);
+	  }
+	  
+	  function addMarker(latLng) {
+			poly.getPath().insertAt(path.length, latLng);
+		    var marker = new google.maps.Marker({
+			      position: latLng,
+			      map: map
+			    });
+			    var point = new Point(marker.getPosition().lng(), marker.getPosition().lat());
+			    points.push(point);
+			    markers.push(marker);
+			    marker.setTitle("#" + path.length);
+			
+			    google.maps.event.addListener(marker, 'click', function() {
+				      marker.setMap(null);
+				      for (var i = 0, I = markers.length; i < I && markers[i] != marker; ++i);
+				      markers.splice(i, 1);
+				      path.removeAt(i);
+				      for (var j = 0, J = points.length; j < J && points[j] != point; ++j);
+				      points.splice(j, 1);
+			      }
+			    );
+	  }
+	  
+	  function submitPointsList() {
+		  $.ajax({
+			    url: '/Meltum/melts/diffusion/saveZone/' + $('#shopList option:selected').val(),
+			    type: 'POST',
+			    contentType: 'application/json',
+			    dataType : 'json',
+			    data: JSON.stringify(points),
+			    success: function(result) {
+	            },
+	            error: function(e){
+	                alert('failure');
+	            }
+			});
+	}
+	</script>
 </html>

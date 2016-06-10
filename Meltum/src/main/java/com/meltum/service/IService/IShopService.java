@@ -20,4 +20,6 @@ public interface IShopService {
 
 	Shop removeShop(Shop form);
 
+	Shop getShopById(String id);
+
 }

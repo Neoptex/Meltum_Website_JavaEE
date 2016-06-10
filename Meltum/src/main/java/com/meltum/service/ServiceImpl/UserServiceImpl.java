@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meltum.api.ApiRequest;
+import com.meltum.beans.Company;
 import com.meltum.beans.User;
 import com.meltum.model.forms.ChangePasswordForm;
 import com.meltum.model.forms.RegisterForm;
@@ -25,10 +26,10 @@ public class UserServiceImpl implements IUserService {
 
 	private ObjectMapper mapper = new ObjectMapper();
 	private User user = new User();
+	private ApiRequest api = new ApiRequest();
 	
 	@Override
 	public User createUser(RegisterForm registerForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		ApiRequest api = new ApiRequest();
 		ObjectMapper mapper = new ObjectMapper();
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(registerForm));
 		ResponseEntity<String> response = api.executeRequest("user", HttpMethod.POST, jsonObj);
@@ -46,12 +47,12 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User authUser(String email, String password) {
-		ApiRequest api = new ApiRequest();
 		String url = "user?mail=" + email + "&password=" + password;
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
 				this.user = mapper.readValue(response.getBody(), User.class);
+				this.api = new ApiRequest(this.user.getTokenObj().getToken());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -62,7 +63,6 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User updatePassword(ChangePasswordForm passwordForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		ApiRequest api = new ApiRequest();
 		ObjectMapper mapper = new ObjectMapper();
 		String url = "user/" + this.getUserCurrent().getId() + "/password";
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(passwordForm));		
@@ -81,7 +81,6 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User getUser(String mail) {
-		ApiRequest api = new ApiRequest();
 		String url = "user/" + this.getUserCurrent().getId();
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
@@ -97,5 +96,21 @@ public class UserServiceImpl implements IUserService {
 	
 	public User getUserCurrent() {
 		return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+
+	@Override
+	public Company getCompanyFromCurrentUser() {
+		String url = "user/" + this.getUserCurrent().getId() + "/company";
+		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
+		Company company = new Company();
+		if (response != null) {
+			try {
+				company = mapper.readValue(response.getBody(), Company.class);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return company;
+		}
+		return null;
 	}
 }

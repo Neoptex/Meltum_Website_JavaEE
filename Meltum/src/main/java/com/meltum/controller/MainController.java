@@ -25,7 +25,7 @@ public class MainController {
 	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String displayHome() {
-		return WebConstant.NEWS_VIEW;
+		return WebConstant.HOME_VIEW;
 	}
 	
 	@RequestMapping(value = { "/inscription" }, method = RequestMethod.GET)
@@ -45,18 +45,16 @@ public class MainController {
 		try {
 			userService.createUser(registerForm);
 		} catch (JSONException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return WebConstant.REDIRECT_NEWS_VIEW;
+		return WebConstant.REDIRECT_HOME_VIEW;
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@RequestParam(value = "error", required = false) String error, Model model){
-
 		if (error != null) {
-			model.addAttribute("error", "Invalid username and password!");
+			model.addAttribute("error", "Nom d'utilisateur ou mot de passe incorrect");
 		}
-		return WebConstant.NEWS_VIEW;
+		return WebConstant.HOME_VIEW;
 	}
 }

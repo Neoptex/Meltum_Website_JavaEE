@@ -1,16 +1,24 @@
 package com.meltum.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Zone {
-	List<Points> points = new ArrayList<Points>();
+	
+	private List<Coord> points;
 
-	public List<Points> getPoints() {
+	/**
+	 * @return the points
+	 */
+	public List<Coord> getPoints() {
 		return points;
 	}
 
-	public void setPoints(List<Points> points) {
+	/**
+	 * @param points the points to set
+	 */
+	public void setPoints(List<Coord> points) {
 		this.points = points;
 	}
+
+
 }

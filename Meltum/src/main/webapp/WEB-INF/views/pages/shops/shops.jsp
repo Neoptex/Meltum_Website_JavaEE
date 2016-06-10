@@ -49,6 +49,31 @@
 	<!-- Page Content -->
 	<div id="page-wrapper">
 		<div class="row">
+			<!-- Modal error -->
+				<c:if test="${not empty error}">
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header header-error">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title text-white">
+										<span class="glyphicon glyphicon-warning-sign icon-white" aria-hidden="true"></span> Erreur
+									</h4>
+								</div>
+								<div class="modal-body">
+									<c:out value="${ error }" />
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+				</c:if>
+			<!-- /.modal -->
+		
 			<!-- MODAL -->
 			<div class="col-md-12">
 				<c:forEach items="${shops}" var="shop">
@@ -97,4 +122,10 @@
 <script src="<c:url value="/resources/bower_components/raphael/raphael-min.js" />"></script>
 <!-- Custom Theme JavaScript -->
 <script src="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js" />"></script>
+<script type="text/javascript">
+var error = "${error}";
+if (error != null) {
+	$("#myModal").modal('show');
+}
+</script>
 </html>
