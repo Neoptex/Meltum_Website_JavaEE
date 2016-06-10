@@ -19,6 +19,7 @@ import com.meltum.api.ApiRequest;
 import com.meltum.beans.Melt;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IMeltService;
+import com.meltum.service.IService.IUserService;
 
 @Service
 @Transactional
@@ -26,15 +27,18 @@ public class MeltServiceImpl implements IMeltService {
 
 	@Autowired
 	private ICompanyService companyService = null;
+	@Autowired
+	private IUserService userService = null;
 
+	private ApiRequest api = new ApiRequest();
 	private Melt melt = new Melt();
-
+	
 	public List<Melt> getMelts() {
-		ApiRequest api = new ApiRequest();
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		ObjectMapper mapper = new ObjectMapper();
 		List<Melt> melts = new ArrayList<Melt>();
-		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		if (companyService.getCompanyByUser() != null) {
+			String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 			if (response.getBody() != null) {
 				try {
@@ -50,7 +54,7 @@ public class MeltServiceImpl implements IMeltService {
 
 	@Override
 	public Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		ApiRequest api = new ApiRequest();
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		ObjectMapper mapper = new ObjectMapper();
 		String url = "company/" + companyService.getCompanyByUser().getId() + "/melt";
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -59,7 +63,7 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		ApiRequest api = new ApiRequest();
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		ObjectMapper mapper = new ObjectMapper();
 		String url = "melt/" + form.getId();
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -68,7 +72,7 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public Melt removeMelt(Melt form) {
-		ApiRequest api = new ApiRequest();
+		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
 		String url = "melt/" + form.getId();
 		api.executeRequest(url, HttpMethod.DELETE, null);
 		return melt;

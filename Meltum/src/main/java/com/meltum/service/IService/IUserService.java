@@ -6,6 +6,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.json.JSONException;
 
+import com.meltum.beans.Company;
 import com.meltum.beans.User;
 import com.meltum.model.forms.ChangePasswordForm;
 import com.meltum.model.forms.RegisterForm;
@@ -21,4 +22,6 @@ public interface IUserService {
 	User getUserCurrent();
 
 	User updatePassword(ChangePasswordForm passwordForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
+
+	Company getCompanyFromCurrentUser();
 }

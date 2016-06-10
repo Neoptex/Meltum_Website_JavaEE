@@ -12,10 +12,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class ApiRequest {
+	
+	HttpHeaders headers = new HttpHeaders();
 
+	public ApiRequest(String token) {
+		headers.set("token", token);
+	}
+	
+	public ApiRequest() {
+		super();
+	}
+	
 	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, JSONObject jsonObj) {
 		RestTemplate rt = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		String request = jsonObj == null ? EMPTY_STRING : jsonObj.toString();
 		HttpEntity<String> entity = new HttpEntity<String>(request, headers);
