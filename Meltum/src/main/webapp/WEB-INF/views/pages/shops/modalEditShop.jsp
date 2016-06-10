@@ -19,6 +19,22 @@
 						<label for="description">Description</label>
 						<form:input path="description" name="description" id="description" class="form-control" value="${shop.description}" tabindex="4" rows="5" />
 					</div>
+					<div class="form-group">
+						<label for="street">Rue</label>
+						<form:input path="adresse.street" type="text" name="street" id="street" class="form-control" value="${shop.adresse.street}" tabindex="4" />
+					</div>
+					<div class="form-group">
+						<label for="city">Ville</label>
+						<form:input path="adresse.city" type="text" name="city" id="city" class="form-control" value="${shop.adresse.city}" tabindex="4" />
+					</div>
+					<div class="form-group">
+						<label for="postalcode">Code postal</label>
+						<form:input path="adresse.postalcode" type="text" name="postalcode" id="postalcode" class="form-control" value="${shop.adresse.postalcode}" tabindex="4" />
+					</div>
+					<div class="form-group">
+						<label for="phone">Téléphone</label>
+						<form:input path="phone" type="text" name="phone" id="phone" class="form-control" value="${shop.phone}" tabindex="4" />
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success btn-lg btn-block">Appliquer les modifications</button>

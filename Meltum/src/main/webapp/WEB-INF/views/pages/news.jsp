@@ -73,6 +73,152 @@
 		<!-- /container -->
 	</div>
 	<!-- /slide1 -->
+	<div class="slide story" id="slide-2" data-slide="2">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-thin">
+					Contrary to popular belief, <span class="font-semibold">Lorem Ipsum</span> is not simply random text.
+				</div>
+			</div>
+			<!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div>
+			<!-- /row -->
+			<div class="row subtitle-row">
+				<div class="col-12 font-thin">
+					This is what <span class="font-semibold">we do best</span>
+				</div>
+			</div>
+			<!-- /row -->
+			<div class="row content-row">
+				<div class="col-12 col-lg-3 col-sm-6">
+					<p>
+						<i class="icon icon-eye-open"></i>
+					</p>
+					<h2 class="font-thin">
+						Visual <span class="font-semibold">Identity</span>
+					</h2>
+					<h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-lg-3 col-sm-6">
+					<p>
+						<i class="icon icon-laptop"></i>
+					</p>
+					<h2 class="font-thin">
+						Web <span class="font-semibold">Design</span>
+					</h2>
+					<h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-lg-3 col-sm-6">
+					<p>
+						<i class="icon icon-tablet"></i>
+					</p>
+					<h2 class="font-thin">
+						Mobile <span class="font-semibold">Apps</span>
+					</h2>
+					<h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-lg-3 col-sm-6">
+					<p>
+						<i class="icon icon-pencil"></i>
+					</p>
+					<h2 class="font-semibold">Development</h2>
+					<h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+				</div>
+				<!-- /col12 -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /slide2 -->
+	<!-- === Slide 4 - Process === -->
+	<div class="slide story" id="slide-4" data-slide="4">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-thin">
+					See us <span class="font-semibold">at work</span>
+				</div>
+			</div>
+			<!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div>
+			<!-- /row -->
+			<div class="row subtitle-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-10 font-light">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</div>
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div>
+			<!-- /row -->
+			<div class="row content-row">
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+				<div class="col-12 col-sm-2">
+					<p>
+						<i class="icon icon-bolt"></i>
+					</p>
+					<h2 class="font-thin">
+						Listening to<br>
+						<span class="font-semibold">your needs</span>
+					</h2>
+					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p>
+						<i class="icon icon-cog"></i>
+					</p>
+					<h2 class="font-thin">
+						Project<br>
+						<span class="font-semibold">discovery</span>
+					</h2>
+					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p>
+						<i class="icon icon-cloud"></i>
+					</p>
+					<h2 class="font-thin">
+						Storming<br>
+						<span class="font-semibold">our brains</span>
+					</h2>
+					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p>
+						<i class="icon icon-map-marker"></i>
+					</p>
+					<h2 class="font-thin">
+						Getting<br>
+						<span class="font-semibold">there</span>
+					</h2>
+					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-12 col-sm-2">
+					<p>
+						<i class="icon icon-gift"></i>
+					</p>
+					<h2 class="font-thin">
+						Delivering<br>
+						<span class="font-semibold">the product</span>
+					</h2>
+					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
+				</div>
+				<!-- /col12 -->
+				<div class="col-sm-1 hidden-sm">&nbsp;</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /slide4 -->
 	<!-- === Slide 6 / Contact === -->
 	<div class="slide story" id="slide-6" data-slide="6">
 		<div class="container">

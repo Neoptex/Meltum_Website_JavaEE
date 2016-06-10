@@ -34,6 +34,6 @@ public interface WebConstant {
 	public static final String REDIRECT_SHOP_VIEW = "redirect:/shops";
 	
 	// Miscellaneous
-	public static final String API_URL = "http://185.83.218.101:8081/";
+	public static final String API_URL = "http://185.83.218.101:8082/";
 	public static final String EMPTY_STRING = "";
 }

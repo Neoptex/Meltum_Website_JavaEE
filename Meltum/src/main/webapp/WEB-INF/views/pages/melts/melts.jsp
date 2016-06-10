@@ -29,7 +29,7 @@
 <body>
 	<!-- Navigation -->
 	<div class="navbar-default sidebar" role="navigation">
-		<div class="sidebar-nav navbar-collapse">
+		<div class="sidebar-nav collapse navbar-collapse">
 			<ul class="nav" id="side-menu">
 				<li class="sidebar-search">
 					<div class="input-group custom-search-form">
@@ -40,7 +40,8 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="#" data-toggle="modal" data-target="#modalAddMelt"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</a> <a href="/Meltum/melts/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#modalAddMelt"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</a></li>
+				<li><a href="/Meltum/melts/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a></li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
@@ -49,38 +50,54 @@
 	<!-- Page Content -->
 	<div id="page-wrapper">
 		<div class="row">
+			<ul class="nav nav-tabs">
+				<li role="presentation" class="${idShop == null ? 'active' : '' }"><a href="/Meltum/melts">Tous les shops</a></li>
+				<c:forEach items="${shops}" var="shop">
+					<li role="presentation" class="${idShop == shop.id ? 'active' : '' }"><a href="/Meltum/melts/${shop.id}">${shop.name}</a></li>
+				</c:forEach>
+			</ul>
 			<!-- MODAL -->
 			<div class="col-md-12">
-				<c:forEach items="${melts}" var="melt">
-					<div class="col-md-6">
-						<div class="" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-toggle="modal" data-target="#modalRemoveMelt${melt.id}">
-											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-										</button>
-										<h3 class="modal-title" id="modal-login-label">${melt.name}</h3>
-									</div>
-									<div class="modal-body">
-										<form role="form" action="" method="post" class="login-form">
-											<div class="form-group">
-												<img src="http://placehold.it/565x150" alt="">
-											</div>
-											<div class="form-group">
-												<label class="sr-only" for="form-username">Description</label>
-												<p>${melt.description}</p>
-											</div>
-											<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalEditMelt${melt.id}">Modifier</button>
-										</form>
+				<c:if test="${melts != null}">
+					<c:forEach items="${melts}" var="melt">
+						<div class="col-md-6">
+							<div class="" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-toggle="modal" data-target="#modalRemoveMelt${melt.id}">
+												<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+											</button>
+											<h3 class="modal-title" id="modal-login-label">${melt.name}</h3>
+										</div>
+										<div class="modal-body">
+											<form role="form" action="" method="post" class="login-form">
+												<div class="form-group">
+													<c:choose>
+														<c:when test="${empty melt.image}">
+															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="http://placehold.it/565x150" alt=""></a>
+														</c:when>
+														<c:otherwise>
+															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="${melt.image}" alt=""></a>
+														</c:otherwise>
+													</c:choose>
+												</div>
+												<div class="form-group">
+													<label class="sr-only" for="form-username">Description</label>
+													<p>${melt.description}</p>
+												</div>
+												<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalEditMelt${melt.id}">Modifier</button>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<%@ include file="modalEditMelt.jsp"%>
-					<%@ include file="modalRemoveMelt.jsp"%>
-				</c:forEach>
+						<%@ include file="modalUploadImageMelt.jsp"%>
+						<%@ include file="modalEditMelt.jsp"%>
+						<%@ include file="modalRemoveMelt.jsp"%>
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 		<%@ include file="modalAddMelt.jsp"%>

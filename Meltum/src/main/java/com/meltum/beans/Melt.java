@@ -1,5 +1,6 @@
 package com.meltum.beans;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -7,8 +8,13 @@ public class Melt {
 	String id;
 	String name;
 	String description;
+	String image;
+	Shop targetShop;
 	String createdDate;
 	String expiringDate;
+
+	@JsonIgnore
+	String idShopLink;
 
 	public String getId() {
 		return id;
@@ -48,6 +54,30 @@ public class Melt {
 
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public String getIdShopLink() {
+		return idShopLink;
+	}
+
+	public void setIdShopLink(String idShopLink) {
+		this.idShopLink = idShopLink;
+	}
+
+	public Shop getTargetShop() {
+		return targetShop;
+	}
+
+	public void setTargetShop(Shop targetShop) {
+		this.targetShop = targetShop;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

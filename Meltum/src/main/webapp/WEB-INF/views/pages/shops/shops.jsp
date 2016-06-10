@@ -68,6 +68,14 @@
 												<label class="sr-only" for="form-username">Description</label>
 												<p>${shop.description}</p>
 											</div>
+											<div class="form-group">
+												<label class="sr-only" for="form-username">Adresse</label>
+												<p>${shop.adresse.street} ${shop.adresse.city} ${shop.adresse.postalcode}</p>
+											</div>
+											<div class="form-group">
+												<label class="sr-only" for="form-username">Téléphone</label>
+												<p>${shop.phone}</p>
+											</div>
 											<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalEditShop${shop.id}">Modifier</button>
 										</form>
 									</div>
