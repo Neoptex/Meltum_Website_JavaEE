@@ -68,10 +68,6 @@ public class ShopServiceImpl implements IShopService {
 	public Shop updateShop(Shop shop) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/shop/" + shop.getId();
-		Coord coord = new Coord();
-		coord.setY(2.247266);
-		coord.setX(48.917968);
-		shop.setLoc(coord);
 		jsonObj = new JSONObject(mapper.writeValueAsString(shop));
 		api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		return shop;
