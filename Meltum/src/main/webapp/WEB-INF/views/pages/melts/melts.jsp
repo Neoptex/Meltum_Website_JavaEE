@@ -78,7 +78,7 @@
 															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="http://placehold.it/565x150" alt=""></a>
 														</c:when>
 														<c:otherwise>
-															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="${melt.image}" alt=""></a>
+															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img width="565" height="150" src="data:${melt.image.contentType};base64,${melt.image.imageBase64}" alt=""></a>
 														</c:otherwise>
 													</c:choose>
 												</div>

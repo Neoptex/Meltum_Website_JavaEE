@@ -34,9 +34,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	
 	@Override
 	public Company createCompany(MyCompanyForm companyForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		ObjectMapper mapper = new ObjectMapper();
-		String url = "user/" + userService.getUserCurrent().getId() + "/company";
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		String url = "pro/" + userService.getUserCurrent().getId() + "/company";
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(companyForm));
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.POST, jsonObj);
 		if (response != null) {
@@ -52,10 +51,9 @@ public class CompanyServiceImpl implements ICompanyService {
 	
 	@Override
 	public Company updateCompany(MyCompanyForm companyForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		ObjectMapper mapper = new ObjectMapper();
-		String url = "company/" + companyForm.getId();
-		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(companyForm));	
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		String url = "pro/company/" + companyForm.getId();
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(companyForm));
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		if (response != null) {
 			try {
@@ -70,8 +68,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	
 	@Override
 	public Company getCompanyById(MyCompanyForm companyForm) {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		String url = "company/" + companyForm.getId();
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		String url = "pro/company/" + companyForm.getId();
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
@@ -86,8 +84,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	
 	@Override
 	public Company getCompanyByUser() {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		String url = "user/" + userService.getUserCurrent().getId() + "/company";
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		String url = "pro/" + userService.getUserCurrent().getId() + "/company";
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response.getBody() != null) {
 			try {
@@ -102,8 +100,8 @@ public class CompanyServiceImpl implements ICompanyService {
 	
 	@Override
 	public List<Shop> getShopsFromCompany() {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		String url = "company/" + userService.getCompanyFromCurrentUser().getId() + "/shop";
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		String url = "pro/company/" + userService.getCompanyFromCurrentUser().getId() + "/shop";
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		List<Shop> shops = new LinkedList<Shop>();
 		if (response.getBody() != null) {

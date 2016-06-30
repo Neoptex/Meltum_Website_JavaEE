@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.meltum.api.ApiRequest;
+import com.meltum.beans.Coord;
 import com.meltum.beans.Shop;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IShopService;
@@ -38,10 +39,10 @@ public class ShopServiceImpl implements IShopService {
 
 	@Override
 	public List<Shop> getShops() {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		List<Shop> shops = new ArrayList<Shop>();
 		if (companyService.getCompanyByUser() != null) {
-			url = "company/" + companyService.getCompanyByUser().getId() + "/shop";
+			url = "pro/company/" + companyService.getCompanyByUser().getId() + "/shop";
 			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 			if (response.getBody() != null) {
 				try {
@@ -57,33 +58,37 @@ public class ShopServiceImpl implements IShopService {
 
 	@Override
 	public  ResponseEntity<String> createShop(Shop form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		url = "company/" + companyService.getCompanyByUser().getId() + "/shop";
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		url = "pro/company/" + companyService.getCompanyByUser().getId() + "/shop";
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
 		return api.executeRequest(url, HttpMethod.POST, jsonObj);
 	}
 
 	@Override
-	public Shop updateShop(Shop form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		url = "shop/" + form.getId();
-		jsonObj = new JSONObject(mapper.writeValueAsString(form));
+	public Shop updateShop(Shop shop) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		url = "pro/shop/" + shop.getId();
+		Coord coord = new Coord();
+		coord.setY(2.247266);
+		coord.setX(48.917968);
+		shop.setLoc(coord);
+		jsonObj = new JSONObject(mapper.writeValueAsString(shop));
 		api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		return shop;
 	}
 
 	@Override
-	public Shop removeShop(Shop form) {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		url = "shop/" + form.getId();
+	public Shop removeShop(Shop shop) {
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		url = "pro/shop/" + shop.getId();
 		api.executeRequest(url, HttpMethod.DELETE, null);
 		return shop;
 	}
 
 	@Override
 	public Shop getShopById(String id) {
-		api = new ApiRequest(userService.getUserCurrent().getTokenObj().getToken());
-		url = "shop/" + id;
+		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+		url = "pro/shop/" + id;
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response.getBody() != null) {
 			try {

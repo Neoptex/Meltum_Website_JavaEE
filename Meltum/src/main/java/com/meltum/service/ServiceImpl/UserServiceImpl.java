@@ -26,13 +26,13 @@ public class UserServiceImpl implements IUserService {
 
 	private ObjectMapper mapper = new ObjectMapper();
 	private User user = new User();
-	private ApiRequest api = new ApiRequest();
+	private static ApiRequest api = new ApiRequest();
 	
 	@Override
 	public User createUser(RegisterForm registerForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(registerForm));
-		ResponseEntity<String> response = api.executeRequest("user", HttpMethod.POST, jsonObj);
+		ResponseEntity<String> response = api.executeRequest("pro", HttpMethod.POST, jsonObj);
 		if (response != null) {
 			User user = new User();
 			try {
@@ -47,12 +47,12 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User authUser(String email, String password) {
-		String url = "user?mail=" + email + "&password=" + password;
+		String url = "pro?mail=" + email + "&password=" + password;
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
 				this.user = mapper.readValue(response.getBody(), User.class);
-				this.api = new ApiRequest(this.user.getTokenObj().getToken());
+				api = new ApiRequest(this.user.getToken(), this.user.getId());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -64,8 +64,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User updatePassword(ChangePasswordForm passwordForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		String url = "user/" + this.getUserCurrent().getId() + "/password";
-		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(passwordForm));		
+		String url = "pro/" + this.getUserCurrent().getId() + "/password";
+		JSONObject jsonObj = new JSONObject(mapper.writeValueAsString(passwordForm));
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.PUT, jsonObj);
 		if (response != null) {
 			User user = new User();
@@ -81,7 +81,7 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public User getUser(String mail) {
-		String url = "user/" + this.getUserCurrent().getId();
+		String url = "pro/" + this.getUserCurrent().getId();
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
@@ -100,7 +100,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public Company getCompanyFromCurrentUser() {
-		String url = "user/" + this.getUserCurrent().getId() + "/company";
+		String url = "pro/" + this.getUserCurrent().getId() + "/company";
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		Company company = new Company();
 		if (response != null) {

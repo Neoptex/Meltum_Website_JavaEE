@@ -1,15 +1,23 @@
 package com.meltum.beans;
 
+import java.util.List;
+
 public class Shop {
-	String id;
-	String name;
-	String description;
-	String phone;
-	Adresse adresse;
-	Coord location;
-	String createdDate;
-	String imageUrl;
-	Zone zone;
+	private String id;
+	private String name;
+	private String description;
+	private String phone;
+	private Adresse adresse;
+	private Coord loc;
+	private String createdDate;
+	private ImageObj image;
+	private List<Coord> pol;
+	private int usedNumber;
+
+	public Shop() {
+		super();
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -71,18 +79,6 @@ public class Shop {
 		this.adresse = adresse;
 	}
 	/**
-	 * @return the location
-	 */
-	public Coord getLocation() {
-		return location;
-	}
-	/**
-	 * @param location the location to set
-	 */
-	public void setLocation(Coord location) {
-		this.location = location;
-	}
-	/**
 	 * @return the createdDate
 	 */
 	public String getCreatedDate() {
@@ -94,30 +90,60 @@ public class Shop {
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	/**
-	 * @return the imageUrl
+	 * @return the image
 	 */
-	public String getImageUrl() {
-		return imageUrl;
-	}
-	/**
-	 * @param imageUrl the imageUrl to set
-	 */
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-	/**
-	 * @return the zone
-	 */
-	public Zone getZone() {
-		return zone;
-	}
-	/**
-	 * @param zone the zone to set
-	 */
-	public void setZone(Zone zone) {
-		this.zone = zone;
+	public ImageObj getImage() {
+		return image;
 	}
 
-	
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(ImageObj image) {
+		this.image = image;
+	}
+
+	/**
+	 * @return the usedNumber
+	 */
+	public int getUsedNumber() {
+		return usedNumber;
+	}
+	/**
+	 * @param usedNumber the usedNumber to set
+	 */
+	public void setUsedNumber(int usedNumber) {
+		this.usedNumber = usedNumber;
+	}
+
+	/**
+	 * @return the loc
+	 */
+	public Coord getLoc() {
+		return loc;
+	}
+
+	/**
+	 * @param loc the loc to set
+	 */
+	public void setLoc(Coord loc) {
+		this.loc = loc;
+	}
+
+	/**
+	 * @return the pol
+	 */
+	public List<Coord> getPol() {
+		return pol;
+	}
+
+	/**
+	 * @param pol the pol to set
+	 */
+	public void setPol(List<Coord> pol) {
+		this.pol = pol;
+	}
+
 }

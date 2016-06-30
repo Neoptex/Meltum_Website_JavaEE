@@ -115,8 +115,8 @@
 		
 		for (i = 0; i < shopList.length; i++) {
 				if (shopList[i].id == id) {
-					var location = shopList[i].location;
-					return new google.maps.LatLng(location.y, location.x);
+					var location = shopList[i].loc;
+					return new google.maps.LatLng(loc.y, loc.x);
 				}
 			}
 	  }
@@ -131,11 +131,11 @@
 			var shopList = $.parseJSON('${shopListJson}');
 			
 			for (i = 0; i < shopList.length; i++) {
-					if (typeof shopList[i].zone != 'undefined' && shopList[i].id == id) {
-						if (shopList[i].zone.points.length > 0) {
-							var zone = shopList[i].zone;
-							for (var i = 0; i < zone.points.length; i++) {
-								var myLatLng = new google.maps.LatLng(zone.points[i].y, zone.points[i].x);
+					if (shopList[i].id == id) {
+						if (shopList[i].pol.length > 0) {
+							var pol = shopList[i].pol;
+							for (var i = 0; i < pol.length; i++) {
+								var myLatLng = new google.maps.LatLng(pol[i].y, pol[i].x);
 								addMarker(myLatLng);
 							}
 						}

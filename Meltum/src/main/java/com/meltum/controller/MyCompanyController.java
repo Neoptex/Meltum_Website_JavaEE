@@ -49,6 +49,7 @@ public class MyCompanyController {
 	public String saveCompany(@ModelAttribute MyCompanyForm form, @PathVariable String id, Model model) {
 		if (id.equals("0")) {
 			try {
+				form.setId(null);
 				companyService.createCompany(form);
 			} catch (JSONException | IOException e) {
 				// TODO Auto-generated catch block

@@ -8,7 +8,7 @@ public class Melt {
 	String id;
 	String name;
 	String description;
-	String image;
+	ImageObj image;
 	Shop targetShop;
 	String createdDate;
 	String expiringDate;
@@ -72,12 +72,19 @@ public class Melt {
 		this.targetShop = targetShop;
 	}
 
-	public String getImage() {
+	/**
+	 * @return the image
+	 */
+	public ImageObj getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(ImageObj image) {
 		this.image = image;
 	}
+
 
 }

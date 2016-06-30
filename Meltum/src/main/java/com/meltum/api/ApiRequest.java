@@ -14,9 +14,10 @@ import org.springframework.web.client.RestTemplate;
 public class ApiRequest {
 	
 	HttpHeaders headers = new HttpHeaders();
-
-	public ApiRequest(String token) {
+	
+	public ApiRequest(String token, String id) {
 		headers.set("token", token);
+		headers.set("proId", id);
 	}
 	
 	public ApiRequest() {

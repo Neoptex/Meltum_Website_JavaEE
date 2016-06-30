@@ -8,7 +8,8 @@ public class Company {
 	private String name;
 	private String description;
 	private Date createdDate;
-	private String imageUrl;
+	private ImageObj image;
+	int usedNumber;
 
 	/**
 	 * @return the name
@@ -69,12 +70,33 @@ public class Company {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
-	public String getImageUrl() {
-		return imageUrl;
+	/**
+	 * @return the image
+	 */
+	public ImageObj getImage() {
+		return image;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(ImageObj image) {
+		this.image = image;
 	}
+
+	/**
+	 * @return the usedNumber
+	 */
+	public int getUsedNumber() {
+		return usedNumber;
+	}
+
+	/**
+	 * @param usedNumber the usedNumber to set
+	 */
+	public void setUsedNumber(int usedNumber) {
+		this.usedNumber = usedNumber;
+	}
+	
+	
 }

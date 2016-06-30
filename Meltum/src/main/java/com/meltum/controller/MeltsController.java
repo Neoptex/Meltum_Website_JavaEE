@@ -29,7 +29,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.meltum.beans.Coord;
 import com.meltum.beans.Melt;
 import com.meltum.beans.Shop;
-import com.meltum.beans.Zone;
 import com.meltum.common.WebConstant;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IMeltService;
@@ -116,9 +115,7 @@ public class MeltsController {
 	@ResponseBody
 	public String saveZone(@PathVariable String id, @RequestBody List<Coord> points, Model model) {
 			Shop shop = shopService.getShopById(id);
-			Zone zone = new Zone();
-			zone.setPoints(points);
-			shop.setZone(zone);
+			shop.setPol(points);
 			try {
 				shopService.updateShop(shop);
 			} catch (JSONException | IOException e) {
