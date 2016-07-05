@@ -106,7 +106,7 @@ public class MeltsController {
 	}
 	
 	@RequestMapping("/upload/{id}")
-	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam MultipartFile file) {
+	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
 		meltService.uploadImage(id, file);
 		return REDIRECT_MELT_VIEW;
 	}

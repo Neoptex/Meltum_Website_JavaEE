@@ -52,8 +52,7 @@ public class MeltServiceImpl implements IMeltService {
 			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 			if (response.getBody() != null) {
 				try {
-					melts = mapper.readValue(response.getBody(),
-							mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
+					melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -69,8 +68,7 @@ public class MeltServiceImpl implements IMeltService {
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response.getBody() != null) {
 			try {
-				melts = mapper.readValue(response.getBody(),
-						mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
+				melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -107,17 +105,24 @@ public class MeltServiceImpl implements IMeltService {
 		return melt;
 	}
 
-	public void uploadImage(String id, MultipartFile file) {
+
+	public void uploadImage(String id, List<MultipartFile> files) {
 		RestTemplate rt = new RestTemplate();
-		LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-		map.add("filename", file.getOriginalFilename());
-		map.add("contentType", file.getContentType());
-		map.add("file", ImageUtils.scale(file, 565, 150));
+		LinkedMultiValueMap<String, List<String>> map = new LinkedMultiValueMap<>();
+		List<String> filename = new ArrayList<>();
+		List<String> contentType = new ArrayList<>();
+		List<String> imageBase64 = new ArrayList<>();
+		for (MultipartFile file : files) {
+			filename.add(file.getOriginalFilename());
+			contentType.add(file.getContentType());
+			imageBase64.add(ImageUtils.scale(file, 565, 150));
+		}
+		map.add("filename", filename);
+		map.add("contenttype", contentType);
+		map.add("imageBase64", imageBase64);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-
-		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, Object>>(
-				map, headers);
-		ResponseEntity<String> result = rt.exchange(WebConstant.API_URL + "pro/melt/" + id + "/image", HttpMethod.POST, requestEntity, String.class);
+		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, List<String>>>(map, headers);
+		rt.exchange(WebConstant.API_URL + "pro/melt/" + id + "/image", HttpMethod.POST, requestEntity, String.class);
 	}
 }

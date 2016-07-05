@@ -1,10 +1,13 @@
 package com.meltum.beans;
 
 public class Adresse {
-	String city;
-	String postalcode;
-	String state;
-	String street;
+	
+	private String street_number;
+	private String street;
+	private String city;
+	private String postalcode;
+	private String state;
+	private String country;
 
 	public String getCity() {
 		return city;
@@ -37,4 +40,33 @@ public class Adresse {
 	public void setPostalcode(String postalcode) {
 		this.postalcode = postalcode;
 	}
+
+	/**
+	 * @return the street_number
+	 */
+	public String getStreet_number() {
+		return street_number;
+	}
+
+	/**
+	 * @param street_number the street_number to set
+	 */
+	public void setStreet_number(String street_number) {
+		this.street_number = street_number;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
 }

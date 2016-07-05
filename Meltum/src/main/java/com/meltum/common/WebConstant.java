@@ -38,7 +38,7 @@ public interface WebConstant {
 	// Miscellaneous
 	//public static final String API_URL = "http://185.83.218.101:8082/";
 	//public static final String API_URL = "http://185.83.218.101:8081/";
-	public static final String API_URL = "http://185.83.218.101:8090/";
-	//public static final String API_URL = "http://localhost:8080/meltumApi/";
+	//public static final String API_URL = "http://185.83.218.101:8090/";
+	public static final String API_URL = "http://localhost:8080/meltumApi/";
 	public static final String EMPTY_STRING = "";
 }
