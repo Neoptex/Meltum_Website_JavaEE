@@ -1,14 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Shops</title>
-<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+<link href="<c:url value="/resources/css/modal.css" />" rel="stylesheet">
 <!-- MetisMenu CSS -->
 <link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
 <!-- Timeline CSS -->
@@ -98,7 +100,7 @@
 												<p>${shop.adresse.street} ${shop.adresse.city} ${shop.adresse.postalcode}</p>
 											</div>
 											<div class="form-group">
-												<label class="sr-only" for="form-username">Téléphone</label>
+												<label class="sr-only" for="form-username">TÃ©lÃ©phone</label>
 												<p>${shop.phone}</p>
 											</div>
 											<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalEditShop${shop.id}">Modifier</button>

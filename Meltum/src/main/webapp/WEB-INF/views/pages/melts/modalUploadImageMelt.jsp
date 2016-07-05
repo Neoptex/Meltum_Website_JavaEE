@@ -22,7 +22,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="file" name="file" id="fileToUpload"
-							onchange="checkFileSize(this)">
+							onchange="checkFileSize(this)" multiple>
 					</div>
 				</div>
 				<div class="modal-footer">

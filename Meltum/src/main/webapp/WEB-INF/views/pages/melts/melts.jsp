@@ -74,11 +74,12 @@
 											<form role="form" action="" method="post" class="login-form">
 												<div class="form-group">
 													<c:choose>
-														<c:when test="${empty melt.image}">
+														<c:when test="${empty melt.images}">
 															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="http://placehold.it/565x150" alt=""></a>
 														</c:when>
 														<c:otherwise>
-															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img width="565" height="150" src="data:${melt.image.contentType};base64,${melt.image.imageBase64}" alt=""></a>
+															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img width="565" height="150" src="data:${melt.images[0].contentType};base64,${melt.images[0].imageBase64}" alt=""></a>
+															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img width="565" height="150" src="data:${melt.images[1].contentType};base64,${melt.images[1].imageBase64}" alt=""></a>
 														</c:otherwise>
 													</c:choose>
 												</div>

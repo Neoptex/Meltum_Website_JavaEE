@@ -1,5 +1,7 @@
 package com.meltum.beans;
 
+import java.util.List;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -8,7 +10,7 @@ public class Melt {
 	String id;
 	String name;
 	String description;
-	ImageObj image;
+	List<ImageObj> images;
 	Shop targetShop;
 	String createdDate;
 	String expiringDate;
@@ -75,16 +77,15 @@ public class Melt {
 	/**
 	 * @return the image
 	 */
-	public ImageObj getImage() {
-		return image;
+	public List<ImageObj> getImages() {
+		return images;
 	}
 
 	/**
-	 * @param image the image to set
+	 * @param image
+	 *            the image to set
 	 */
-	public void setImage(ImageObj image) {
-		this.image = image;
+	public void setImages(List<ImageObj> images) {
+		this.images = images;
 	}
-
-
 }
