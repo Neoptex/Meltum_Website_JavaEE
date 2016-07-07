@@ -7,6 +7,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.json.JSONException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.meltum.beans.Shop;
 
@@ -21,5 +22,7 @@ public interface IShopService {
 	Shop removeShop(Shop form);
 
 	Shop getShopById(String id);
+
+	void uploadImage(String id, List<MultipartFile> file);
 
 }

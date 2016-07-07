@@ -1,7 +1,7 @@
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
-var placeSearch, autocomplete;
+var placeSearch, autocomplete, id;
 var componentForm = {
   street_number: 'short_name',
   route: 'long_name',
@@ -11,11 +11,12 @@ var componentForm = {
   postal_code: 'short_name'
 };
 
-function initAutocomplete() {
+function initAutocomplete(idi) {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
+  id = idi;
   autocomplete = new google.maps.places.Autocomplete(
-      (document.getElementById('autocomplete')),
+      (document.getElementById('autocomplete' + id)),
       {types: ['geocode']});
 
   // When the user selects an address from the dropdown, populate the address
@@ -26,7 +27,9 @@ function initAutocomplete() {
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
-
+ 
+  document.getElementById('longitude' + id).value = place.geometry.location.lng();
+  document.getElementById('latitude' + id).value = place.geometry.location.lat();
   for (var component in componentForm) {
     document.getElementById(component).value = '';
     document.getElementById(component).disabled = false;

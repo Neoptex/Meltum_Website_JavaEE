@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link href="<c:url value="/resources/css/modal.css" />" rel="stylesheet">
 <!-- MetisMenu CSS -->
 <link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
 <!-- Timeline CSS -->
@@ -42,7 +40,7 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="#" data-toggle="modal" data-target="#modalAddShop"><i class="fa fa-plus fa-fw"></i> Ajouter un shop</a>
+				<li><a href="#" data-toggle="modal" onclick="initAutocomplete('0');" data-target="#modalAddEditShop0"><i class="fa fa-plus fa-fw"></i> Ajouter un shop</a>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
@@ -52,30 +50,30 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<!-- Modal error -->
-				<c:if test="${not empty error}">
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header header-error">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title text-white">
-										<span class="glyphicon glyphicon-warning-sign icon-white" aria-hidden="true"></span> Erreur
-									</h4>
-								</div>
-								<div class="modal-body">
-									<c:out value="${ error }" />
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-								</div>
+			<c:if test="${not empty error}">
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header header-error">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title text-white">
+									<span class="glyphicon glyphicon-warning-sign icon-white" aria-hidden="true"></span> Erreur
+								</h4>
 							</div>
-							<!-- /.modal-content -->
+							<div class="modal-body">
+								<c:out value="${ error }" />
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+							</div>
 						</div>
-						<!-- /.modal-dialog -->
+						<!-- /.modal-content -->
 					</div>
-				</c:if>
+					<!-- /.modal-dialog -->
+				</div>
+			</c:if>
 			<!-- /.modal -->
-		
+
 			<!-- MODAL -->
 			<div class="col-md-12">
 				<c:forEach items="${shops}" var="shop">
@@ -92,30 +90,82 @@
 									<div class="modal-body">
 										<form role="form" action="" method="post" class="login-form">
 											<div class="form-group">
+												<c:choose>
+													<c:when test="${empty shop.images}">
+														<a href="#" data-toggle="modal" data-target="#modalUploadImageShop${shop.id}"><img src="http://placehold.it/865x350" alt=""></a>
+													</c:when>
+													<c:otherwise>
+														<div id="carousel${shop.id}" class="carousel slide" data-ride="carousel">
+															<!-- Indicators -->
+															<ol class="carousel-indicators">
+																<c:forEach items="${shop.images}" var="image" varStatus="loop">
+																	<c:choose>
+																		<c:when test="${loop.index eq 0}">
+																			<li data-target="#carousel${shop.id}" data-slide-to="0" class="active"></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li data-target="#carousel${shop.id}" data-slide-to="${loop.index}"></li>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+															</ol>
+															<!-- Wrapper for slides -->
+															<div class="carousel-inner" role="listbox">
+																<c:forEach items="${shop.images}" var="image" varStatus="loop">
+																	<c:choose>
+																		<c:when test="${loop.index eq 0}">
+																			<div class="item active">
+																				<a href="#" data-toggle="modal" data-target="#modalUploadImageShop${shop.id}"><img width="865" height="350" src='data:${image.contentType};base64,${image.imageBase64}' alt=""></a>
+																			</div>
+																		</c:when>
+																		<c:otherwise>
+																			<div class="item">
+																				<a href="#" data-toggle="modal" data-target="#modalUploadImageShop${shop.id}"><img width="865" height="350" src='data:${image.contentType};base64,${image.imageBase64}' alt=""></a>
+																			</div>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+															</div>
+															<!-- Controls -->
+															<a class="left carousel-control" href="#carousel${shop.id}" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
+															</a> <a class="right carousel-control" href="#carousel${shop.id}" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
+															</a>
+														</div>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="form-group">
 												<label class="sr-only" for="form-username">Description</label>
-												<p>${shop.description}</p>
+												<p>
+													<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> ${shop.description}
+												</p>
 											</div>
 											<div class="form-group">
 												<label class="sr-only" for="form-username">Adresse</label>
-												<p>${shop.adresse.street} ${shop.adresse.city} ${shop.adresse.postalcode}</p>
+												<p>
+													<span class="glyphicon glyphicon-home" aria-hidden="true"></span> ${shop.adresse.fullAdress}
+												</p>
 											</div>
 											<div class="form-group">
 												<label class="sr-only" for="form-username">Téléphone</label>
-												<p>${shop.phone}</p>
+												<p>
+													<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> ${shop.phone}
+												</p>
 											</div>
-											<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalEditShop${shop.id}">Modifier</button>
+											<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" onclick="initAutocomplete('${shop.id}');" data-target="#modalAddEditShop${shop.id}">Modifier</button>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<%@ include file="modalEditShop.jsp"%>
+					<%@ include file="modalUploadImageShop.jsp"%>
+					<%@ include file="modalAddEditShop.jsp"%>
 					<%@ include file="modalRemoveShop.jsp"%>
 				</c:forEach>
 			</div>
 		</div>
-		<%@ include file="modalAddShop.jsp"%>
+		<%@ include file="modalAddEditShop.jsp"%>
 	</div>
 </body>
 <!-- Metis Menu Plugin JavaScript -->
@@ -124,10 +174,12 @@
 <script src="<c:url value="/resources/bower_components/raphael/raphael-min.js" />"></script>
 <!-- Custom Theme JavaScript -->
 <script src="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js" />"></script>
+<script src="<c:url value="/resources/js/googleAdressSearch.js" />"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWNArOBPWU4NbT6sMlENXfB5hGSjayfM&signed_in=true&libraries=places"></script>
 <script type="text/javascript">
-var error = "${error}";
-if (error != null) {
-	$("#myModal").modal('show');
-}
+	var error = "${error}";
+	if (error != null) {
+		$("#myModal").modal('show');
+	}
 </script>
 </html>

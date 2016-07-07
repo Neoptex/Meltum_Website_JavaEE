@@ -2,6 +2,7 @@ package com.meltum.beans;
 
 public class Adresse {
 	
+	private String fullAdress;
 	private String street_number;
 	private String street;
 	private String city;
@@ -68,5 +69,20 @@ public class Adresse {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	/**
+	 * @return the fullAdress
+	 */
+	public String getFullAdress() {
+		return fullAdress;
+	}
+
+	/**
+	 * @param fullAdress the fullAdress to set
+	 */
+	public void setFullAdress(String fullAdress) {
+		this.fullAdress = fullAdress;
+	}
+	
 	
 }

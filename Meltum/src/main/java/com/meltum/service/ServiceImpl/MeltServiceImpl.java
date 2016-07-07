@@ -1,6 +1,7 @@
 package com.meltum.service.ServiceImpl;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
@@ -108,6 +110,7 @@ public class MeltServiceImpl implements IMeltService {
 
 	public void uploadImage(String id, List<MultipartFile> files) {
 		RestTemplate rt = new RestTemplate();
+		rt.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 		LinkedMultiValueMap<String, List<String>> map = new LinkedMultiValueMap<>();
 		List<String> filename = new ArrayList<>();
 		List<String> contentType = new ArrayList<>();
@@ -123,6 +126,6 @@ public class MeltServiceImpl implements IMeltService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, List<String>>>(map, headers);
-		rt.exchange(WebConstant.API_URL + "pro/melt/" + id + "/image", HttpMethod.POST, requestEntity, String.class);
+		rt.exchange(WebConstant.API_URL + "images/melt/" + id + "/multiUpload", HttpMethod.POST, requestEntity, String.class);
 	}
 }

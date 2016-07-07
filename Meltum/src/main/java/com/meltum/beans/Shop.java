@@ -10,12 +10,12 @@ public class Shop {
 	private Adresse adresse;
 	private Coord loc;
 	private String createdDate;
-	private ImageObj image;
+	private List<ImageObj> images;
 	private List<Coord> pol;
 	private int usedNumber;
 
 	public Shop() {
-		super();
+		this.id = "0";
 	}
 	
 	/**
@@ -90,21 +90,6 @@ public class Shop {
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
-
-	/**
-	 * @return the image
-	 */
-	public ImageObj getImage() {
-		return image;
-	}
-
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(ImageObj image) {
-		this.image = image;
-	}
-
 	/**
 	 * @return the usedNumber
 	 */
@@ -144,6 +129,20 @@ public class Shop {
 	 */
 	public void setPol(List<Coord> pol) {
 		this.pol = pol;
+	}
+
+	/**
+	 * @return the images
+	 */
+	public List<ImageObj> getImages() {
+		return images;
+	}
+
+	/**
+	 * @param images the images to set
+	 */
+	public void setImages(List<ImageObj> images) {
+		this.images = images;
 	}
 
 }

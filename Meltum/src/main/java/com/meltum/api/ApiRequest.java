@@ -3,12 +3,15 @@ package com.meltum.api;
 import static com.meltum.common.WebConstant.API_URL;
 import static com.meltum.common.WebConstant.EMPTY_STRING;
 
+import java.nio.charset.Charset;
+
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 public class ApiRequest {
@@ -26,6 +29,7 @@ public class ApiRequest {
 	
 	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, JSONObject jsonObj) {
 		RestTemplate rt = new RestTemplate();
+		rt.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		String request = jsonObj == null ? EMPTY_STRING : jsonObj.toString();
 		HttpEntity<String> entity = new HttpEntity<String>(request, headers);
