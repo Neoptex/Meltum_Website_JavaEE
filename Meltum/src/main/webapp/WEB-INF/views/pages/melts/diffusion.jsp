@@ -113,9 +113,9 @@
 		var shopList = $.parseJSON('${shopListJson}');
 		
 		for (i = 0; i < shopList.length; i++) {
-				if (shopList[i].id == id) {
+				if (shopList[i].id == id && shopList[i].loc != null) {
 					var location = shopList[i].loc;
-					return new google.maps.LatLng(loc.y, loc.x);
+					return new google.maps.LatLng(location.y, location.x);
 				}
 			}
 	  }
@@ -130,14 +130,10 @@
 			var shopList = $.parseJSON('${shopListJson}');
 			
 			for (i = 0; i < shopList.length; i++) {
-				console.log("toto");
-					if (shopList[i].id == id) {
-						console.log("toto2");
+					if (shopList[i].id == id && shopList[i].pol != null) {
 						if (shopList[i].pol.length > 0) {
-							console.log("toto3");
 							var pol = shopList[i].pol;
 							for (var i = 0; i < pol.length; i++) {
-								console.log("toto4");
 								var myLatLng = new google.maps.LatLng(pol[i].y, pol[i].x);
 								addMarker(myLatLng);
 							}
@@ -149,7 +145,7 @@
 		  
 		  
 	  function initialize() {
-		//currentShop = getCurrentShopCoord($("#shopList option:selected").val());
+		currentShop = getCurrentShopCoord($("#shopList option:selected").val());
 	    map = new google.maps.Map(document.getElementById("googleMap"), {
 	      zoom: 11,
 	      center: currentShop,

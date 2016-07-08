@@ -9,7 +9,8 @@
 				</button>
 				<h4 class="modal-title" id="modalUploadImageShopLabel${shop.id}">Upload une image pour le shop : ${shop.name}</h4>
 			</div>
-			<div class="alert alert-danger" id="myAlert" role="alert" hidden="true">La taille du fichier est trop gros!</div>
+			<div class="alert alert-danger" id="myAlertFile" role="alert" hidden="true">La taille du fichier est trop grosse!</div>
+			<div class="alert alert-danger" id="myAlertFiles" role="alert" hidden="true">La taille des fichiers est trop grosse!</div>
 			<form:form role="form" action="/Meltum/shops/upload/${shop.id}" method='POST' modelAttribute="shopForm" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
@@ -25,17 +26,27 @@
 </div>
 <script>
 	function checkFileSize(inputFile) {
-		var max = 5 * 1024 * 1024;
-
-		if (inputFile.files && inputFile.files[0].size > max) {
-			$('#myAlert').show();
-			inputFile.value = null;
-		} else {
-			$('#myAlert').hide();
+		var maxOneFile = 5 * 1024 * 1024;
+		var maxTotalSize = 12 * 1024 * 1024;
+		var totalSize = 0;
+		
+		if (inputFile.files) {
+			for (i = 0; i < inputFile.files.length; i++ ) {
+				totalSize = totalSize + inputFile.files[i].size;
+				if (inputFile.files[i].size > maxOneFile) {
+					$('#myAlertFile').show();
+					inputFile.value = null;
+				}
+			}
+			if (totalSize > maxTotalSize) {
+				$('#myAlertFiles').show();
+				inputFile.value = null;
+			}
 		}
 	}
-
+	
 	function hideModal() {
-		$('#myAlert').hide();
+		$('#myAlertFile').hide();
+		$('#myAlertFiles').hide();
 	}
 </script>

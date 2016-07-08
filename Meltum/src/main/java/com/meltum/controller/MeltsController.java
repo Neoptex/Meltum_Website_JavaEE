@@ -50,8 +50,12 @@ public class MeltsController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayMelts(Model model, RedirectAttributes redir) {
 		model.addAttribute(MELT_FORM, new Melt());
-		if (meltService.getMelts() == null) {
+		if (companyService.getCompanyByUser() == null) {
 			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux melts");
+			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
+		}
+		if (shopService.getShops().isEmpty()) {
+			redir.addFlashAttribute("error", "Veuillez créer un shop afin de pouvoir accéder aux melts");
 			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
 		}
 		model.addAttribute(MELTS, meltService.getMelts());
@@ -74,7 +78,7 @@ public class MeltsController {
 			redir.addFlashAttribute("error", "Vous n'avez enregistré aucun magasin au préalable");
 			return WebConstant.REDIRECT_SHOP_VIEW;
 		}
-		model.addAttribute(WebConstant.SHOP_LIST, companyService.getShopsFromCompany());
+		model.addAttribute(WebConstant.SHOP_LIST, companyService.getShopsFromCompany());	
 		model.addAttribute(WebConstant.SHOP_LIST_TO_JSON_STRING, new JSONArray(companyService.getShopsFromCompany()));
 		return ZONE_VIEW;
 	}

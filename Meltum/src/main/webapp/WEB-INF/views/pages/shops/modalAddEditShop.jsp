@@ -45,14 +45,14 @@
 						<form:input path="adresse.country" type="hidden" name="country" id="country" class="form-control" placeholder="Pays" value="${shop.phone}" tabindex="4" readonly="true" />
 					</div>
 					<div class="form-group">
-						<form:input path="loc.x" type="hidden" name="latitude" id="latitude${empty shop.id ? '0' : shop.id}" class="form-control" placeholder="Latitude" value="${shop.loc.x}" tabindex="4" readonly="true" />
+						<form:input path="loc.y" type="hidden" name="latitude" id="latitude${empty shop.id ? '0' : shop.id}" class="form-control" placeholder="Latitude" value="${shop.loc.y}" tabindex="4" readonly="true" />
 					</div>
 					<div class="form-group">
-						<form:input path="loc.y" type="hidden" name="longitude" id="longitude${empty shop.id ? '0' : shop.id}" class="form-control" placeholder="Longitude" value="${shop.loc.y}" tabindex="4" readonly="true" />
+						<form:input path="loc.x" type="hidden" name="longitude" id="longitude${empty shop.id ? '0' : shop.id}" class="form-control" placeholder="Longitude" value="${shop.loc.x}" tabindex="4" readonly="true" />
 					</div>
 					<div class="form-group">
 						<label for="phone">Téléphone</label><br>
-						<form:input path="phone" class="form-control" id="mobile-number${ shop.id }" value="${shop.description}" type="tel" />
+						<form:input path="phone" class="form-control" id="mobile-number${ shop.id }" value="${shop.phone}" type="tel" />
 					</div>
 				</div>
 				<div class="modal-footer">
