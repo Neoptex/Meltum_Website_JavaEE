@@ -27,7 +27,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCHWNArOBPWU4NbT6sMlENXfB5hGSjayfM"></script>
 
 </head>
-<body>
+<body onLoad="initialize()">
 
 <!-- Navigation -->
     <div class="navbar-default sidebar" role="navigation">
@@ -81,7 +81,7 @@
 					<div class="modal-footer">
 						<div class="btn-group btn-group-justified" role="group" aria-label="group button">
 							<div class="btn-group" role="group">
-								<button onclick="initialize()" type="button" id="select" class="btn btn-default btn-hover-green" data-dismiss="modal" role="button">Enregistrer</button>
+								<button type="button" id="select" class="btn btn-default btn-hover-green" data-dismiss="modal" role="button">Enregistrer</button>
 							</div>
 						</div>
 					</div>
