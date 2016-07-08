@@ -12,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 public class ApiRequest {
@@ -27,7 +28,7 @@ public class ApiRequest {
 		super();
 	}
 	
-	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, JSONObject jsonObj) {
+	public ResponseEntity<String> executeRequest(String function, HttpMethod methodType, JSONObject jsonObj) throws HttpClientErrorException {
 		RestTemplate rt = new RestTemplate();
 		rt.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 		headers.setContentType(MediaType.APPLICATION_JSON);

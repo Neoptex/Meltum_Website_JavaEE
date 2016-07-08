@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 
 import com.meltum.api.ApiRequest;
 import com.meltum.beans.Company;
@@ -46,7 +47,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User authUser(String email, String password) {
+	public User authUser(String email, String password) throws HttpClientErrorException {
 		String url = "pro?mail=" + email + "&password=" + password;
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
