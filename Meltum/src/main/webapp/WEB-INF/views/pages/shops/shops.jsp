@@ -41,6 +41,7 @@
 					</div> <!-- /input-group -->
 				</li>
 				<li><a href="#" data-toggle="modal" onclick="initAutocomplete('0');" data-target="#modalAddEditShop0"><i class="fa fa-plus fa-fw"></i> Ajouter un shop</a>
+				<li><a href="/Meltum/shops/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a></li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->

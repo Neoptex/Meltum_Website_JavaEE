@@ -45,8 +45,8 @@
                     <!-- /input-group -->
                 </li>
                	<li>
-                  	<a href="/Meltum/melts/"><i class="fa fa-edit fa-fw"></i> Melts</a>
-                  	<a href="/Meltum/melts/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
+                  	<a href="/Meltum/shops/"><i class="fa fa-edit fa-fw"></i> Shops</a>
+                  	<a href="/Meltum/shops/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
                 </li>
             </ul>
         </div>
@@ -189,7 +189,7 @@
 	  
 	  function submitPointsList() {
 		  $.ajax({
-			    url: '/Meltum/melts/diffusion/saveZone/' + $('#shopList option:selected').val(),
+			    url: '/Meltum/shops/diffusion/saveZone/' + $('#shopList option:selected').val(),
 			    type: 'POST',
 			    contentType: 'application/json',
 			    dataType : 'json',

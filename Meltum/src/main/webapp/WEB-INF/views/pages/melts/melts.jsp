@@ -41,7 +41,6 @@
 					</div> <!-- /input-group -->
 				</li>
 				<li><a href="#" data-toggle="modal" data-target="#modalAddMelt"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</a></li>
-				<li><a href="/Meltum/melts/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a></li>
 			</ul>
 		</div>
 		<!-- /.sidebar-collapse -->
