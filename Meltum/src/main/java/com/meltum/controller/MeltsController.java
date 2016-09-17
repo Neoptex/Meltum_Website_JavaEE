@@ -49,7 +49,7 @@ public class MeltsController {
 		}
 		if (shopService.getShops().isEmpty()) {
 			redir.addFlashAttribute("error", "Veuillez créer un shop afin de pouvoir accéder aux melts");
-			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
+			return WebConstant.REDIRECT_SHOP_VIEW;
 		}
 		model.addAttribute(MELTS, meltService.getMelts());
 		model.addAttribute(SHOPS, shopService.getShops());
@@ -93,7 +93,9 @@ public class MeltsController {
 	
 	@RequestMapping("/upload/{id}")
 	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
-		meltService.uploadImage(id, file);
+		if (!file.get(0).isEmpty()) {
+			meltService.uploadImage(id, file);
+		}
 		return REDIRECT_MELT_VIEW;
 	}
 }

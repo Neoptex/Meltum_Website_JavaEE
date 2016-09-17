@@ -69,7 +69,9 @@ public class ShopController {
 	
 	@RequestMapping("/upload/{id}")
 	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
-		shopService.uploadImage(id, file);
+		if (!file.get(0).isEmpty()) {
+			shopService.uploadImage(id, file);
+		}
 		return REDIRECT_SHOP_VIEW;
 	}
 	

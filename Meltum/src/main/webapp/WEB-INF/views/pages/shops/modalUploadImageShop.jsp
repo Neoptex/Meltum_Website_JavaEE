@@ -17,7 +17,10 @@
 						<input type="file" name="file" id="fileToUpload" onchange="checkFileSize(this)" multiple>
 					</div>
 				</div>
-				<div class="modal-footer">
+				<div id="divBtnWait" class="modal-footer">
+					<button id="btnWaitUpload" class="btn btn-primary btn-lg btn-block disabled" onclick="javascript:buttonClicked(this);">Choisir un fichier pour upload le fichier</button>
+				</div>
+				<div id="divBtnUpload" class="modal-footer" style="display:none;">
 					<button id="btnLoad" type="submit" class="btn btn-primary btn-lg btn-block">Upload</button>
 				</div>
 			</form:form>
@@ -42,11 +45,18 @@
 				$('#myAlertFiles').show();
 				inputFile.value = null;
 			}
+
+			document.getElementById("divBtnWait").style.display = "none";
+			document.getElementById("divBtnUpload").style.display = "block";
 		}
 	}
 	
 	function hideModal() {
 		$('#myAlertFile').hide();
 		$('#myAlertFiles').hide();
+	}
+	
+	function buttonClicked(obj) {
+		return false;
 	}
 </script>
