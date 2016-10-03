@@ -27,6 +27,14 @@
 						<label for="description">Description</label>
 						<form:textarea path="description" type="text" name="description" id="description" class="form-control" placeholder="Descritption" tabindex="4" rows="5" />
 					</div>
+					<div class="form-group">
+						<label for="name">Prix conseillé</label>
+						<form:input path="prix_init" type="text" name="prix_init" id="prix_init" class="form-control" placeholder="Prix conseillé" tabindex="4" />
+					</div>
+					<div class="form-group">
+						<label for="name">Prix</label>
+						<form:input path="prix" type="text" name="prix" id="prix" class="form-control" placeholder="Prix" tabindex="4" />
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary btn-lg btn-block">Ajouter</button>

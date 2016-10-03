@@ -19,6 +19,14 @@
 						<label for="description">Description</label>
 						<form:input path="description" name="description" id="description" class="form-control" value="${melt.description}" tabindex="4" rows="5" />
 					</div>
+					<div class="form-group">
+						<label for="name">Prix conseillé</label>
+						<form:input path="prix_init" type="text" name="prix_init" id="prix_init" class="form-control" value="${melt.prix_init}" tabindex="4" />
+					</div>
+					<div class="form-group">
+						<label for="name">Prix</label>
+						<form:input path="prix" type="text" name="prix" id="prix" class="form-control" value="${melt.prix}" tabindex="4" />
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success btn-lg btn-block">Appliquer les modifications</button>

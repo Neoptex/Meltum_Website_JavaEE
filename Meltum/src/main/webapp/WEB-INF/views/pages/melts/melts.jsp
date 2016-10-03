@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +73,8 @@
 										<div class="modal-body">
 											<form role="form" action="" method="post" class="login-form">
 												<div class="form-group">
+												<h5 class="modal-title" id="modal-login-label"><span>Prix conseillé : </span><del>${melt.prix_init}€</del></h5>
+											<h4 class="modal-title" id="modal-login-label"><span>Prix : </span>${melt.prix}€</h4>
 													<c:choose>
 														<c:when test="${empty melt.images}">
 															<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img src="http://placehold.it/565x150" alt=""></a>

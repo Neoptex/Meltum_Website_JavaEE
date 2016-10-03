@@ -10,10 +10,28 @@ public class Melt {
 	String id;
 	String name;
 	String description;
+	String prix;
+	String prix_init;
 	List<ImageObj> images;
 	Shop targetShop;
 	String createdDate;
 	String expiringDate;
+
+	public String getPrix() {
+		return prix;
+	}
+
+	public void setPrix(String prix) {
+		this.prix = prix;
+	}
+
+	public String getPrix_init() {
+		return prix_init;
+	}
+
+	public void setPrix_init(String prix_init) {
+		this.prix_init = prix_init;
+	}
 
 	@JsonIgnore
 	String idShopLink;
