@@ -21,7 +21,7 @@ public class ApiRequest {
 	
 	public ApiRequest(String token, String id) {
 		headers.set("token", token);
-		headers.set("proId", id);
+		headers.set("userId", id);
 	}
 	
 	public ApiRequest() {

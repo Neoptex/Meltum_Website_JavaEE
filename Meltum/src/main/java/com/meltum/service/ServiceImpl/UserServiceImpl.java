@@ -48,7 +48,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User authUser(String email, String password) throws HttpClientErrorException {
-		String url = "pro?mail=" + email + "&password=" + password;
+		String url = "auth?mail=" + email + "&password=" + password;
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response != null) {
 			try {
