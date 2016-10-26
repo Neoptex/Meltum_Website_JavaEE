@@ -2,6 +2,7 @@ package com.meltum.beans;
 
 public class ImageObj {
 	
+	String id;
 	String filename;
 	String contentType;
 	String imageBase64;
@@ -41,6 +42,12 @@ public class ImageObj {
 	 */
 	public void setImageBase64(String imageBase64) {
 		this.imageBase64 = imageBase64;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
