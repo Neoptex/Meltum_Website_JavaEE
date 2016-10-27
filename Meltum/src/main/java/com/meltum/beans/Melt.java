@@ -13,6 +13,7 @@ public class Melt {
 	String prix;
 	String prix_init;
 	List<ImageObj> images;
+	List<String> tags;
 	Shop targetShop;
 	String createdDate;
 	String expiringDate;
@@ -105,5 +106,13 @@ public class Melt {
 	 */
 	public void setImages(List<ImageObj> images) {
 		this.images = images;
+	}
+
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 }
