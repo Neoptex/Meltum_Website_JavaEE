@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Tags">Tags</label>
-                        <form:select multiple="true" id="tagList" path="tags" />
+                        <form:select multiple="true" id="tagList" path="tags" style="display:none"/>
                         <script type="text/javascript">
 																									
 																								<%@ include file="js/tag.js"%>
