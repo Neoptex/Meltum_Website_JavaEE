@@ -24,28 +24,30 @@ public final class ImageUtils {
 	    	corresp.put("image/png", "png");
 	    }
 	
-	public static String scale(MultipartFile file, int width, int height) {
-    	try {
-    		ByteArrayInputStream in = new ByteArrayInputStream(file.getBytes());
-    		BufferedImage img = ImageIO.read(in);
-    		if(height == 0) {
-    			height = (width * img.getHeight())/ img.getWidth(); 
-    		}
-    		if(width == 0) {
-    			width = (height * img.getWidth())/ img.getHeight();
-    		}
-    		Image scaledImage = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-    		BufferedImage imageBuff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-    		imageBuff.getGraphics().drawImage(scaledImage, 0, 0, new Color(0,0,0), null);
-
-    		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
-    		ImageIO.write(imageBuff, corresp.get(file.getContentType()), buffer);
-
-    		return Base64.encodeBase64String(buffer.toByteArray());
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	}
-    	return null;
-    }
+	    public static String scale(MultipartFile file, int width, int height) {
+	        try {
+	            ByteArrayInputStream in = new ByteArrayInputStream(file.getBytes());
+	            BufferedImage image = ImageIO.read(in);
+	            int rheight = image.getHeight();
+	            int rwidth = image.getWidth();
+	            if (rheight < height && rwidth < width ){
+	                height = rheight;
+	                width = rwidth;
+	            } else {
+	                if (rheight > rwidth)
+	                    width = Math.round((float) rwidth / (float) rheight * (float) height);
+	                if (rheight < rwidth)
+	                    height = Math.round((float) rheight / (float) rwidth * (float) width);
+	            }
+	            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+	            BufferedImage imageBuff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	            imageBuff.getGraphics().drawImage(scaledImage, 0, 0, new Color(0,0,0), null);
+	            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+	            ImageIO.write(imageBuff, corresp.get(file.getContentType()), buffer);
+	            return Base64.encodeBase64String(buffer.toByteArray());
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        return null;
+	    }
 }
