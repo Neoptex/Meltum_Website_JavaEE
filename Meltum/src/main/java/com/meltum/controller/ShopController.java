@@ -49,6 +49,7 @@ public class ShopController {
 			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
 		}
 		model.addAttribute(SHOPS, shopService.getShops());
+		model.addAttribute(WebConstant.IMAGES_SHOPS_LINK, WebConstant.API_URL + "images/shop/");
 		return null;
 	}
 	

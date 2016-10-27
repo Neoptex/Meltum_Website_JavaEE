@@ -116,12 +116,12 @@
 																	<c:choose>
 																		<c:when test="${loop.index eq 0}">
 																			<div class="item active">
-																				<a href="#" data-toggle="modal" data-target="#modalUploadImageShop${shop.id}"><img width="865" height="350" src='data:${image.contentType};base64,${image.imageBase64}' alt=""></a>
+																				<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${shop.id}"><img width="565" height="150" src='${imagesShopsLink}${shop.id}/${image.id}'  alt=""></a>
 																			</div>
 																		</c:when>
 																		<c:otherwise>
 																			<div class="item">
-																				<a href="#" data-toggle="modal" data-target="#modalUploadImageShop${shop.id}"><img width="865" height="350" src='data:${image.contentType};base64,${image.imageBase64}' alt=""></a>
+																				<a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${shop.id}"><img width="565" height="150" src='${imagesShopsLink}${shop.id}/${image.id}'  alt=""></a>
 																			</div>
 																		</c:otherwise>
 																	</c:choose>

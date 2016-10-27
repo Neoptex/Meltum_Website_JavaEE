@@ -53,6 +53,7 @@ public class MeltsController {
 		}
 		model.addAttribute(MELTS, meltService.getMelts());
 		model.addAttribute(SHOPS, shopService.getShops());
+		model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
 		return MELTS_VIEW;
 	}
 	
