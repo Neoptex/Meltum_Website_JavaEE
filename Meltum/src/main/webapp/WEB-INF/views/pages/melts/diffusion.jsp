@@ -1,5 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +23,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.19.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v3.19.0/build/ol.js"></script>
 	
-	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCHWNArOBPWU4NbT6sMlENXfB5hGSjayfM"></script>
 
 </head>
-<body onLoad="initialize()">
+<body>
 
 <!-- Navigation -->
     <div class="navbar-default sidebar" role="navigation">
@@ -90,8 +92,8 @@
 				</div>
 			  </div>
 			</div>
-		
-			<div id="googleMap" style="width:100%;height:900px;"></div>
+			
+		    <div id="map" class="map" style="width:100%;height:900px;"></div>
 			<button type="button" onclick="submitPointsList()">Submit</button>
 		</div>
 	</div>
@@ -102,106 +104,118 @@
 	$("#shopList option:first").attr('class','selected');
 	$("#squarespaceModal").modal('show');
 </script>
-	<script type="text/javascript">
-	
-	  var poly, map;
-	  var markers = [];
+<script type="text/javascript">
+var raster = new ol.layer.Tile({
+    source: new ol.source.OSM()
+  });
+
+  var map = new ol.Map({
+    layers: [raster],
+    target: 'map',
+    view: new ol.View({
+      center: [-11000000, 4600000],
+      zoom: 4
+    })
+  });
+
+  var ftrs = fillPathAndMarkers($("#shopList option:selected").val());
+  var featureOverlay = new ol.layer.Vector({
+    source: new ol.source.Vector({features: ftrs}),
+    style: new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: 'rgba(255, 255, 255, 0.2)'
+      }),
+      stroke: new ol.style.Stroke({
+        color: '#ffcc33',
+        width: 2
+      }),
+      image: new ol.style.Circle({
+        radius: 7,
+        fill: new ol.style.Fill({
+          color: '#ffcc33'
+        })
+      })
+    })
+  });
+  featureOverlay.setMap(map);
+
+  var modify = new ol.interaction.Modify({
+    features: ftrs,
+    // the SHIFT key must be pressed to delete vertices, so
+    // that new vertices can be drawn at the same position
+    // of existing vertices
+    deleteCondition: function(event) {
+      return ol.events.condition.shiftKeyOnly(event) &&
+          ol.events.condition.singleClick(event);
+    }
+  });
+  map.addInteraction(modify);
+
+  var draw; // global so we can remove it later
+  var typeSelect = document.getElementById('type');
+
+  function addInteraction() {
+    draw = new ol.interaction.Draw({
+      features: ftrs,
+      type: ("Polygon")
+    });
+    map.addInteraction(draw);
+  }
+
+  addInteraction();
+  
+  function Point(x, y){
+	  	this.x = x;
+	  	this.y = y;
+	  }
+  
+  function submitPointsList() {
 	  var points = [];
-	  var path = new google.maps.MVCArray;
-	  var currentShop = new google.maps.LatLng(48.864716, 2.349014);
-	  
-	  function getCurrentShopCoord(id) {
-	  	var json = JSON.stringify('${shopListJson}').replace(/\\/g, "");
+	  featureOverlay.getSource().getFeatures().forEach(function(feature) {
+		  feature.getGeometry().getCoordinates()[0].forEach(function(currentPoint) {
+			  var lonlat = ol.proj.transform(currentPoint, 'EPSG:3857', 'EPSG:4326');
+			  var point = new Point(lonlat[0], lonlat[1]);
+			  points.push(point);
+		  });
+		 
+	  });
+	  $.ajax({
+		    url: '/Meltum/shops/diffusion/saveZone/' + $('#shopList option:selected').val(),
+		    type: 'POST',
+		    contentType: 'application/json',
+		    dataType : 'json',
+		    data: JSON.stringify(points),
+		    success: function(result) {
+            },
+            error: function(e){
+                alert('failure');
+            }
+		});
+	}
+  
+  function fillPathAndMarkers(id) {
+		var json = JSON.stringify('${shopListJson}').replace(/\\/g, "");
 		var shopList = $.parseJSON('${shopListJson}');
+		var features = new ol.Collection();
+		var pts = [];
 		
 		for (i = 0; i < shopList.length; i++) {
-				if (shopList[i].id == id && shopList[i].loc != null) {
-					var location = shopList[i].loc;
-					return new google.maps.LatLng(location.y, location.x);
-				}
-			}
-	  }
-	  
-	  function Point(x, y){
-		  	this.x = x;
-		  	this.y = y;
-		  }
-		  
-	  function fillPathAndMarkers(id) {
-			var json = JSON.stringify('${shopListJson}').replace(/\\/g, "");
-			var shopList = $.parseJSON('${shopListJson}');
-			
-			for (i = 0; i < shopList.length; i++) {
-					if (shopList[i].id == id && shopList[i].pol != null) {
-						if (shopList[i].pol.length > 0) {
-							var pol = shopList[i].pol;
-							for (var i = 0; i < pol.length; i++) {
-								var myLatLng = new google.maps.LatLng(pol[i].y, pol[i].x);
-								addMarker(myLatLng);
-							}
+				if (shopList[i].id == id && shopList[i].pol != null) {
+					if (shopList[i].pol.length > 0) {
+						var pol = shopList[i].pol;
+						var thing = new ol.geom.Polygon();
+						for (var i = 0; i < pol.length; i++) {
+							  pts.push(ol.proj.transform([pol[i].x, pol[i].y], 'EPSG:4326', 'EPSG:3857'));
 						}
 					}
 				}
-		    	return markers;
-		  }
-		  
-		  
-	  function initialize() {
-		currentShop = getCurrentShopCoord($("#shopList option:selected").val());
-	    map = new google.maps.Map(document.getElementById("googleMap"), {
-	      zoom: 11,
-	      center: currentShop,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP
-	    });
-	    poly = new google.maps.Polygon({
-	      strokeWeight: 3,
-	      fillColor: '#5555FF'
-	    });
-	    poly.setMap(map);
-		poly.setPaths(new google.maps.MVCArray([path]));
-		markers = fillPathAndMarkers($("#shopList option:selected").val());
-	    google.maps.event.addListener(map, 'click', addPoint);
+			}
+		var featurething = new ol.Feature({
+		    name: "Poly",
+		    geometry: new ol.geom.Polygon([pts])
+		});
+		 features.push(featurething);
+		return features;
 	  }
-	
-	  function addPoint(event) {
-	    addMarker(event.latLng);
-	  }
-	  
-	  function addMarker(latLng) {
-			poly.getPath().insertAt(path.length, latLng);
-		    var marker = new google.maps.Marker({
-			      position: latLng,
-			      map: map
-			    });
-			    var point = new Point(marker.getPosition().lng(), marker.getPosition().lat());
-			    points.push(point);
-			    markers.push(marker);
-			    marker.setTitle("#" + path.length);
-			
-			    google.maps.event.addListener(marker, 'click', function() {
-				      marker.setMap(null);
-				      for (var i = 0, I = markers.length; i < I && markers[i] != marker; ++i);
-				      markers.splice(i, 1);
-				      path.removeAt(i);
-				      for (var j = 0, J = points.length; j < J && points[j] != point; ++j);
-				      points.splice(j, 1);
-			      }
-			    );
-	  }
-	  
-	  function submitPointsList() {
-		  $.ajax({
-			    url: '/Meltum/shops/diffusion/saveZone/' + $('#shopList option:selected').val(),
-			    type: 'POST',
-			    contentType: 'application/json',
-			    dataType : 'json',
-			    data: JSON.stringify(points),
-			    success: function(result) {
-	            },
-	            error: function(e){
-	                alert('failure');
-	            }
-			});
-	}
-	</script>
+</script>
 </html>
