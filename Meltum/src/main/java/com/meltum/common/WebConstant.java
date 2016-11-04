@@ -9,6 +9,7 @@ public interface WebConstant {
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String HOME_VIEW = "home";
 	public static final String MELTS_VIEW = "melts";
+	public static final String MELT_ADD_VIEW = "meltAdd";
 	public static final String SHOPS_VIEW = "shops";
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";

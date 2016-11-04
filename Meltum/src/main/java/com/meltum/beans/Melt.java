@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Melt {
 	String id;
+	 @NotEmpty(message = "Le nom est obligatoire")
 	String name;
 	String description;
 	String prix;

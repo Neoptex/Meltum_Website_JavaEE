@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <!-- Modal for add melt -->
 <div class="modal fade" id="modalAddMelt" tabindex="-1" role="dialog" aria-labelledby="modalAddMeltLabel">
     <div class="modal-dialog" role="document">
@@ -22,17 +24,18 @@
                     <div class="form-group">
                         <label for="name">Nom</label>
                         <form:input path="name" type="text" name="name" id="name" class="form-control" placeholder="Nom" tabindex="4" />
+                        <form:errors path="name"/>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <form:textarea path="description" type="text" name="description" id="description" class="form-control" placeholder="Descritption" tabindex="4" rows="5" />
                     </div>
                     <div class="form-group">
-                        <label for="name">Prix conseillé</label>
+                        <label for="prix_init">Prix conseillé</label>
                         <form:input path="prix_init" type="text" name="prix_init" id="prix_init" class="form-control" placeholder="Prix conseillé" tabindex="4" />
                     </div>
                     <div class="form-group">
-                        <label for="name">Prix</label>
+                        <label for="prix">Prix</label>
                         <form:input path="prix" type="text" name="prix" id="prix" class="form-control" placeholder="Prix" tabindex="4" />
                     </div>
                     <div class="form-group">

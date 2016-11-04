@@ -9,10 +9,13 @@ import static com.meltum.common.WebConstant.SHOPS;
 import java.io.IOException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,8 +69,17 @@ public class MeltsController {
 		return MELTS_VIEW;
 	}
 
-	@RequestMapping("/add")
-	public String addMelt(@ModelAttribute Melt form, Model model) {
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
+	public String addMelt(@Valid Melt form,  BindingResult result, Model model) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute(MELT_FORM, form);
+			model.addAttribute(MELTS, meltService.getMelts());
+			model.addAttribute(SHOPS, shopService.getShops());
+			model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
+			return MELTS_VIEW;
+        }
+		
 		try {
 			meltService.createMelt(form);
 		} catch (JSONException | IOException e) {
