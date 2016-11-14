@@ -164,6 +164,10 @@ var raster = new ol.layer.Tile({
 
   addInteraction();
   
+  draw.on('drawstart', function (e) {
+ 	ftrs.clear();
+  });
+  
   function Point(x, y){
 	  	this.x = x;
 	  	this.y = y;
