@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}">
                                 <i class="fa fa-cloud-upload"></i> Upload
                             </button>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditMelt${melt.id}">

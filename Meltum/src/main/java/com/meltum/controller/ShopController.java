@@ -1,9 +1,6 @@
 package com.meltum.controller;
 
-import static com.meltum.common.WebConstant.REDIRECT_SHOP_VIEW;
-import static com.meltum.common.WebConstant.SHOPS;
-import static com.meltum.common.WebConstant.SHOP_FORM;
-import static com.meltum.common.WebConstant.ZONE_VIEW;
+import static com.meltum.common.WebConstant.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,15 +29,15 @@ import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IShopService;
 
 @Controller
-@RequestMapping("/shops")
+@RequestMapping("/ShopsManagement")
 public class ShopController {
 
 	@Autowired
 	private IShopService shopService = null;
-	
+
 	@Autowired
 	private ICompanyService companyService = null;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayShops(Model model, RedirectAttributes redir) {
 		model.addAttribute(SHOP_FORM, new Shop());
@@ -52,57 +49,65 @@ public class ShopController {
 		model.addAttribute(WebConstant.IMAGES_SHOPS_LINK, WebConstant.API_URL + "images/shop/");
 		return null;
 	}
-	
-	@RequestMapping("/save/{id}")
-	public String editShop(@ModelAttribute Shop form, @PathVariable String id, @RequestParam String action , Model model) {
+
+	@RequestMapping("AddShop")
+	public String AddShop(@ModelAttribute Shop form, Model model) {
 		try {
-			if (action.equals("edit")) {
-				shopService.updateShop(form);
-			} else {
-				form.setId(null);
-				shopService.createShop(form);
-			}
+			shopService.createShop(form);
 		} catch (JSONException | IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return REDIRECT_SHOP_VIEW;
 	}
-	
-	@RequestMapping("/upload/{id}")
-	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
+
+	@RequestMapping("/EditShop/{id}")
+	public String EditShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
+		try {
+			shopService.updateShop(form);
+		} catch (JSONException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return REDIRECT_SHOP_VIEW;
+	}
+
+	@RequestMapping("/UploadImageShop/{id}")
+	public String UploadShopImage(@ModelAttribute Shop form, @PathVariable String id, Model model,
+			@RequestParam List<MultipartFile> file) {
 		if (!file.get(0).isEmpty()) {
 			shopService.uploadImage(id, file);
 		}
 		return REDIRECT_SHOP_VIEW;
 	}
-	
-	@RequestMapping("/remove/{id}")
-	public String removeShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
+
+	@RequestMapping("/RemoveShop/{id}")
+	public String RemoveShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
 		shopService.removeShop(form);
 		return REDIRECT_SHOP_VIEW;
 	}
-	
+
 	@RequestMapping(value = "/diffusion", method = RequestMethod.GET)
 	public String displayDiffusionZone(Model model, RedirectAttributes redir) {
 		if (companyService.getShopsFromCompany() == null) {
 			redir.addFlashAttribute("error", "Vous n'avez enregistré aucun magasin au préalable");
 			return WebConstant.REDIRECT_SHOP_VIEW;
 		}
-		model.addAttribute(WebConstant.SHOP_LIST, companyService.getShopsFromCompany());	
+		model.addAttribute(WebConstant.SHOP_LIST, companyService.getShopsFromCompany());
 		model.addAttribute(WebConstant.SHOP_LIST_TO_JSON_STRING, new JSONArray(companyService.getShopsFromCompany()));
 		return ZONE_VIEW;
 	}
-	
+
 	@RequestMapping(value = "/diffusion/saveZone/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	public String saveZone(@PathVariable String id, @RequestBody List<Coord> points, Model model) {
-			Shop shop = shopService.getShopById(id);
-			shop.setPol(points);
-			try {
-				shopService.updateShop(shop);
-			} catch (JSONException | IOException e) {
-				e.printStackTrace();
-			}
+		Shop shop = shopService.getShopById(id);
+		shop.setPol(points);
+		try {
+			shopService.updateShop(shop);
+		} catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
 		return "{}";
 	}
 }

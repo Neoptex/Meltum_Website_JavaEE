@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title text-center" id="modalAddMeltLabel"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</h4>
+                <h4 class="modal-title text-center"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</h4>
             </div>
             <form:form role="form" action="/Meltum/melts/add" method='POST' modelAttribute="meltForm">
                 <div class="modal-body">
