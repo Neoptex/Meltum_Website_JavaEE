@@ -27,9 +27,9 @@ function addInTagList(idMelt) {
 	// a
 	var a = document.createElement("a");
 	a.style.textDecoration = "none";
-	a.innerHTML = "<i id='"
+	a.innerHTML = " <i id='"
 			+ value
-			+ "' class='glyphicon glyphicon-remove' onclick='deleteTag(this.id, \"" + idMelt + "\")'></i>";
+			+ "' class='fa fa-times' onclick='deleteTag(this.id, \"" + idMelt + "\")'></i>";
 	span.appendChild(a);
 
 	document.getElementById("tagLabel" + idMelt).appendChild(span);

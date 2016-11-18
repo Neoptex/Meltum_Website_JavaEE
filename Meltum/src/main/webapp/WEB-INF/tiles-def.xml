@@ -3,44 +3,58 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  
-    <definition name="template" template="/WEB-INF/views/template/template.jsp">
-    	<put-attribute name="header" value="/WEB-INF/views/pages/navigation.jsp" />
-  	</definition>
-  	
-  	<definition name="myAccount" extends="template">
-    	<put-attribute name="body" value="/WEB-INF/views/pages/my-account/myaccount.jsp" />
-  	</definition>
-  	
-  	<definition name="changePassword" extends="template">
-    	<put-attribute name="body" value="/WEB-INF/views/pages/my-account/changePassword.jsp" />
-  	</definition>
-  	
-  	<definition name="inscription" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/inscription.jsp" />
-  	</definition>
-  	
-  	<definition name="home" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
-  	</definition>
-  	
-  	<definition name="melts" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/melts/melts.jsp" />
-  	</definition>
-  	
-  	<definition name="shops" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/shops/shops.jsp" />
-  	</definition>
-  	
-  	<definition name="zone" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/melts/diffusion.jsp" />
-  	</definition>
-  	
-  	<definition name="myCompanyShow" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/my-company/myCompanyShow.jsp" />
-  	</definition>
-  	
-  	<definition name="myCompanyEdit" extends="template">
-  		<put-attribute name="body" value="/WEB-INF/views/pages/my-company/myCompanyEdit.jsp" />
-  	</definition>
+
+	<definition name="template" template="/WEB-INF/views/template/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/pages/navigation.jsp" />
+	</definition>
+
+	<definition name="myAccount" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/my-account/myaccount.jsp" />
+	</definition>
+
+	<definition name="changePassword" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/my-account/changePassword.jsp" />
+	</definition>
+
+	<definition name="PaymentAccountManagementView" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/my-account/PaymentAccountManagement/PaymentAccountManagementView.jsp" />
+	</definition>
+
+	<definition name="inscription" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/inscription.jsp" />
+	</definition>
+
+	<definition name="home" extends="template">
+		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
+	</definition>
+
+	<definition name="melts" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/melts/melts.jsp" />
+	</definition>
+
+	<definition name="shops" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/shops/shops.jsp" />
+	</definition>
+
+	<definition name="zone" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/melts/diffusion.jsp" />
+	</definition>
+
+	<definition name="myCompanyShow" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/my-company/myCompanyShow.jsp" />
+	</definition>
+
+	<definition name="myCompanyEdit" extends="template">
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/my-company/myCompanyEdit.jsp" />
+	</definition>
 </tiles-definitions>

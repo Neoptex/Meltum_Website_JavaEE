@@ -5,6 +5,7 @@ public interface WebConstant {
 	// Views
 	public static final String MYACCOUNT_VIEW = "myAccount";
 	public static final String CHANGE_PASSWORD_VIEW = "changePassword";
+	public static final String PAYMENT_ACCOUNT_MANAGEMENT_VIEW = "PaymentAccountManagementView";
 	public static final String LOGIN_VIEW = "login";
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String HOME_VIEW = "home";
@@ -22,6 +23,8 @@ public interface WebConstant {
 	public static final String MELT_FORM = "meltForm";
 	public static final String SHOP_FORM = "shopForm";
 	public static final String CHANGE_PASSWORD_FORM = "changePasswordForm";
+	public static final String BANK_ACCOUNT_VIEW_MODEL = "BankAccountViewModel";
+	public static final String PAYPAL_ACCOUNT_VIEW_MODEL = "PaypalAccountViewModel";
 	
 	// Objects
 	public static final String MELTS = "melts";

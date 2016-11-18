@@ -1,10 +1,6 @@
 package com.meltum.controller;
 
-import static com.meltum.common.WebConstant.MELTS;
-import static com.meltum.common.WebConstant.MELTS_VIEW;
-import static com.meltum.common.WebConstant.MELT_FORM;
-import static com.meltum.common.WebConstant.REDIRECT_MELT_VIEW;
-import static com.meltum.common.WebConstant.SHOPS;
+import static com.meltum.common.WebConstant.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -66,6 +62,7 @@ public class MeltsController {
 		model.addAttribute("idShop", id);
 		model.addAttribute(MELTS, meltService.getMeltsByShop(id));
 		model.addAttribute(SHOPS, shopService.getShops());
+		model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
 		return MELTS_VIEW;
 	}
 

@@ -295,7 +295,6 @@
 <script src="<c:url value="/resources/css/vitrine/js/html5shiv.js" />"></script>
 <script src="<c:url value="/resources/css/vitrine/js/jquery-1.10.2.min.js"/>"></script>
 <script src="<c:url value="/resources/css/vitrine/js/jquery-migrate-1.2.1.min.js" />"></script>
-<script src="<c:url value="/resources/css/vitrine/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/css/vitrine/js/jquery.easing.1.3.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/css/vitrine/fancybox/jquery.fancybox.pack-v=2.1.5.js"/>"></script>
 <script src="<c:url value="/resources/css/vitrine/js/script.js"/>"></script>
