@@ -1,13 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Modal for upload image melt -->
-<div class="modal fade" id="modalUploadImageMelt${melt.id}" tabindex="-1" role="dialog" aria-labelledby="modalUploadImageMeltLabel${melt.id}">
-	<div class="modal-dialog" role="document">
+<div class="modal fade" id="modalUploadImageMelt${melt.id}">
+	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header modal-header-primary">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="modalUploadImageMeltLabel${melt.id}">Upload une image pour le melt : ${melt.name}</h4>
+				<h4 class="modal-title text-center" id="modalUploadImageMeltLabel${melt.id}"><i class="fa fa-cloud-upload"></i> Upload une image</h4>
 			</div>
 			<div class="alert alert-danger" id="myAlertFile" role="alert" hidden="true">La taille du fichier est trop grosse!</div>
 			<div class="alert alert-danger" id="myAlertFiles" role="alert" hidden="true">La taille des fichiers est trop grosse!</div>
@@ -17,12 +17,16 @@
 						<input type="file" name="file" id="fileToUpload" onchange="checkFileSize(this)" multiple>
 					</div>
 				</div>
-				<div id="divBtnWait" class="modal-footer">
-					<button id="btnWaitUpload" class="btn btn-primary btn-lg btn-block disabled">Choisir un fichier pour upload le fichier</button>
-				</div>
-				<div id="divBtnUpload" class="modal-footer" style="display:none;">
-					<button id="btnLoad" type="submit" class="btn btn-primary btn-lg btn-block">Upload</button>
-				</div>
+				<div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Valider</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Annuler</button>
+                        </div>
+                    </div>
+                </div>
 			</form:form>
 		</div>
 	</div>

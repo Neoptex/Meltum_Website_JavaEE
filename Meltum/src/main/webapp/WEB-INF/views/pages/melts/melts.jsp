@@ -115,11 +115,13 @@
                             </div>
                         </div>
                         <div class="panel-footer">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}">
+                                <i class="fa fa-cloud-upload"></i> Upload
+                            </button>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditMelt${melt.id}">
                                 <i class="fa fa-pencil fa-fw"></i> Modifier
                             </button>
                             <%@ include file="modalEditMelt.jsp"%>
-
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRemoveMelt${melt.id}">
                                 <i class="fa fa-trash fa-fw"></i> Supprimer
                             </button>
