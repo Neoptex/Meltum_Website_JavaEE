@@ -53,9 +53,29 @@
             <!-- Page Content -->
             <div class="col-md-9">
                 <c:forEach items="${shops}" var="shop">
+                    <%@ include file="ShopsPartialView/EditShopPartialView.jsp"%>
+                    <%@ include file="ShopsPartialView/RemoveShopPartialView.jsp"%>
+                    <%@ include file="ShopsPartialView/UploadShopImagePartialView.jsp"%>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h2 class="panel-title">${shop.name}</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2 class="panel-title">${shop.name}</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadImageShop${shop.id}">
+                                            <i class="fa fa-cloud-upload"></i> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" onclick="initAutocomplete('${shop.id}');" data-target="#modalAddEditShop${shop.id}">
+                                            <i class="fa fa-pencil fa-fw"></i> Modifier
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#RemoveShop${shop.id}">
+                                            <i class="fa fa-trash fa-fw"></i> Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -122,22 +142,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#UploadImageShop${shop.id}">
-                                <i class="fa fa-cloud-upload"></i> Upload
-                            </button>
-                            <%@ include file="ShopsPartialView/UploadShopImagePartialView.jsp"%>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" onclick="initAutocomplete('${shop.id}');" data-target="#modalAddEditShop${shop.id}">
-                                <i class="fa fa-pencil fa-fw"></i> Modifier
-                            </button>
-                            <%@ include file="ShopsPartialView/EditShopPartialView.jsp"%>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#RemoveShop${shop.id}">
-                                <i class="fa fa-trash fa-fw"></i> Supprimer
-                            </button>
-                            <%@ include file="ShopsPartialView/RemoveShopPartialView.jsp"%>
-                        </div>
                     </div>
-
                 </c:forEach>
             </div>
         </div>

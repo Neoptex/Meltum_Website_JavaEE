@@ -52,9 +52,29 @@
             <!-- Liste des melts -->
             <div class="col-md-9">
                 <c:forEach items="${melts}" var="melt" varStatus="loop">
+                    <%@ include file="MeltsPartialView/EditMeltPartialView.jsp"%>
+                    <%@ include file="MeltsPartialView/RemoveMeltPartialView.jsp"%>
+                    <%@ include file="MeltsPartialView/UploadMeltImagePartialView.jsp"%>
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h2 class="panel-title">${melt.name}</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2 class="panel-title">${melt.name}</h2>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadMeltImage${melt.id}">
+                                            <i class="fa fa-cloud-upload"></i> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#EditMelt${melt.id}">
+                                            <i class="fa fa-pencil fa-fw"></i> Modifier
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#RemoveMelt${melt.id}">
+                                            <i class="fa fa-trash fa-fw"></i> Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -103,7 +123,6 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
-                                <%@ include file="MeltsPartialView/UploadMeltImagePartialView.jsp"%>
                                 <!-- Body du melt -->
                                 <div class="col-md-9">
                                     <blockquote style="border-left-color: #468847;">
@@ -117,7 +136,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">
+                        <%-- <div class="panel-footer">
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadMeltImage${melt.id}">
                                 <i class="fa fa-cloud-upload"></i> Upload
                             </button>
@@ -129,7 +148,7 @@
                                 <i class="fa fa-trash fa-fw"></i> Supprimer
                             </button>
                             <%@ include file="MeltsPartialView/RemoveMeltPartialView.jsp"%>
-                        </div>
+                        </div> --%>
                     </div>
                 </c:forEach>
             </div>
