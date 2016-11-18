@@ -11,7 +11,7 @@
 			</div>
 			<div class="alert alert-danger" id="myAlertFile" role="alert" hidden="true">La taille du fichier est trop grosse!</div>
 			<div class="alert alert-danger" id="myAlertFiles" role="alert" hidden="true">La taille des fichiers est trop grosse!</div>
-			<form:form role="form" action="/Meltum/MeltsManagement/upload/${melt.id}" method='POST' modelAttribute="meltForm" enctype="multipart/form-data">
+			<form:form role="form" action="/Meltum/MeltsManagement/UploadMeltImage/${melt.id}" method='POST' modelAttribute="meltForm" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="file" name="file" id="fileToUpload" onchange="checkFileSize(this)" multiple>
