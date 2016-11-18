@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.meltum.beans.Melt;
-import com.meltum.common.WebConstant;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IMeltService;
 import com.meltum.service.IService.IShopService;
 
 @Controller
-@RequestMapping("/melts")
+@RequestMapping("/MeltsManagement")
 public class MeltsController {
 
 	@Autowired
@@ -44,16 +42,16 @@ public class MeltsController {
 		model.addAttribute(MELT_FORM, new Melt());
 		if (companyService.getCompanyByUser() == null) {
 			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux melts");
-			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
+			return REDIRECT_MYCOMPANY_VIEW;
 		}
 		if (shopService.getShops().isEmpty()) {
 			redir.addFlashAttribute("error", "Veuillez créer un shop afin de pouvoir accéder aux melts");
-			return WebConstant.REDIRECT_SHOP_VIEW;
+			return REDIRECT_SHOPS_MANAGEMENT_VIEW;
 		}
 		model.addAttribute(MELTS, meltService.getMelts());
 		model.addAttribute(SHOPS, shopService.getShops());
-		model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
-		return MELTS_VIEW;
+		model.addAttribute(IMAGES_MELTS_LINK, API_URL + "images/melt/");
+		return MELTS_MANAGEMENT_VIEW;
 	}
 	
 	@RequestMapping("/{id}")
@@ -62,50 +60,69 @@ public class MeltsController {
 		model.addAttribute("idShop", id);
 		model.addAttribute(MELTS, meltService.getMeltsByShop(id));
 		model.addAttribute(SHOPS, shopService.getShops());
-		model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
-		return MELTS_VIEW;
+		model.addAttribute(IMAGES_MELTS_LINK, API_URL + "images/melt/");
+		return MELTS_MANAGEMENT_VIEW;
 	}
 
-	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public String addMelt(@Valid Melt form,  BindingResult result, Model model) {
-		
-		if (result.hasErrors()) {
-			model.addAttribute(MELT_FORM, form);
-			model.addAttribute(MELTS, meltService.getMelts());
-			model.addAttribute(SHOPS, shopService.getShops());
-			model.addAttribute(WebConstant.IMAGES_MELTS_LINK, WebConstant.API_URL + "images/melt/");
-			return MELTS_VIEW;
-        }
-		
+	/**
+	 * Add a melt
+	 * @param form
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(path = "/AddMelt", method = RequestMethod.POST)
+	public String AddMelt(@Valid Melt form, Model model) {
 		try {
 			meltService.createMelt(form);
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
-		return REDIRECT_MELT_VIEW;
+		return REDIRECT_MELTS_MANAGEMENT_VIEW;
 	}
 	
-	@RequestMapping("/remove/{id}")
-	public String removeMelt(@ModelAttribute Melt form, @PathVariable String id, Model model) {
-		meltService.removeMelt(form);
-		return REDIRECT_MELT_VIEW;
-	}
-	
-	@RequestMapping("/edit/{id}")
-	public String editMelt(@ModelAttribute Melt form, @PathVariable String id, Model model) {
+	/**
+	 * Edit a melt
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/EditMelt/{id}")
+	public String EditMelt(@ModelAttribute Melt form, @PathVariable String id, Model model) {
 		try {
 			meltService.updateMelt(form);
 		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
-		return REDIRECT_MELT_VIEW;
+		return REDIRECT_MELTS_MANAGEMENT_VIEW;
 	}
 	
-	@RequestMapping("/upload/{id}")
-	public String uploadImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
+	/**
+	 * Remove a melt
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/RemoveMelt/{id}")
+	public String RemoveMelt(@ModelAttribute Melt form, @PathVariable String id, Model model) {
+		meltService.removeMelt(form);
+		return REDIRECT_MELTS_MANAGEMENT_VIEW;
+	}
+	
+	/**
+	 * Upload a image in melt
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("/UploadMeltImage/{id}")
+	public String UploadMeltImage(@ModelAttribute Melt form, @PathVariable String id, Model model, @RequestParam List<MultipartFile> file) {
 		if (!file.get(0).isEmpty()) {
 			meltService.uploadImage(id, file);
 		}
-		return REDIRECT_MELT_VIEW;
+		return REDIRECT_MELTS_MANAGEMENT_VIEW;
 	}
 }

@@ -1,15 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Modal for add melt -->
-<div class="modal fade" id="modalRemoveMelt${melt.id}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveMeltLabel${melt.id}">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="RemoveMelt${melt.id}">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-danger">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title text-center" id="modalRemoveMeltLabel${melt.id}"><i class="fa fa-trash fa-fw"></i> Suppression</h4>
+                <h4 class="modal-title text-center"><i class="fa fa-trash fa-fw"></i> Supprimer <strong>${melt.name}</strong></h4>
             </div>
-            <form:form role="form" action="/Meltum/melts/remove/${melt.id}" method='POST' modelAttribute="meltForm">
+            <form:form role="form" action="/Meltum/MeltsManagement/RemoveMelt/${melt.id}" method='POST' modelAttribute="meltForm">
                 <div class="modal-body">
                     <p>
                         Êtes-vous sur de vouloir supprimer le melt : <strong>${melt.name}</strong> ?

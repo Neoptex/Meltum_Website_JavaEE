@@ -2,16 +2,16 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Modal for add melt -->
-<div class="modal fade" id="modalEditMelt${melt.id}" tabindex="-1" role="dialog" aria-labelledby="modalEditMeltLabel${melt.id}">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="EditMelt${melt.id}">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-warning">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title text-center" id="modalEditMeltLabel${melt.id}"><i class="fa fa-pencil fa-fw"></i> Modification</h4>
+                <h4 class="modal-title text-center"><i class="fa fa-pencil fa-fw"></i> Modifier <strong>${melt.name}</strong></h4>
             </div>
-            <form:form role="form" action="/Meltum/melts/edit/${melt.id}" method='POST' modelAttribute="meltForm">
+            <form:form role="form" action="/Meltum/MeltsManagement/EditMelt/${melt.id}" method='POST' modelAttribute="meltForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Titre</label>
@@ -48,7 +48,7 @@
                         </form:select>
                         <script type="text/javascript">
 																									
-																								<%@ include file="js/tag.js"%>
+																								<%@ include file="../js/tag.js"%>
 																									
 																								</script>
                         <div class="input-group">

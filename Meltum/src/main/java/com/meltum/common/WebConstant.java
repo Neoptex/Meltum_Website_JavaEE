@@ -5,13 +5,12 @@ public interface WebConstant {
 	// Views
 	public static final String MYACCOUNT_VIEW = "myAccount";
 	public static final String CHANGE_PASSWORD_VIEW = "changePassword";
-	public static final String PAYMENT_ACCOUNT_MANAGEMENT_VIEW = "PaymentAccountManagementView";
 	public static final String LOGIN_VIEW = "login";
 	public static final String INSCRIPTION_VIEW = "inscription";
 	public static final String HOME_VIEW = "home";
-	public static final String MELTS_VIEW = "melts";
-	public static final String MELT_ADD_VIEW = "meltAdd";
-	public static final String SHOPS_VIEW = "ShopsManagement";
+	public static final String MELTS_MANAGEMENT_VIEW = "MeltsManagement";
+	public static final String SHOPS_MANAGEMENT_VIEW = "ShopsManagement";
+	public static final String PAYMENT_ACCOUNT_MANAGEMENT_VIEW = "PaymentAccountManagementView";
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";
 	public static final String ZONE_VIEW = "zone";
@@ -36,8 +35,8 @@ public interface WebConstant {
 	public static final String REDIRECT_HOME_VIEW = "redirect:/";
 	public static final String REDIRECT_MYACCOUNT_VIEW = "redirect:/mon-compte";
 	public static final String REDIRECT_MYCOMPANY_VIEW = "redirect:/mon-entreprise";
-	public static final String REDIRECT_MELT_VIEW = "redirect:/melts";
-	public static final String REDIRECT_SHOP_VIEW = "redirect:/" + SHOPS_VIEW;
+	public static final String REDIRECT_MELTS_MANAGEMENT_VIEW = "redirect:/" + MELTS_MANAGEMENT_VIEW;
+	public static final String REDIRECT_SHOPS_MANAGEMENT_VIEW = "redirect:/" + SHOPS_MANAGEMENT_VIEW;
 	
 	// Miscellaneous
 	public static final String API_URL = "http://185.83.218.101:8093/";

@@ -1,17 +1,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Modal for upload image melt -->
-<div class="modal fade" id="modalUploadImageMelt${melt.id}">
+<div class="modal fade" id="UploadMeltImage${melt.id}">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header modal-header-primary">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title text-center" id="modalUploadImageMeltLabel${melt.id}"><i class="fa fa-cloud-upload"></i> Upload une image</h4>
+				<h4 class="modal-title text-center"><i class="fa fa-cloud-upload"></i> Upload une image pour <strong>${melt.name}</strong></h4>
 			</div>
 			<div class="alert alert-danger" id="myAlertFile" role="alert" hidden="true">La taille du fichier est trop grosse!</div>
 			<div class="alert alert-danger" id="myAlertFiles" role="alert" hidden="true">La taille des fichiers est trop grosse!</div>
-			<form:form role="form" action="/Meltum/melts/upload/${melt.id}" method='POST' modelAttribute="meltForm" enctype="multipart/form-data">
+			<form:form role="form" action="/Meltum/MeltsManagement/upload/${melt.id}" method='POST' modelAttribute="meltForm" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="file" name="file" id="fileToUpload" onchange="checkFileSize(this)" multiple>

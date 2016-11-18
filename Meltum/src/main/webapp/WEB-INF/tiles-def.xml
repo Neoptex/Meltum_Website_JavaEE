@@ -33,9 +33,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
 	</definition>
 
-	<definition name="melts" extends="template">
+	<definition name="MeltsManagement" extends="template">
 		<put-attribute name="body"
-			value="/WEB-INF/views/pages/melts/melts.jsp" />
+			value="/WEB-INF/views/pages/MeltsManagement/MeltsManagementView.jsp" />
 	</definition>
 
 	<definition name="ShopsManagement" extends="template">

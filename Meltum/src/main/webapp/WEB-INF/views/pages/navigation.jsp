@@ -22,7 +22,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/Meltum">Accueil</a></li>
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <li><a href="/Meltum/melts">Melts</a></li>
+                        <li><a href="/Meltum/MeltsManagement">Melts</a></li>
                         <li><a href="/Meltum/ShopsManagement">Shops</a></li>
                         <li><a href="/Meltum/mon-entreprise">Mon entreprise</a></li>
                     </c:if>

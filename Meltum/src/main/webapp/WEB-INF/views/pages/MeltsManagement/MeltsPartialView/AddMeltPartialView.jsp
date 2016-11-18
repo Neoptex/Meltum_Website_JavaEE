@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<div class="modal fade" id="modalAddMelt" tabindex="-1" role="dialog" aria-labelledby="modalAddMeltLabel">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="AddMelt">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-success">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,7 +8,7 @@
                 </button>
                 <h4 class="modal-title text-center"><i class="fa fa-plus fa-fw"></i> Ajouter un melt</h4>
             </div>
-            <form:form role="form" action="/Meltum/melts/add" method='POST' modelAttribute="meltForm">
+            <form:form role="form" action="/Meltum/MeltsManagement/AddMelt" method='POST' modelAttribute="meltForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <i class="fa fa-asterisk fa-fw text-danger"></i><label for="shop">Shop associé</label>
@@ -45,7 +45,7 @@
                         <form:select multiple="true" id="tagList" path="tags" style="display:none" />
                         <script type="text/javascript">
 																									
-																								<%@ include file="js/tag.js"%>
+																								<%@ include file="../js/tag.js"%>
 																									
 																								</script>
                         <div class="input-group">

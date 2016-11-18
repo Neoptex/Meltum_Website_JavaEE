@@ -22,9 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.meltum.beans.Coord;
-import com.meltum.beans.Melt;
 import com.meltum.beans.Shop;
-import com.meltum.common.WebConstant;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IShopService;
 
@@ -43,13 +41,19 @@ public class ShopController {
 		model.addAttribute(SHOP_FORM, new Shop());
 		if (shopService.getShops() == null) {
 			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux shops");
-			return WebConstant.REDIRECT_MYCOMPANY_VIEW;
+			return REDIRECT_MYCOMPANY_VIEW;
 		}
 		model.addAttribute(SHOPS, shopService.getShops());
-		model.addAttribute(WebConstant.IMAGES_SHOPS_LINK, WebConstant.API_URL + "images/shop/");
+		model.addAttribute(IMAGES_SHOPS_LINK, API_URL + "images/shop/");
 		return null;
 	}
 
+	/**
+	 * Add a shop
+	 * @param form
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("AddShop")
 	public String AddShop(@ModelAttribute Shop form, Model model) {
 		try {
@@ -58,9 +62,16 @@ public class ShopController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return REDIRECT_SHOP_VIEW;
+		return REDIRECT_SHOPS_MANAGEMENT_VIEW;
 	}
 
+	/**
+	 * Edit a shop
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/EditShop/{id}")
 	public String EditShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
 		try {
@@ -69,32 +80,47 @@ public class ShopController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return REDIRECT_SHOP_VIEW;
+		return REDIRECT_SHOPS_MANAGEMENT_VIEW;
+	}
+	
+	/**
+	 * Remove a Shop
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/RemoveShop/{id}")
+	public String RemoveShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
+		shopService.removeShop(form);
+		return REDIRECT_SHOPS_MANAGEMENT_VIEW;
 	}
 
+	/**
+	 * Upload a image in a shop
+	 * @param form
+	 * @param id
+	 * @param model
+	 * @param file
+	 * @return
+	 */
 	@RequestMapping("/UploadImageShop/{id}")
 	public String UploadShopImage(@ModelAttribute Shop form, @PathVariable String id, Model model,
 			@RequestParam List<MultipartFile> file) {
 		if (!file.get(0).isEmpty()) {
 			shopService.uploadImage(id, file);
 		}
-		return REDIRECT_SHOP_VIEW;
-	}
-
-	@RequestMapping("/RemoveShop/{id}")
-	public String RemoveShop(@ModelAttribute Shop form, @PathVariable String id, Model model) {
-		shopService.removeShop(form);
-		return REDIRECT_SHOP_VIEW;
+		return REDIRECT_SHOPS_MANAGEMENT_VIEW;
 	}
 
 	@RequestMapping(value = "/diffusion", method = RequestMethod.GET)
 	public String displayDiffusionZone(Model model, RedirectAttributes redir) {
 		if (companyService.getShopsFromCompany() == null) {
 			redir.addFlashAttribute("error", "Vous n'avez enregistré aucun magasin au préalable");
-			return WebConstant.REDIRECT_SHOP_VIEW;
+			return REDIRECT_SHOPS_MANAGEMENT_VIEW;
 		}
-		model.addAttribute(WebConstant.SHOP_LIST, companyService.getShopsFromCompany());
-		model.addAttribute(WebConstant.SHOP_LIST_TO_JSON_STRING, new JSONArray(companyService.getShopsFromCompany()));
+		model.addAttribute(SHOP_LIST, companyService.getShopsFromCompany());
+		model.addAttribute(SHOP_LIST_TO_JSON_STRING, new JSONArray(companyService.getShopsFromCompany()));
 		return ZONE_VIEW;
 	}
 

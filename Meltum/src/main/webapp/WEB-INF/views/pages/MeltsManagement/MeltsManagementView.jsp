@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gestion des melts</title>
 
-<link href="<c:url value="/resources/css/MeltManagement.css" /> " rel="stylesheet">
+<link href="<c:url value="/resources/css/MeltsManagement.css" /> " rel="stylesheet">
 <link href="<c:url value="/resources/font-awesome-4.7.0/css/font-awesome.min.css" />" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -33,10 +33,10 @@
             <!-- Menu filtre shop -->
             <div class="col-md-3">
                 <div class="row">
-                    <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#modalAddMelt">
+                    <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#AddMelt">
                         <i class="fa fa-plus fa-fw"></i> Ajouter un melt
                     </button>
-                    <%@ include file="modalAddMelt.jsp"%>
+                    <%@ include file="MeltsPartialView/AddMeltPartialView.jsp"%>
                     <hr>
                 </div>
                 <div class="row">
@@ -58,7 +58,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <!-- Image -->
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <c:choose>
                                         <c:when test="${empty melt.images}">
                                             <a href="#"><img class="img-responsive" src="http://placehold.it/250x250" alt=""></a>
@@ -102,31 +102,32 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
-                                <%@ include file="modalUploadImageMelt.jsp"%>
+                                <%@ include file="MeltsPartialView/UploadMeltImagePartialView.jsp"%>
                                 <!-- Body du melt -->
-                                <div class="col-md-8">
-                                    <c:forEach items="${melt.tags}" var="tag">
-                                        <span class="label label-info">${tag}</span>
-                                    </c:forEach>
-                                    <h5>Prix conseillé : <del>${melt.prix_init}€</del></h5>
-                                    <h4 class="text-danger">Prix : ${melt.prix}€</h4> <i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-paypal fa-2x"></i>
-                                    <h6>${melt.description}</h6>
+                                <div class="col-md-9">
+                                    <blockquote style="border-left-color: #468847;">
+                                        <c:forEach items="${melt.tags}" var="tag">
+                                            <span class="label label-info">${tag}</span>
+                                        </c:forEach>
+                                        <h5>Prix conseillé : <del>${melt.prix_init}€</del></h5>
+                                        <p class="text-danger">Prix : ${melt.prix}€</p>
+                                        <p>${melt.description}</p>
+                                    </blockquote>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}">
+                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadMeltImage${melt.id}">
                                 <i class="fa fa-cloud-upload"></i> Upload
                             </button>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditMelt${melt.id}">
+                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#EditMelt${melt.id}">
                                 <i class="fa fa-pencil fa-fw"></i> Modifier
                             </button>
-                            <%@ include file="modalEditMelt.jsp"%>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRemoveMelt${melt.id}">
+                            <%@ include file="MeltsPartialView/EditMeltPartialView.jsp"%>
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#RemoveMelt${melt.id}">
                                 <i class="fa fa-trash fa-fw"></i> Supprimer
                             </button>
-                            <%@ include file="modalRemoveMelt.jsp"%>
-
+                            <%@ include file="MeltsPartialView/RemoveMeltPartialView.jsp"%>
                         </div>
                     </div>
                 </c:forEach>
