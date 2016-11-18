@@ -26,14 +26,14 @@
                             <div class="col-md-6">
                                 <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix conseillé</label>
                                 <div class="input-group">
-                                    <form:input path="prix_init" type="text" name="prix_init" id="prix_init" class="form-control" value="${melt.prix_init}" required="required" />
+                                    <form:input path="prix_init" pattern="[0-9]{1,10}" maxlength="10" type="text" name="prix_init" id="prix_init" class="form-control" value="${melt.prix_init}" required="required" />
                                     <span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix</label>
                                 <div class="input-group">
-                                    <form:input path="prix" type="text" name="prix" id="prix" class="form-control" value="${melt.prix}" required="required" />
+                                    <form:input path="prix" pattern="[0-9]{1,10}" maxlength="10" type="text" name="prix" id="prix" class="form-control" value="${melt.prix}" required="required" />
                                     <span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
                                 </div>
                             </div>
