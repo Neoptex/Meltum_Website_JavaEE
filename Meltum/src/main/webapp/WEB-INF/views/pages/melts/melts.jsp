@@ -105,18 +105,12 @@
                                 <%@ include file="modalUploadImageMelt.jsp"%>
                                 <!-- Body du melt -->
                                 <div class="col-md-8">
-                                    <div class="row">
-                                        <c:forEach items="${melt.tags}" var="tag">
-                                            <span class="label label-info">${tag}</span>
-                                        </c:forEach>
-                                    </div>
-                                    <div class="row">
-                                        <h5>Prix conseillé : <del>${melt.prix_init}€</del></h5>
-                                        <h4 class="text-danger">Prix : ${melt.prix}€</h4> <i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-paypal fa-2x"></i>
-                                    </div>
-                                    <div class="row">
-                                        <h6>${melt.description}</h6>
-                                    </div>
+                                    <c:forEach items="${melt.tags}" var="tag">
+                                        <span class="label label-info">${tag}</span>
+                                    </c:forEach>
+                                    <h5>Prix conseillé : <del>${melt.prix_init}€</del></h5>
+                                    <h4 class="text-danger">Prix : ${melt.prix}€</h4> <i class="fa fa-cc-visa fa-2x"></i> <i class="fa fa-cc-paypal fa-2x"></i>
+                                    <h6>${melt.description}</h6>
                                 </div>
                             </div>
                         </div>
