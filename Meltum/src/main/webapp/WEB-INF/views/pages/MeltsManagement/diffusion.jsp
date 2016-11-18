@@ -181,7 +181,7 @@ var raster = new ol.layer.Tile({
 		 
 	  });
 	  $.ajax({
-		    url: '/Meltum/shops/diffusion/saveZone/' + $('#shopList option:selected').val(),
+		    url: '/Meltum/ShopsManagement/diffusion/saveZone/' + $('#shopList option:selected').val(),
 		    type: 'POST',
 		    contentType: 'application/json',
 		    dataType : 'json',
