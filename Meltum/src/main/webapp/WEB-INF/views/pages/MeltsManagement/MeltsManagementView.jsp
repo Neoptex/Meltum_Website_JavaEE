@@ -46,6 +46,7 @@
                             <li class="${idShop == shop.id ? 'active' : '' }"><a href="/Meltum/melts/${shop.id}">${shop.name}</a></li>
                         </c:forEach>
                     </ul>
+                    <hr>
                 </div>
             </div>
             <!-- Liste des melts -->

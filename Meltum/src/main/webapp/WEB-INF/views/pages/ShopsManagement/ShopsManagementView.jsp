@@ -46,6 +46,7 @@
                 </div>
                 <div class="row">
                     <a href="/Meltum/shops/diffusion" class="btn btn-primary btn-lg btn-block"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
+                    <hr>
                 </div>
             </div>
 
