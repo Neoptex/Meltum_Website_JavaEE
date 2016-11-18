@@ -10,14 +10,6 @@
 
 <link href="<c:url value="/resources/css/ShopsManagement.css" /> " rel="stylesheet">
 
-<!-- MetisMenu CSS -->
-<link href="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
-<!-- Timeline CSS -->
-<link href="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/css/timeline.css" />" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" />" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="<c:url value="/resources/bower_components/morrisjs/morris.css" />" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,7 +37,7 @@
                     <hr>
                 </div>
                 <div class="row">
-                    <a href="/Meltum/shops/diffusion" class="btn btn-primary btn-lg btn-block"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
+                    <a href="/Meltum/ShopsManagement/diffusion" class="btn btn-primary btn-lg btn-block"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
                     <hr>
                 </div>
             </div>
@@ -170,12 +162,6 @@
         <!-- /.modal -->
     </div>
 </body>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<c:url value="/resources/bower_components/metisMenu/dist/metisMenu.min.js" />"></script>
-<!-- Morris Charts JavaScript -->
-<script src="<c:url value="/resources/bower_components/raphael/raphael-min.js" />"></script>
-<!-- Custom Theme JavaScript -->
-<script src="<c:url value="/resources/bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js" />"></script>
 <script src="<c:url value="/resources/js/googleAdressSearch.js" />"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWNArOBPWU4NbT6sMlENXfB5hGSjayfM&signed_in=true&libraries=places"></script>
 <script type="text/javascript">
