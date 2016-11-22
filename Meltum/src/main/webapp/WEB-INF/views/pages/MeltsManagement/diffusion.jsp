@@ -52,7 +52,7 @@
                     <!-- /input-group -->
                 </li>
                	<li>
-                  	<a href="/Meltum/shops/"><i class="fa fa-edit fa-fw"></i> Shops</a>
+                  	<a href="/Meltum/ShopsManagement/"><i class="fa fa-edit fa-fw"></i> Shops</a>
                   	<a href="/Meltum/shops/diffusion"><i class="fa fa-edit fa-fw"></i> Zones de diffusion</a>
                 </li>
             </ul>

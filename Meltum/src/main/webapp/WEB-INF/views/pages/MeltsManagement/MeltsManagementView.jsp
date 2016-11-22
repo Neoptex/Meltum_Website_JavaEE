@@ -41,9 +41,9 @@
                 </div>
                 <div class="row">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="${idShop == null ? 'active' : '' }"><a href="/Meltum/melts">Tous les shops</a></li>
+                        <li class="${idShop == null ? 'active' : '' }"><a href="/Meltum/MeltsManagement">Tous les shops</a></li>
                         <c:forEach items="${shops}" var="shop">
-                            <li class="${idShop == shop.id ? 'active' : '' }"><a href="/Meltum/melts/${shop.id}">${shop.name}</a></li>
+                            <li class="${idShop == shop.id ? 'active' : '' }"><a href="/Meltum/MeltsManagement/${shop.id}">${shop.name}</a></li>
                         </c:forEach>
                     </ul>
                     <hr>
