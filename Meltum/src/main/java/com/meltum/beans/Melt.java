@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Melt {
 	String id;
-	 @NotEmpty(message = "Le nom est obligatoire")
+	@NotEmpty(message = "Le nom est obligatoire")
 	String name;
 	String description;
 	String prix;

@@ -15,7 +15,7 @@ public class Shop {
 	private int usedNumber;
 
 	public Shop() {
-		this.id = "0";
+		this.id = null;
 	}
 	
 	/**

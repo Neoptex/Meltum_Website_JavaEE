@@ -59,7 +59,6 @@ public class ShopController {
 		try {
 			shopService.createShop(form);
 		} catch (JSONException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return REDIRECT_SHOPS_MANAGEMENT_VIEW;
