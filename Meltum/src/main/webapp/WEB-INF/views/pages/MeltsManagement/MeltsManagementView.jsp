@@ -104,12 +104,12 @@
                                                         <c:choose>
                                                             <c:when test="${loop.index eq 0}">
                                                                 <div class="item active">
-                                                                    <a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img class="img-responsive" src='${imagesMeltsLink}${melt.id}/${image.id}' alt=""></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img class="img-responsive" src='${imagesMeltsLink}${melt.id}/${image.id}' style="margin: auto"></a>
                                                                 </div>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <div class="item">
-                                                                    <a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img class="img-responsive" src='${imagesMeltsLink}${melt.id}/${image.id}' alt=""></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#modalUploadImageMelt${melt.id}"><img class="img-responsive" src='${imagesMeltsLink}${melt.id}/${image.id}' style="margin: auto"></a>
                                                                 </div>
                                                             </c:otherwise>
                                                         </c:choose>

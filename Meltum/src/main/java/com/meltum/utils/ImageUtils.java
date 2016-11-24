@@ -34,9 +34,9 @@ public final class ImageUtils {
 	                height = rheight;
 	                width = rwidth;
 	            } else {
-	                if (rheight > rwidth)
+	                if (rheight >= rwidth)
 	                    width = Math.round((float) rwidth / (float) rheight * (float) height);
-	                if (rheight < rwidth)
+	                if (rheight <= rwidth)
 	                    height = Math.round((float) rheight / (float) rwidth * (float) width);
 	            }
 	            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
