@@ -10,6 +10,8 @@
 
 <link href="<c:url value="/resources/css/ShopsManagement.css" /> " rel="stylesheet">
 
+<link rel="stylesheet" href="https://openlayers.org/en/v3.19.0/css/ol.css" type="text/css">
+
 <!-- Custom Fonts -->
 <link href="<c:url value="/resources/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,6 +50,7 @@
                     <%@ include file="ShopsPartialView/EditShopPartialView.jsp"%>
                     <%@ include file="ShopsPartialView/RemoveShopPartialView.jsp"%>
                     <%@ include file="ShopsPartialView/UploadShopImagePartialView.jsp"%>
+                    <%@ include file="ShopsPartialView/DiffusionAreaShopPartialView.jsp"%>
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
@@ -56,8 +59,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-right">
+                                        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#DiffusionAreaShop${shop.id}">
+                                            <i class="fa fa-rss fa-fw"></i> Zone de diffusion
+                                        </button>
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadImageShop${shop.id}">
-                                            <i class="fa fa-cloud-upload"></i> Upload
+                                            <i class="fa fa-cloud-upload fa-fw"></i> Upload
                                         </button>
                                         <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" onclick="initAutocomplete('${shop.id}');" data-target="#modalAddEditShop${shop.id}">
                                             <i class="fa fa-pencil fa-fw"></i> Modifier

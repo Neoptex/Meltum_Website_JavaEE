@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title text-center">Supprimer <strong>${shop.name}</strong></h4>
+                <h4 class="modal-title text-center"><i class="fa fa-trash fa-fw"></i> Supprimer <strong>${shop.name}</strong></h4>
             </div>
             <form:form role="form" action="/Meltum/ShopsManagement/RemoveShop/${shop.id}" method='POST' modelAttribute="shopForm">
                 <div class="modal-body">
