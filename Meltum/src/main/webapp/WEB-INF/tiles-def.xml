@@ -30,7 +30,7 @@
 	</definition>
 
 	<definition name="home" extends="template">
-		<put-attribute name="body" value="/WEB-INF/views/pages/news.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/Home/HomeView.jsp" />
 	</definition>
 
 	<definition name="MeltsManagement" extends="template">
