@@ -41,7 +41,7 @@
                         <form:input path="adresse.postalcode" type="hidden" name="postal_code" id="postal_code" class="form-control" placeholder="Code Postal" value="${shop.adresse.postalcode}" readonly="true" />
                     </div>
                     <div class="form-group">
-                        <form:input path="adresse.country" type="hidden" name="country" id="country" class="form-control" placeholder="Pays" value="${shop.phone}" readonly="true" />
+                        <form:input path="adresse.country" type="hidden" name="country" id="country" class="form-control" placeholder="Pays" value="${shop.adresse.country}" readonly="true" />
                     </div>
                     <div class="form-group">
                         <form:input path="loc.y" type="hidden" name="latitude" id="latitude${empty shop.id ? '0' : shop.id}" class="form-control" placeholder="Latitude" value="${shop.loc.y}" readonly="true" />
