@@ -41,10 +41,6 @@
                     <%@ include file="ShopsPartialView/AddShopPartialView.jsp"%>
                     <hr>
                 </div>
-                <div class="row">
-                    <a href="/Meltum/ShopsManagement/diffusion" class="btn btn-primary btn-lg btn-block"><i class="fa fa-rss fa-fw"></i> Zones de diffusion</a>
-                    <hr>
-                </div>
             </div>
 
             <!-- Page Content -->
