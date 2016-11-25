@@ -126,12 +126,14 @@ public class ShopController {
 	@RequestMapping(value = "/diffusion/saveZone/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	public String saveZone(@PathVariable String id, @RequestBody List<Coord> points, Model model) {
-		Shop shop = shopService.getShopById(id);
-		shop.setPol(points);
-		try {
-			shopService.updateShop(shop);
-		} catch (JSONException | IOException e) {
-			e.printStackTrace();
+		if (!points.isEmpty()) {
+			Shop shop = shopService.getShopById(id);
+			shop.setPol(points);
+			try {
+				shopService.updateShop(shop);
+			} catch (JSONException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return "{}";
 	}

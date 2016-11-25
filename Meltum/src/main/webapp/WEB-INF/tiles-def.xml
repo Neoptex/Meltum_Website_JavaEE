@@ -43,11 +43,6 @@
 			value="/WEB-INF/views/pages/ShopsManagement/ShopsManagementView.jsp" />
 	</definition>
 
-	<definition name="zone" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/MeltsManagement/diffusion.jsp" />
-	</definition>
-
 	<definition name="myCompanyShow" extends="template">
 		<put-attribute name="body"
 			value="/WEB-INF/views/pages/my-company/myCompanyShow.jsp" />
