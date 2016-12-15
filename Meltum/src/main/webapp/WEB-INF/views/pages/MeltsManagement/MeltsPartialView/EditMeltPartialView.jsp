@@ -1,5 +1,4 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Modal for add melt -->
 <div class="modal fade" id="EditMelt${melt.id}">
@@ -24,7 +23,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix conseillÃ©</label>
+                                <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix conseillé</label>
                                 <div class="input-group">
                                     <form:input path="prix_init" pattern="[0-9]{1,10}" maxlength="10" type="text" name="prix_init" id="prix_init" class="form-control" value="${melt.prix_init}" required="required" />
                                     <span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
