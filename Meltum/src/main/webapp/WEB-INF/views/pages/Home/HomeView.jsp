@@ -6,7 +6,6 @@
 <head>
 <meta charset="utf-8">
 <title>Page d'accueil</title>
-<link rel="stylesheet" href="<c:url value="/resources/font-awesome-4.7.0/css/font-awesome.css" />" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
