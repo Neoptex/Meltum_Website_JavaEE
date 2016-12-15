@@ -4,8 +4,6 @@
 <!DOCTYPE HTML>
 <head>
 <link href="<c:url value="/resources/css/navigation.css" /> " rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="<c:url value="/resources/font-awesome-4.7.0/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
     <nav class="navbar-default navbar-inverse" role="navigation">
