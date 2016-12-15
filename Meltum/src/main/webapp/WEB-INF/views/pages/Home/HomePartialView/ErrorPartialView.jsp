@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:if test="${not empty error}">
     <!-- Modal -->
@@ -9,7 +10,7 @@
                     <h4 class="modal-title text-white"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Erreur</h4>
                 </div>
                 <div class="modal-body">
-                    <strong>L'email ou le mot de passe est erroné !</strong><br> Nous vous rappelons que l'accès au site web est <strong>réservé aux commercants.</strong><br> Si vous êtes client, vous pouvez télécharger notre application sur les differentes plateformes mobile (iOS, Android et Windows Phone).
+                    <strong>L'email ou le mot de passe est erronÃ© !</strong><br> Nous vous rappelons que l'accÃ¨s au site web est <strong>rÃ©servÃ© aux commercants.</strong><br> Si vous Ãªtes client, vous pouvez tÃ©lÃ©charger notre application sur les differentes plateformes mobile (iOS, Android et Windows Phone).
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
