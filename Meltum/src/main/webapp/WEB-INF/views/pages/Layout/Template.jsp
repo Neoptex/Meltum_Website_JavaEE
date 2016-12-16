@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link rel='stylesheet' href='${pageContext.request.contextPath}/resources/css/site.css'>
 <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>
