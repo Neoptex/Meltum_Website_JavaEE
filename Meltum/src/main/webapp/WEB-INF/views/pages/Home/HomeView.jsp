@@ -6,7 +6,6 @@
 <head>
 <meta charset="utf-8">
 <title>Page d'accueil</title>
-<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <%@ include file="HomePartialView/ErrorPartialView.jsp"%>
