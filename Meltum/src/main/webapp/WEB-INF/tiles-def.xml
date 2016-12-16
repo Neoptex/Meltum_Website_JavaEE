@@ -4,29 +4,24 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="template" template="/WEB-INF/views/template/template.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/views/pages/navigation.jsp" />
+	<definition name="template" template="/WEB-INF/views/pages/Layout/Template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/pages/Layout/Navigation.jsp" />
 	</definition>
 
 	<definition name="myAccount" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/my-account/myaccount.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/my-account/myaccount.jsp" />
 	</definition>
 
 	<definition name="changePassword" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/my-account/changePassword.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/my-account/changePassword.jsp" />
 	</definition>
 
 	<definition name="PaymentAccountManagementView" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/my-account/PaymentAccountManagement/PaymentAccountManagementView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/my-account/PaymentAccountManagement/PaymentAccountManagementView.jsp" />
 	</definition>
 
 	<definition name="inscription" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/inscription.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/inscription.jsp" />
 	</definition>
 
 	<definition name="home" extends="template">
@@ -34,22 +29,18 @@
 	</definition>
 
 	<definition name="MeltsManagement" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/MeltsManagement/MeltsManagementView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/MeltsManagement/MeltsManagementView.jsp" />
 	</definition>
 
 	<definition name="ShopsManagement" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/ShopsManagement/ShopsManagementView.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/ShopsManagement/ShopsManagementView.jsp" />
 	</definition>
 
 	<definition name="myCompanyShow" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/my-company/myCompanyShow.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/my-company/myCompanyShow.jsp" />
 	</definition>
 
 	<definition name="myCompanyEdit" extends="template">
-		<put-attribute name="body"
-			value="/WEB-INF/views/pages/my-company/myCompanyEdit.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/my-company/myCompanyEdit.jsp" />
 	</definition>
 </tiles-definitions>
