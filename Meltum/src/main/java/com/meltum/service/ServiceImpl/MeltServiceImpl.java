@@ -2,7 +2,12 @@ package com.meltum.service.ServiceImpl;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -46,7 +51,7 @@ public class MeltServiceImpl implements IMeltService {
 	private String url = new String();
 	private JSONObject jsonObj = new JSONObject();
 
-	public List<Melt> getMelts() {
+	public List<Melt> getMelts() throws ParseException {
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		List<Melt> melts = new ArrayList<Melt>();
 		if (companyService.getCompanyByUser() != null) {
@@ -55,6 +60,15 @@ public class MeltServiceImpl implements IMeltService {
 			if (response.getBody() != null) {
 				try {
 					melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
+					for (Melt item : melts) {
+						LocalTime minTimeTmp = LocalTime.of(item.getMinTime() / 60, item.getMinTime() % 60);
+						LocalTime maxTimeTmp = LocalTime.of(item.getMaxTime() / 60, item.getMaxTime() % 60);
+						SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+						Date parsedMin = format.parse(minTimeTmp.getHour() + ":" + minTimeTmp.getMinute());
+						Date parsedMax = format.parse(maxTimeTmp.getHour() + ":" + maxTimeTmp.getMinute());
+						item.setHourMinuteMinTime(DateFormat.getTimeInstance(DateFormat.SHORT).format(parsedMin));
+						item.setHourMinuteMaxTime(DateFormat.getTimeInstance(DateFormat.SHORT).format(parsedMax));
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -82,6 +96,8 @@ public class MeltServiceImpl implements IMeltService {
 
 	@Override
 	public Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		form.setMinTime(form.getDateMinTime().getHour() * 60 + form.getDateMinTime().getMinute());
+		form.setMaxTime(form.getDateMaxTime().getHour() * 60 + form.getDateMaxTime().getMinute());
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/company/" + companyService.getCompanyByUser().getId() + "/melt";
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -93,6 +109,8 @@ public class MeltServiceImpl implements IMeltService {
 	}
 
 	public Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
+		form.setMinTime(form.getDateMinTime().getHour() * 60 + form.getDateMinTime().getMinute());
+		form.setMaxTime(form.getDateMaxTime().getHour() * 60 + form.getDateMaxTime().getMinute());
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/melt/" + form.getId();
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -106,7 +124,6 @@ public class MeltServiceImpl implements IMeltService {
 		api.executeRequest(url, HttpMethod.DELETE, null);
 		return melt;
 	}
-
 
 	public void uploadImage(String id, List<MultipartFile> files) {
 		RestTemplate rt = new RestTemplate();

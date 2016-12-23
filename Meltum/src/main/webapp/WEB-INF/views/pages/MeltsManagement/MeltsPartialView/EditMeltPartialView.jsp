@@ -22,18 +22,38 @@
                         <form:input path="description" name="description" id="description" class="form-control" value="${melt.description}" tabindex="4" rows="5" />
                     </div>
                     <div class="form-group">
+						<i class="fa fa-asterisk fa-fw text-danger"></i><label for="nbrAvailable">Nombre de melt disponible</label>
+						<form:input path="nbrAvailable" type="text" name="nbrAvailable" id="nbrAvailable" class="form-control" value="${melt.nbrAvailable}" required="required"/>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMinTime">Heure de début</label>
+									<form:input path="DateMinTime" type="time" name="DateMinTime" id="DateMinTime" class="form-control" required="required" value="${melt.hourMinuteMinTime}"/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMaxTime">Heure de fin</label>
+									<form:input path="DateMaxTime" type="time" name="DateMaxTime" id="DateMaxTime" class="form-control" required="required" value="${melt.hourMinuteMaxTime}"/>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
                                 <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix conseillé</label>
                                 <div class="input-group">
-                                    <form:input path="prix_init" pattern="[0-9]{1,10}" maxlength="10" type="text" name="prix_init" id="prix_init" class="form-control" value="${melt.prix_init}" required="required" />
+                                    <form:input path="priceInit" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="priceInit" id="priceInit" class="form-control" value="${melt.priceInit}" required="required" />
                                     <span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Prix</label>
                                 <div class="input-group">
-                                    <form:input path="prix" pattern="[0-9]{1,10}" maxlength="10" type="text" name="prix" id="prix" class="form-control" value="${melt.prix}" required="required" />
+                                    <form:input path="price" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="price" id="price" class="form-control" value="${melt.price}" required="required" />
                                     <span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
                                 </div>
                             </div>

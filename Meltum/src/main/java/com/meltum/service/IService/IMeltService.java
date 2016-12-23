@@ -1,6 +1,7 @@
 package com.meltum.service.IService;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -14,7 +15,7 @@ public interface IMeltService {
 
 	Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
 
-	List<Melt> getMelts();
+	List<Melt> getMelts() throws ParseException;
 
 	Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
 
