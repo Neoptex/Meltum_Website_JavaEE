@@ -1,43 +1,53 @@
 package com.meltum.beans;
 
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Melt {
 	String id;
-	@NotEmpty(message = "Le nom est obligatoire")
 	String name;
 	String description;
-	String prix;
-	String prix_init;
+	Float price;
+	Float priceInit;
+	String nbrAvailable;
+	int minTime;
+	int maxTime;
+	String hourMinuteMinTime;
+	String hourMinuteMaxTime;
+	@DateTimeFormat(iso = ISO.TIME)
+	LocalTime DateMinTime;
+	@DateTimeFormat(iso = ISO.TIME)
+	LocalTime DateMaxTime;
 	List<ImageObj> images;
 	List<String> tags;
 	Shop targetShop;
 	String createdDate;
 	String expiringDate;
-
-	public String getPrix() {
-		return prix;
-	}
-
-	public void setPrix(String prix) {
-		this.prix = prix;
-	}
-
-	public String getPrix_init() {
-		return prix_init;
-	}
-
-	public void setPrix_init(String prix_init) {
-		this.prix_init = prix_init;
-	}
-
 	@JsonIgnore
 	String idShopLink;
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+	public Float getPriceInit() {
+		return priceInit;
+	}
+
+	public void setPriceInit(Float priceInit) {
+		this.priceInit = priceInit;
+	}
 
 	public String getId() {
 		return id;
@@ -116,5 +126,61 @@ public class Melt {
 
 	public void setTags(List<String> tags) {
 		this.tags = tags;
+	}
+
+	public String getNbrAvailable() {
+		return nbrAvailable;
+	}
+
+	public void setNbrAvailable(String nbrAvailable) {
+		this.nbrAvailable = nbrAvailable;
+	}
+
+	public int getMinTime() {
+		return minTime;
+	}
+
+	public void setMinTime(int minTime) {
+		this.minTime = minTime;
+	}
+
+	public int getMaxTime() {
+		return maxTime;
+	}
+
+	public void setMaxTime(int maxTime) {
+		this.maxTime = maxTime;
+	}
+
+	public LocalTime getDateMinTime() {
+		return DateMinTime;
+	}
+
+	public void setDateMinTime(LocalTime dateMinTime) {
+		DateMinTime = dateMinTime;
+	}
+
+	public LocalTime getDateMaxTime() {
+		return DateMaxTime;
+	}
+
+	public void setDateMaxTime(LocalTime dateMaxTime) {
+		DateMaxTime = dateMaxTime;
+	}
+
+	public String getHourMinuteMinTime() {
+		return hourMinuteMinTime;
+	}
+
+	public void setHourMinuteMinTime(String hourMinuteMinTime) {
+		this.hourMinuteMinTime = hourMinuteMinTime;
+	}
+
+	public String getHourMinuteMaxTime() {
+		return hourMinuteMaxTime;
+	}
+
+	public void setHourMinuteMaxTime(String hourMinuteMaxTime) {
+		this.hourMinuteMaxTime = hourMinuteMaxTime;
 	}
 }

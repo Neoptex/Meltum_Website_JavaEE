@@ -3,6 +3,7 @@ package com.meltum.controller;
 import static com.meltum.common.WebConstant.*;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,7 +39,7 @@ public class MeltsController {
 	private IShopService shopService = null;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String displayMelts(Model model, RedirectAttributes redir) {
+	public String displayMelts(Model model, RedirectAttributes redir) throws ParseException {
 		model.addAttribute(MELT_FORM, new Melt());
 		if (companyService.getCompanyByUser() == null) {
 			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux melts");

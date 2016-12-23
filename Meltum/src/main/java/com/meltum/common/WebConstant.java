@@ -39,7 +39,7 @@ public interface WebConstant {
 	public static final String REDIRECT_SHOPS_MANAGEMENT_VIEW = "redirect:/" + SHOPS_MANAGEMENT_VIEW;
 	
 	// Miscellaneous
-	public static final String API_URL = "http://185.83.218.101:8093/";
+	public static final String API_URL = "http://185.83.218.101:8094/";
 	//public static final String API_URL = "http://localhost:8080/meltumApi/";
 	public static final String EMPTY_STRING = "";
 	public static final String IMAGES_SHOPS_LINK = "imagesShopsLink";
