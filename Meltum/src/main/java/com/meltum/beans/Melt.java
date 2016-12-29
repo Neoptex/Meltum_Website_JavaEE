@@ -1,13 +1,9 @@
 package com.meltum.beans;
 
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Melt {
@@ -17,6 +13,7 @@ public class Melt {
 	Float price;
 	Float priceInit;
 	String nbrAvailable;
+	Boolean timeAvailable;
 	int minTime;
 	int maxTime;
 	String hourMinuteMinTime;
@@ -180,5 +177,13 @@ public class Melt {
 
 	public void setDateMaxTime(String dateMaxTime) {
 		DateMaxTime = dateMaxTime;
+	}
+
+	public Boolean getTimeAvailable() {
+		return timeAvailable;
+	}
+
+	public void setTimeAvailable(Boolean timeAvailable) {
+		this.timeAvailable = timeAvailable;
 	}
 }

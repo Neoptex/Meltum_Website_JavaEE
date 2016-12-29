@@ -98,6 +98,7 @@ public class MeltServiceImpl implements IMeltService {
 	public Melt createMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		form.setMinTime(Integer.parseInt(form.getDateMinTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMinTime().split(" : ")[1]));
 		form.setMaxTime(Integer.parseInt(form.getDateMaxTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMaxTime().split(" : ")[1]));
+		form.setTimeAvailable(true);
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/company/" + companyService.getCompanyByUser().getId() + "/melt";
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -111,6 +112,7 @@ public class MeltServiceImpl implements IMeltService {
 	public Melt updateMelt(Melt form) throws JsonGenerationException, JsonMappingException, JSONException, IOException {
 		form.setMinTime(Integer.parseInt(form.getDateMinTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMinTime().split(" : ")[1]));
 		form.setMaxTime(Integer.parseInt(form.getDateMaxTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMaxTime().split(" : ")[1]));
+		form.setTimeAvailable(true);
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/melt/" + form.getId();
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
