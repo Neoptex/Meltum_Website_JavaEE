@@ -54,3 +54,7 @@
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
 }
+
+.parsley-errors-list {
+  color: #e74c3c;
+}

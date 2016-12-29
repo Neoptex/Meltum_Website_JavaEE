@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="modal fade" id="AddMelt">
 	<div class="modal-dialog">
@@ -10,29 +11,29 @@
 					<i class="fa fa-plus fa-fw"></i> Ajouter un melt
 				</h4>
 			</div>
-			<form:form role="form" action="/Meltum/MeltsManagement/AddMelt" method='POST' modelAttribute="meltForm">
+			<form:form id="AddForm" role="form" action="/Meltum/MeltsManagement/AddMelt" method='POST' modelAttribute="meltForm">
 				<div class="modal-body">
 					<div class="form-group">
-						<i class="fa fa-asterisk fa-fw text-danger"></i><label for="shop">Shop associÈ</label>
+						<i class="fa fa-asterisk fa-fw text-danger"></i><label for="shop">Shop associ√©</label>
 						<form:select class="form-control" path="idShopLink" items="${shops}" itemValue="id" itemLabel="name" required="required" />
 					</div>
 					<div class="form-group">
 						<i class="fa fa-asterisk fa-fw text-danger"></i><label for="name">Titre</label>
-						<form:input path="name" type="text" name="name" id="name" class="form-control" placeholder="Titre de votre rÈduction" required="required" />
+						<form:input path="name" type="text" name="name" id="name" class="form-control" placeholder="Titre de votre r√©duction" required="required" />
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<form:textarea path="description" type="text" name="description" id="description" class="form-control" placeholder="Une description dÈtaillÈe de la rÈduction" rows="5" />
+						<form:textarea path="description" type="text" name="description" id="description" class="form-control" placeholder="Une description d√©taill√©e de la r√©duction" rows="5" />
 					</div>
 					<div class="form-group">
 						<i class="fa fa-asterisk fa-fw text-danger"></i><label for="nbrAvailable">Nombre de melt disponible</label>
-						<form:input path="nbrAvailable" pattern="[0-9]{1,10}" type="text" name="nbrAvailable" id="nbrAvailable" class="form-control" placeholder="100" required="required" />
+						<form:input path="nbrAvailable" pattern="[0-9]{1,10}" type="text" name="nbrAvailable" id="nbrAvailable" class="form-control" placeholder="100" required="required" value="100"/>
 					</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMinTime">Heure de dÈbut</label>
+									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMinTime">Heure de d√©but</label>
 									<form:input path="DateMinTime" id="DateMinTime" style="position: relative; z-index: 100000;" type="text" name="timepicker" class="form-control timepicker" required="required" value="00:00" />
 								</div>
 							</div>
@@ -47,18 +48,12 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-6">
-								<i class="fa fa-asterisk fa-fw text-danger"></i><label for="priceInit">Prix conseillÈ</label>
-								<div class="input-group">
-									<form:input path="priceInit" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="priceInit" id="priceInit" class="form-control" placeholder="50" required="required" />
-									<span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
-								</div>
+								<i class="fa fa-asterisk fa-fw text-danger"></i><label for="priceInit">Prix avant r√©duction</label>
+								<form:input path="priceInit" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="priceInit" id="priceInit" class="form-control" placeholder="50.45‚Ç¨" required="required" />
 							</div>
 							<div class="col-md-6">
-								<i class="fa fa-asterisk fa-fw text-danger"></i><label for="price">Prix</label>
-								<div class="input-group">
-									<form:input path="price" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="price" id="price" class="form-control" placeholder="25" required="required" />
-									<span class="input-group-addon"><i class="fa fa-eur fa-fw"></i></span>
-								</div>
+								<i class="fa fa-asterisk fa-fw text-danger"></i><label for="price">Prix apr√®s r√©duction</label>
+								<form:input path="price" pattern="[0-9]+(\.[0-9]{0,2})?%?" maxlength="10" type="text" name="price" id="price" class="form-control" placeholder="25.99‚Ç¨" required="required" />
 							</div>
 						</div>
 					</div>
@@ -103,4 +98,5 @@
 		now : $('#DateMaxTime').attr('value'),
 		twentyFour : true
 	});
+	$('#AddForm').parsley();
 </script>

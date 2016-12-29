@@ -12,7 +12,8 @@
 <title>Gestion des melts</title>
 <link href="<c:url value="/resources/css/MeltsManagement.css" /> " rel="stylesheet">
 <link href="<c:url value="/resources/Wickedpicker/stylesheets/wickedpicker.css" /> " rel="stylesheet">
-	<script type="text/javascript" src="<c:url value="/resources/Wickedpicker/src/wickedpicker.js" /> "></script>
+<script type="text/javascript" src="<c:url value="/resources/Wickedpicker/src/wickedpicker.js" /> "></script>
+<script type="text/javascript" src="<c:url value="/resources/Parsey/parsley.min.js" /> "></script>
 </head>
 <body>
 	<div class="container">
