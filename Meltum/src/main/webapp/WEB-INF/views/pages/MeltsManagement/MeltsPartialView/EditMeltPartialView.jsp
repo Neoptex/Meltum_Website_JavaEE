@@ -30,13 +30,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMinTime">Heure de début</label>
-									<form:input path="DateMinTime" type="time" name="DateMinTime" id="DateMinTime" class="form-control" required="required" value="${melt.hourMinuteMinTime}"/>
+									<form:input path="DateMinTime" id="DateMinTime${melt.id}" style="position: relative; z-index: 100000;" type="text" name="timepicker" class="form-control timepicker" required="required" value="${melt.hourMinuteMinTime}"/>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMaxTime">Heure de fin</label>
-									<form:input path="DateMaxTime" type="time" name="DateMaxTime" id="DateMaxTime" class="form-control" required="required" value="${melt.hourMinuteMaxTime}"/>
+									<form:input path="DateMaxTime" id="DateMaxTime${melt.id}" style="position: relative; z-index: 100000;" type="text" name="timepicker" class="form-control timepicker" required="required" value="${melt.hourMinuteMaxTime}"/>
 								</div>
 							</div>
 						</div>
@@ -99,3 +99,13 @@
         </div>
     </div>
 </div>
+<script>
+	$('#DateMinTime' + "<c:out value='${melt.id}'/>").wickedpicker({
+		now : $('#DateMinTime' + "<c:out value='${melt.id}'/>").attr('value'),
+		twentyFour : true
+	});
+	$('#DateMaxTime' + "<c:out value='${melt.id}'/>").wickedpicker({
+		now : $('#DateMaxTime' + "<c:out value='${melt.id}'/>").attr('value'),
+		twentyFour : true
+	});
+</script>

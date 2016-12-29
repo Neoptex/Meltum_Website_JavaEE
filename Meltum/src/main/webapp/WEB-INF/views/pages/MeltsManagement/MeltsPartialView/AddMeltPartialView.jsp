@@ -33,13 +33,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMinTime">Heure de début</label>
-									<form:input path="DateMinTime" type="time" name="DateMinTime" id="DateMinTime" class="form-control" required="required" />
+									<form:input path="DateMinTime" id="DateMinTime" style="position: relative; z-index: 100000;" type="text" name="timepicker" class="form-control timepicker" required="required" value="00:00" />
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<i class="fa fa-asterisk fa-fw text-danger"></i><label for="DateMaxTime">Heure de fin</label>
-									<form:input path="DateMaxTime" type="time" name="DateMaxTime" id="DateMaxTime" class="form-control" required="required" />
+									<form:input path="DateMaxTime" id="DateMaxTime" style="position: relative; z-index: 100000;" type="text" name="timepicker" class="form-control timepicker" required="required" value="23:59" />
 								</div>
 							</div>
 						</div>
@@ -94,3 +94,13 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('#DateMinTime').wickedpicker({
+		now : $('#DateMinTime').attr('value'),
+		twentyFour : true
+	});
+	$('#DateMaxTime').wickedpicker({
+		now : $('#DateMaxTime').attr('value'),
+		twentyFour : true
+	});
+</script>

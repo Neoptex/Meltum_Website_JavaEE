@@ -11,6 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gestion des melts</title>
 <link href="<c:url value="/resources/css/MeltsManagement.css" /> " rel="stylesheet">
+<link href="<c:url value="/resources/Wickedpicker/stylesheets/wickedpicker.css" /> " rel="stylesheet">
+	<script type="text/javascript" src="<c:url value="/resources/Wickedpicker/src/wickedpicker.js" /> "></script>
 </head>
 <body>
 	<div class="container">
@@ -135,23 +137,11 @@
 								</div>
 							</div>
 						</div>
-						<%-- <div class="panel-footer">
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadMeltImage${melt.id}">
-                                <i class="fa fa-cloud-upload"></i> Upload
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#EditMelt${melt.id}">
-                                <i class="fa fa-pencil fa-fw"></i> Modifier
-                            </button>
-                            <%@ include file="MeltsPartialView/EditMeltPartialView.jsp"%>
-                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#RemoveMelt${melt.id}">
-                                <i class="fa fa-trash fa-fw"></i> Supprimer
-                            </button>
-                            <%@ include file="MeltsPartialView/RemoveMeltPartialView.jsp"%>
-                        </div> --%>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

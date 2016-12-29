@@ -21,10 +21,8 @@ public class Melt {
 	int maxTime;
 	String hourMinuteMinTime;
 	String hourMinuteMaxTime;
-	@DateTimeFormat(iso = ISO.TIME)
-	LocalTime DateMinTime;
-	@DateTimeFormat(iso = ISO.TIME)
-	LocalTime DateMaxTime;
+	String DateMinTime;
+	String DateMaxTime;
 	List<ImageObj> images;
 	List<String> tags;
 	Shop targetShop;
@@ -152,22 +150,6 @@ public class Melt {
 		this.maxTime = maxTime;
 	}
 
-	public LocalTime getDateMinTime() {
-		return DateMinTime;
-	}
-
-	public void setDateMinTime(LocalTime dateMinTime) {
-		DateMinTime = dateMinTime;
-	}
-
-	public LocalTime getDateMaxTime() {
-		return DateMaxTime;
-	}
-
-	public void setDateMaxTime(LocalTime dateMaxTime) {
-		DateMaxTime = dateMaxTime;
-	}
-
 	public String getHourMinuteMinTime() {
 		return hourMinuteMinTime;
 	}
@@ -182,5 +164,21 @@ public class Melt {
 
 	public void setHourMinuteMaxTime(String hourMinuteMaxTime) {
 		this.hourMinuteMaxTime = hourMinuteMaxTime;
+	}
+
+	public String getDateMinTime() {
+		return DateMinTime;
+	}
+
+	public void setDateMinTime(String dateMinTime) {
+		DateMinTime = dateMinTime;
+	}
+
+	public String getDateMaxTime() {
+		return DateMaxTime;
+	}
+
+	public void setDateMaxTime(String dateMaxTime) {
+		DateMaxTime = dateMaxTime;
 	}
 }
