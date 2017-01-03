@@ -13,6 +13,7 @@ public class Shop {
 	private List<ImageObj> images;
 	private List<Coord> pol;
 	private int usedNumber;
+	private List<MeltStatData> meltStatData;
 
 	public Shop() {
 		this.id = null;
@@ -143,6 +144,20 @@ public class Shop {
 	 */
 	public void setImages(List<ImageObj> images) {
 		this.images = images;
+	}
+
+	/**
+	 * @return the meltStatData
+	 */
+	public List<MeltStatData> getMeltStatData() {
+		return meltStatData;
+	}
+
+	/**
+	 * @param meltStatData the meltStatData to set
+	 */
+	public void setMeltStatData(List<MeltStatData> meltStatData) {
+		this.meltStatData = meltStatData;
 	}
 
 }

@@ -10,12 +10,15 @@
                 <h4 class="modal-title text-center"><i class="fa fa-rss fa-fw"></i> Zone de diffusion de <strong>${shop.name}</strong></h4>
             </div>
                 <div class="modal-body">
+                    <div class="alert alert-danger" id="error-message" hidden="hidden">
+					  <strong>Attention!</strong> Votre magasin n'est pas dans la zone que vous avez défini.
+					</div>
                     <div id="map${shop.id}" class="map" style="width:100%;height:700px;"></div>
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-9">
-                            <button type="button" onclick="submitPointsList('${shop.id}')" data-dismiss="modal" class="btn btn-success btn-lg btn-block">Valider</button>
+                            <button type="button" onclick="submitPointsList('${shop.id}')" id="validate" data-dismiss="modal" class="btn btn-success btn-lg btn-block">Valider</button>
                         </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Annuler</button>
@@ -86,6 +89,18 @@ $('#DiffusionAreaShop${shop.id}').on('shown.bs.modal', function () {
   
   draw.on('drawstart', function (e) {
  	ftrs.clear();
+ 	$('#validate').prop('disabled', false);
+  });
+  
+  draw.on('drawend', function(evt){
+	  var coord = ol.proj.fromLonLat(ol.proj.transform([parseFloat('${shop.loc.x}'), parseFloat('${shop.loc.y}')], 'EPSG:4326', 'EPSG:4326'));
+	  var polygon_extent = evt.feature.getGeometry().getExtent();
+	  var contains = ol.extent.containsCoordinate(polygon_extent, coord);
+	  $('#error-message').hide();
+	  if (!contains) {
+		  $('#error-message').show();
+		  $('#validate').prop('disabled', true);
+	  }
   });
   
   function fillPathAndMarkers(id) {
