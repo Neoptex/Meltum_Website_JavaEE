@@ -14,6 +14,7 @@ public interface WebConstant {
 	public static final String MY_COMPANY_SHOW_VIEW = "myCompanyShow";
 	public static final String MY_COMPANY_EDIT_VIEW = "myCompanyEdit";
 	public static final String ZONE_VIEW = "zone";
+	public static final String INDEX_STATISTICS_VIEW = "IndexStatistics";
 
 	// Forms
 	public static final String REGISTER_FORM = "registerForm";
@@ -30,6 +31,11 @@ public interface WebConstant {
 	public static final String SHOPS = "shops";
 	public static final String SHOP_LIST = "shopList";
 	public static final String SHOP_LIST_TO_JSON_STRING = "shopListJson";
+	public static final String MELT_STAT_BY_SHOP = "meltStatByShop";
+	public static final String MELT_STAT_BY_COMPANY = "meltStatByCompany";
+	public static final String SHOP_STAT_BY_MELT = "shopStatByMelt";
+	public static final String SHOP_STAT_BY_COMPANY = "shopStatByCompany";
+	public static final String STATISTICS_ALL_SHOPS = "statisticsAllShops";
 
 	// Redirect
 	public static final String REDIRECT_HOME_VIEW = "redirect:/";
@@ -39,7 +45,7 @@ public interface WebConstant {
 	public static final String REDIRECT_SHOPS_MANAGEMENT_VIEW = "redirect:/" + SHOPS_MANAGEMENT_VIEW;
 	
 	// Miscellaneous
-	public static final String API_URL = "http://185.83.218.101:8094/";
+	public static final String API_URL = "http://185.83.218.101:8095/";
 	//public static final String API_URL = "http://localhost:8080/meltumApi/";
 	public static final String EMPTY_STRING = "";
 	public static final String IMAGES_SHOPS_LINK = "imagesShopsLink";

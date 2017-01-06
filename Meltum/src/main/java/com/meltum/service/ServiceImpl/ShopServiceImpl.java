@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
@@ -24,7 +25,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.meltum.api.ApiRequest;
+import com.meltum.beans.Melt;
 import com.meltum.beans.Shop;
+import com.meltum.beans.Statistic;
 import com.meltum.common.WebConstant;
 import com.meltum.service.IService.ICompanyService;
 import com.meltum.service.IService.IShopService;
@@ -56,6 +59,11 @@ public class ShopServiceImpl implements IShopService {
 			if (response.getBody() != null) {
 				try {
 					shops = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Shop.class));
+					for (Shop item : shops) {
+					    url = "pro/stats/shop/" + item.getId();
+			            response = api.executeRequest(url, HttpMethod.GET, null);
+					    item.setMeltStatData(mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Statistic.class)));
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -124,5 +132,12 @@ public class ShopServiceImpl implements IShopService {
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, List<String>>>(map, headers);
 		rt.exchange(WebConstant.API_URL + "images/shop/" + id + "/multiUpload", HttpMethod.POST, requestEntity, String.class);
+	}
+	
+	public List<Statistic> getStatisticAllShops() throws JsonParseException, JsonMappingException, IOException
+	{
+	    url = "pro/stats/company/" + companyService.getCompanyByUser().getId() + "/shop";
+        ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
+        return mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Statistic.class));
 	}
 }

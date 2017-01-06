@@ -5,6 +5,8 @@ import static com.meltum.common.WebConstant.*;
 import java.io.IOException;
 import java.util.List;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +39,14 @@ public class ShopController {
 	private ICompanyService companyService = null;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String displayShops(Model model, RedirectAttributes redir) {
+	public String displayShops(Model model, RedirectAttributes redir) throws JsonParseException, JsonMappingException, IOException {
 		model.addAttribute(SHOP_FORM, new Shop());
 		if (shopService.getShops() == null) {
 			redir.addFlashAttribute("error", "Veuillez créer une entreprise afin de pouvoir accéder aux shops");
 			return REDIRECT_MYCOMPANY_VIEW;
 		}
 		model.addAttribute(SHOPS, shopService.getShops());
+		model.addAttribute(STATISTICS_ALL_SHOPS, shopService.getStatisticAllShops());
 		model.addAttribute(IMAGES_SHOPS_LINK, API_URL + "images/shop/");
 		return null;
 	}

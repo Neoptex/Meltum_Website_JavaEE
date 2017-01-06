@@ -13,7 +13,9 @@ public class Shop {
 	private List<ImageObj> images;
 	private List<Coord> pol;
 	private int usedNumber;
-	private List<MeltStatData> meltStatData;
+	List<Statistic> meltStatData;
+	float earnAmount;
+    int usedAmount;
 
 	public Shop() {
 		this.id = null;
@@ -146,18 +148,34 @@ public class Shop {
 		this.images = images;
 	}
 
-	/**
-	 * @return the meltStatData
-	 */
-	public List<MeltStatData> getMeltStatData() {
-		return meltStatData;
-	}
+    public List<Statistic> getMeltStatData()
+    {
+        return meltStatData;
+    }
 
-	/**
-	 * @param meltStatData the meltStatData to set
-	 */
-	public void setMeltStatData(List<MeltStatData> meltStatData) {
-		this.meltStatData = meltStatData;
-	}
+    public void setMeltStatData(List<Statistic> meltStatData)
+    {
+        this.meltStatData = meltStatData;
+    }
+
+    public float getEarnAmount()
+    {
+        return earnAmount;
+    }
+
+    public void setEarnAmount(float earnAmount)
+    {
+        this.earnAmount = earnAmount;
+    }
+
+    public int getUsedAmount()
+    {
+        return usedAmount;
+    }
+
+    public void setUsedAmount(int usedAmount)
+    {
+        this.usedAmount = usedAmount;
+    }
 
 }

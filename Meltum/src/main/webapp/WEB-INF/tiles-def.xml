@@ -43,4 +43,5 @@
 	<definition name="myCompanyEdit" extends="template">
 		<put-attribute name="body" value="/WEB-INF/views/pages/my-company/myCompanyEdit.jsp" />
 	</definition>
+	
 </tiles-definitions>
