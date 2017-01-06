@@ -10,6 +10,8 @@ public class Company {
 	private Date createdDate;
 	private ImageObj image;
 	int usedNumber;
+	float earnAmount;
+	int usedAmount;
 
 	/**
 	 * @return the name
@@ -97,6 +99,26 @@ public class Company {
 	public void setUsedNumber(int usedNumber) {
 		this.usedNumber = usedNumber;
 	}
+
+    public float getEarnAmount()
+    {
+        return earnAmount;
+    }
+
+    public void setEarnAmount(float earnAmount)
+    {
+        this.earnAmount = earnAmount;
+    }
+
+    public int getUsedAmount()
+    {
+        return usedAmount;
+    }
+
+    public void setUsedAmount(int usedAmount)
+    {
+        this.usedAmount = usedAmount;
+    }
 	
 	
 }

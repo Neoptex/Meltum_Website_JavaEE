@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/pages/Home/HomeView.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/pages/MeltsManagement/MeltsManagementView.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/pages/MeltsManagement/MeltsPartialView/AddMeltPartialView.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/pages/ShopsManagement/ShopsPartialView/Statistics.jsp=UTF-8
 encoding//src/main/webapp/resources/jQueryPhone/build/js/intlTelInput.min.js=UTF-8
