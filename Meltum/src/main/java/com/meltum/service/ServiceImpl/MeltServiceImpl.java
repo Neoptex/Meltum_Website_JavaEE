@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -39,6 +40,8 @@ import com.meltum.utils.ImageUtils;
 @Service
 @Transactional
 public class MeltServiceImpl implements IMeltService {
+	
+	private static final Logger logger = Logger.getLogger(MeltServiceImpl.class);
 
 	@Autowired
 	private ICompanyService companyService = null;
@@ -46,14 +49,18 @@ public class MeltServiceImpl implements IMeltService {
 	private IUserService userService = null;
 
 	private ApiRequest api = new ApiRequest();
+	
 	private ObjectMapper mapper = new ObjectMapper();
+	
 	private Melt melt = new Melt();
-	private String url = new String();
+	
+	private String url;
+	
 	private JSONObject jsonObj = new JSONObject();
 
 	public List<Melt> getMelts() throws ParseException {
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
-		List<Melt> melts = new ArrayList<Melt>();
+		List<Melt> melts = new ArrayList<>();
 		if (companyService.getCompanyByUser() != null) {
 			url = "pro/company/" + companyService.getCompanyByUser().getId() + "/melt";
 			ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
@@ -70,26 +77,24 @@ public class MeltServiceImpl implements IMeltService {
 						item.setHourMinuteMaxTime(DateFormat.getTimeInstance(DateFormat.SHORT).format(parsedMax));
 					}
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("Error in getMelts", e);
 				}
 			}
 			return melts;
 		}
-		return null;
+		return melts;
 	}
 
 	public List<Melt> getMeltsByShop(String idShop) {
-		List<Melt> melts = new ArrayList<Melt>();
+		List<Melt> melts = new ArrayList<>();
 		url = "pro/shop/" + idShop + "/melt";
 		ResponseEntity<String> response = api.executeRequest(url, HttpMethod.GET, null);
 		if (response.getBody() != null) {
 			try {
 				melts = mapper.readValue(response.getBody(), mapper.getTypeFactory().constructCollectionType(List.class, Melt.class));
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("Error in getMeltsByShop", e);
 			}
-		} else {
-			return null;
 		}
 		return melts;
 	}
@@ -144,7 +149,7 @@ public class MeltServiceImpl implements IMeltService {
 		map.add("imageBase64", imageBase64);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, List<String>>>(map, headers);
+		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<>(map, headers);
 		rt.exchange(WebConstant.API_URL + "images/melt/" + id + "/multiUpload", HttpMethod.POST, requestEntity, String.class);
 	}
 }

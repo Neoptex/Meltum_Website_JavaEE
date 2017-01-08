@@ -1,5 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Modal for add shop -->
+<style>
+.rotate-north {
+  top: 65px;
+  left: .5em;
+}
+.ol-touch .rotate-north {
+  top: 80px;
+}
+
+</style>
 <div class="modal fade" tabindex="-1" id="DiffusionAreaShop${shop.id}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -33,11 +43,58 @@ var tab = [];
 var featureOverlay = null;
 var raster = new ol.layer.Tile({
 	source: new ol.source.OSM()
-	});
+});
+var vectorHeatMap = new ol.layer.Heatmap({
+    source: new ol.source.Vector({
+      url: 'http://185.83.218.101:8094/pro/shop/heatmap/' + document.location.host,
+      format: new ol.format.GeoJSON({
+        extractStyles: false
+      })
+    }),
+    visible : false
+  });
+  
+controlHeatMap = function(opt_options) {
+
+	  var options = opt_options || {};
+
+	  var checkbox = document.createElement('input');
+	  checkbox.setAttribute('type','checkbox');
+	  checkbox.checked = false;
+
+	  var enableDisableHeatMap = function(e) {
+		  if (vectorHeatMap.getVisible() == true) {
+	    	 return vectorHeatMap.setVisible(false);
+		  }
+		  return vectorHeatMap.setVisible(true);
+	  };
+
+	  checkbox.addEventListener('click', enableDisableHeatMap, false);
+
+	  var element = document.createElement('div');
+	  element.className = 'rotate-north ol-unselectable ol-control';
+	  element.appendChild(checkbox);
+
+	  ol.control.Control.call(this, {
+	    element: element,
+	    target: options.target
+	  });
+
+	};
+	
+	ol.inherits(controlHeatMap, ol.control.Control);
+	
 $('#DiffusionAreaShop${shop.id}').on('shown.bs.modal', function () {
 	if (!tab['${shop.id}']) {
 			var map = new ol.Map({
-			  layers: [raster],
+			controls: ol.control.defaults({
+			    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+			      collapsible: false
+			    })
+			  }).extend([
+			    new controlHeatMap()
+			  ]),
+			  layers: [raster, vectorHeatMap],
 			  target: 'map${shop.id}',
 			  view: new ol.View({
 			    center: ol.proj.transform([parseFloat('${shop.loc.x}'), parseFloat('${shop.loc.y}')], 'EPSG:4326', 'EPSG:3857'),
@@ -101,6 +158,15 @@ $('#DiffusionAreaShop${shop.id}').on('shown.bs.modal', function () {
 		  $('#error-message').show();
 		  $('#validate').prop('disabled', true);
 	  }
+// 	  var projection = new ol.proj.Projection({code: "EPSG:4326"});
+// 	  var poly = new ol.geom.MultiPolygon(ftrs);
+// 	  var area = poly.getGeodesicArea(projection);
+// 		var projection = new ol.Projection("EPSG:4326");
+// 		var poly = new ol.geom.MultiPolygon(evt.feature.getGeometry().getExtent());
+// 		var area = poly.getGeodesicArea( projection );
+// 	  var sphere = new ol.Sphere(6378137);
+// 	  var area = sphere.geodesicArea(evt.feature.getGeometry().getExtent()) / 1000000;
+	  //console.log(area);
   });
   
   function fillPathAndMarkers(id) {
