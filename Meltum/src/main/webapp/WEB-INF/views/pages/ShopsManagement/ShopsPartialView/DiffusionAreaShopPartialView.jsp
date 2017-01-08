@@ -46,7 +46,7 @@ var raster = new ol.layer.Tile({
 });
 var vectorHeatMap = new ol.layer.Heatmap({
     source: new ol.source.Vector({
-      url: 'http://185.83.218.101:8094/pro/shop/heatmap/' + document.location.host,
+      url: 'http://185.83.218.101:8095/pro/shop/heatmap/',
       format: new ol.format.GeoJSON({
         extractStyles: false
       })
