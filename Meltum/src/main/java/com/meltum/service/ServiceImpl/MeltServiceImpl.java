@@ -104,6 +104,7 @@ public class MeltServiceImpl implements IMeltService {
 		form.setMinTime(Integer.parseInt(form.getDateMinTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMinTime().split(" : ")[1]));
 		form.setMaxTime(Integer.parseInt(form.getDateMaxTime().split(" : ")[0]) * 60 + Integer.parseInt(form.getDateMaxTime().split(" : ")[1]));
 		form.setTimeAvailable(true);
+		form.setStatus(false);
 		api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
 		url = "pro/company/" + companyService.getCompanyByUser().getId() + "/melt";
 		jsonObj = new JSONObject(mapper.writeValueAsString(form));
@@ -151,5 +152,11 @@ public class MeltServiceImpl implements IMeltService {
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<>(map, headers);
 		rt.exchange(WebConstant.API_URL + "images/melt/" + id + "/multiUpload", HttpMethod.POST, requestEntity, String.class);
+	}
+	
+	public void ChangeStatus(String id) {
+	    api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+        url = "/pro/melt/" + id + "/status";
+        api.executeRequest(url, HttpMethod.PUT, null);
 	}
 }

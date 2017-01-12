@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -125,5 +126,17 @@ public class MeltsController {
 			meltService.uploadImage(id, file);
 		}
 		return REDIRECT_MELTS_MANAGEMENT_VIEW;
+	}
+	
+	@RequestMapping(value = "/ChangeStatus/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public String ChangeStatus(@PathVariable String id, Model model)
+	{
+	    try {
+	        meltService.ChangeStatus(id);    
+	    } catch (Exception e) {
+	        e.printStackTrace();
+        }
+	    return "{}";
 	}
 }
