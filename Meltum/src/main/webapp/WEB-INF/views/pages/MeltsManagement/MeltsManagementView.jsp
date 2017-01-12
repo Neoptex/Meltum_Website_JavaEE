@@ -12,6 +12,8 @@
 <title>Gestion des melts</title>
 <link href="<c:url value="/resources/css/MeltsManagement.css" /> " rel="stylesheet">
 <link href="<c:url value="/resources/Wickedpicker/stylesheets/wickedpicker.css" /> " rel="stylesheet">
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script type="text/javascript" src="<c:url value="/resources/Wickedpicker/src/wickedpicker.js" /> "></script>
 <script type="text/javascript" src="<c:url value="/resources/Parsey/parsley.min.js" /> "></script>
 </head>
@@ -53,12 +55,22 @@
 					<div class="panel panel-success">
 						<div class="panel-heading">
 							<div class="row">
-								<div class="col-md-6">
-									<h2 class="panel-title">${melt.name}
-										<span class="text-info">${melt.hourMinuteMinTime} - ${melt.hourMinuteMaxTime}</span>
-									</h2>
+								<div class="col-md-1">
+									<c:choose>
+										<c:when test="${melt.status == true}">
+											<input type="checkbox" checked data-toggle="toggle" data-on="Activer" data-off="Désactiver" data-size="mini" data-onstyle="success" data-offstyle="danger" onchange="changeStatus('${melt.id}')">
+										</c:when>
+										<c:otherwise>
+											<input type="checkbox" data-toggle="toggle" data-on="Activer" data-off="Désactiver" data-size="mini" data-onstyle="success" data-offstyle="danger" onchange="changeStatus('${melt.id}')">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="col-md-6">
+									<h2 class="panel-title">
+										&nbsp;&nbsp;&nbsp;&nbsp;${melt.name} <span class="text-info">${melt.hourMinuteMinTime} - ${melt.hourMinuteMaxTime}</span>
+									</h2>
+								</div>
+								<div class="col-md-5">
 									<div class="text-right">
 										<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#UploadMeltImage${melt.id}">
 											<i class="fa fa-cloud-upload"></i> Upload
@@ -143,6 +155,13 @@
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		function changeStatus(id) {
+			 $.ajax({
+			       url : '/Meltum/MeltsManagement/ChangeStatus/' + id,
+			       type : 'POST'
+			    });
+		}
+	</script>
 </body>
 </html>

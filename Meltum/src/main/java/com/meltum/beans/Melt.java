@@ -27,6 +27,7 @@ public class Melt {
 	String expiringDate;
 	@JsonIgnore
 	String idShopLink;
+	Boolean status;
 
 	public Float getPrice() {
 		return price;
@@ -186,4 +187,14 @@ public class Melt {
 	public void setTimeAvailable(Boolean timeAvailable) {
 		this.timeAvailable = timeAvailable;
 	}
+
+    public Boolean getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Boolean status)
+    {
+        this.status = status;
+    }
 }

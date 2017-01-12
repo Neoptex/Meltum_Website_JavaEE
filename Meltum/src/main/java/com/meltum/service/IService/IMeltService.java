@@ -24,5 +24,7 @@ public interface IMeltService {
 	List<Melt> getMeltsByShop(String id);
 	
 	void uploadImage(String id, List<MultipartFile> file);
+	
+	void ChangeStatus(String id); 
 
 }

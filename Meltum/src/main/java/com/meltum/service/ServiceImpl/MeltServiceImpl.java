@@ -152,4 +152,10 @@ public class MeltServiceImpl implements IMeltService {
 		HttpEntity<LinkedMultiValueMap<String, List<String>>> requestEntity = new HttpEntity<>(map, headers);
 		rt.exchange(WebConstant.API_URL + "images/melt/" + id + "/multiUpload", HttpMethod.POST, requestEntity, String.class);
 	}
+	
+	public void ChangeStatus(String id) {
+	    api = new ApiRequest(userService.getUserCurrent().getToken(), userService.getUserCurrent().getId());
+        url = "/pro/melt/" + id + "/status";
+        api.executeRequest(url, HttpMethod.PUT, null);
+	}
 }
