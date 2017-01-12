@@ -8,7 +8,7 @@
                 </button>
                 <h4 class="modal-title text-center"><i class="fa fa-paypal fa-fw"></i> Ajouter un compte paypal</h4>
             </div>
-            <form:form role="form" action="/Meltum/mon-compte/PaymentAccountManagement/AddPaypalAccount" method='POST' modelAttribute="PaypalAccountViewModel">
+            <form:form role="form" action="/Meltum/mon-compte/PaymentAccountManagement/AddPaypalAccount" method='POST' modelAttribute="paypalAccountForm">
                 <div class="modal-body">
                     <div class="form-group">
                         <i class="fa fa-asterisk fa-fw text-danger"></i><label for="email">Email du compte paypal</label>

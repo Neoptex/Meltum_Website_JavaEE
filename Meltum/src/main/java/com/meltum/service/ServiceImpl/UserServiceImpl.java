@@ -20,6 +20,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.meltum.api.ApiRequest;
 import com.meltum.beans.Company;
 import com.meltum.beans.User;
+import com.meltum.model.forms.BankAccountForm;
 import com.meltum.model.forms.ChangePasswordForm;
 import com.meltum.model.forms.RegisterForm;
 import com.meltum.service.IService.IUserService;
@@ -118,6 +119,17 @@ public class UserServiceImpl implements IUserService {
 				logger.error("Error in getCompanyFromCurrentUser", e);
 			}
 			return company;
+		}
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<String> addNewPaymentSource(BankAccountForm form) {
+		String url = "/customer/payment/addSource";
+		try {
+			return api.executeRequest(url, HttpMethod.POST, new JSONObject(mapper.writeValueAsString(form)));
+		} catch (HttpClientErrorException | JSONException | IOException e) {
+			logger.error("Error in addNewPaymentSource", e);
 		}
 		return null;
 	}

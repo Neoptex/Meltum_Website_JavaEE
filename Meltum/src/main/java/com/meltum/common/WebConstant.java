@@ -23,8 +23,8 @@ public interface WebConstant {
 	public static final String MELT_FORM = "meltForm";
 	public static final String SHOP_FORM = "shopForm";
 	public static final String CHANGE_PASSWORD_FORM = "changePasswordForm";
-	public static final String BANK_ACCOUNT_VIEW_MODEL = "BankAccountViewModel";
-	public static final String PAYPAL_ACCOUNT_VIEW_MODEL = "PaypalAccountViewModel";
+	public static final String BANK_ACCOUNT_FORM = "bankAccountForm";
+	public static final String PAYPAL_ACCOUNT_FORM = "paypalAccountForm";
 	
 	// Objects
 	public static final String MELTS = "melts";
@@ -43,6 +43,7 @@ public interface WebConstant {
 	public static final String REDIRECT_MYCOMPANY_VIEW = "redirect:/mon-entreprise";
 	public static final String REDIRECT_MELTS_MANAGEMENT_VIEW = "redirect:/" + MELTS_MANAGEMENT_VIEW;
 	public static final String REDIRECT_SHOPS_MANAGEMENT_VIEW = "redirect:/" + SHOPS_MANAGEMENT_VIEW;
+	public static final String REDIRECT_PAYMENT_ACCOUNT_MANAGEMENT_VIEW = "redirect:/mon-compte/PaymentAccountManagement";
 	
 	// Miscellaneous
 	public static final String API_URL = "http://185.83.218.101:8095/";

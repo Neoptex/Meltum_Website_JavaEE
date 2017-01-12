@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.meltum.common.WebConstant;
 import com.meltum.model.forms.ChangePasswordForm;
-import com.meltum.model.forms.BankAccountViewModel;
+import com.meltum.model.forms.BankAccountForm;
 import com.meltum.model.forms.MyAccountForm;
-import com.meltum.model.forms.PaypalAccountViewModel;
+import com.meltum.model.forms.PaypalAccountForm;
 import com.meltum.service.IService.IUserService;
 
 import static com.meltum.common.WebConstant.*;
@@ -57,7 +57,6 @@ public class MyAccountController {
 		try {
 			userService.updatePassword(form);
 		} catch (JSONException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return WebConstant.REDIRECT_MYACCOUNT_VIEW;
@@ -65,21 +64,20 @@ public class MyAccountController {
 
 
 	@RequestMapping(value = "/PaymentAccountManagement")
-	public String GestionDesComptesDePaiements(Model model) {
-		model.addAttribute(BANK_ACCOUNT_VIEW_MODEL, new BankAccountViewModel());
-		model.addAttribute(PAYPAL_ACCOUNT_VIEW_MODEL, new PaypalAccountViewModel());
+	public String managePaymentAccounts(Model model) {
+		model.addAttribute(BANK_ACCOUNT_FORM, new BankAccountForm());
+		model.addAttribute(PAYPAL_ACCOUNT_FORM, new PaypalAccountForm());
 		return PAYMENT_ACCOUNT_MANAGEMENT_VIEW;
 	}
 	
-	@RequestMapping(value = "/PaymentAccountManagement/AddBankAccount")
-	public String AddBankAccount(@ModelAttribute BankAccountViewModel bankAccountViewModel, Model model) {
-		model.addAttribute(BANK_ACCOUNT_VIEW_MODEL, new BankAccountViewModel());
-		return PAYMENT_ACCOUNT_MANAGEMENT_VIEW;
+	@RequestMapping(value = "/PaymentAccountManagement/AddBankAccount", method = RequestMethod.POST)
+	public String addBankAccount(@ModelAttribute BankAccountForm bankAccountForm, Model model) {
+		userService.addNewPaymentSource(bankAccountForm);
+		return REDIRECT_PAYMENT_ACCOUNT_MANAGEMENT_VIEW;
 	}
 	
-	@RequestMapping(value = "/PaymentAccountManagement/AddPaypalAccount")
-	public String AddPaypalAccount(@ModelAttribute PaypalAccountViewModel paypalAccountViewModel, Model model) {
-		model.addAttribute(PAYPAL_ACCOUNT_VIEW_MODEL, new PaypalAccountViewModel());
-		return PAYMENT_ACCOUNT_MANAGEMENT_VIEW;
+	@RequestMapping(value = "/PaymentAccountManagement/AddPaypalAccount", method = RequestMethod.POST)
+	public String addPaypalAccount(@ModelAttribute PaypalAccountForm paypalAccountForm, Model model) {
+		return REDIRECT_PAYMENT_ACCOUNT_MANAGEMENT_VIEW;
 	}
 }

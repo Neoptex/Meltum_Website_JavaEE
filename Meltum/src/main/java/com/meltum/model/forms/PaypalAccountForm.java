@@ -1,6 +1,6 @@
 package com.meltum.model.forms;
 
-public class PaypalAccountViewModel {
+public class PaypalAccountForm {
 	String email;
 
 	public String getEmail() {

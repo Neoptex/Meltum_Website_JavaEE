@@ -5,9 +5,11 @@ import java.io.IOException;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.json.JSONException;
+import org.springframework.http.ResponseEntity;
 
 import com.meltum.beans.Company;
 import com.meltum.beans.User;
+import com.meltum.model.forms.BankAccountForm;
 import com.meltum.model.forms.ChangePasswordForm;
 import com.meltum.model.forms.RegisterForm;
 
@@ -24,4 +26,6 @@ public interface IUserService {
 	User updatePassword(ChangePasswordForm passwordForm) throws JsonGenerationException, JsonMappingException, JSONException, IOException;
 
 	Company getCompanyFromCurrentUser();
+
+	ResponseEntity<String> addNewPaymentSource(BankAccountForm form);
 }

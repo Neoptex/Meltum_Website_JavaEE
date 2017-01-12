@@ -88,7 +88,7 @@ $('#DiffusionAreaShop${shop.id}').on('shown.bs.modal', function () {
 	if (!tab['${shop.id}']) {
 			var map = new ol.Map({
 			controls: ol.control.defaults({
-			    attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+			    attributionOptions: ({
 			      collapsible: false
 			    })
 			  }).extend([
@@ -158,15 +158,6 @@ $('#DiffusionAreaShop${shop.id}').on('shown.bs.modal', function () {
 		  $('#error-message').show();
 		  $('#validate').prop('disabled', true);
 	  }
-// 	  var projection = new ol.proj.Projection({code: "EPSG:4326"});
-// 	  var poly = new ol.geom.MultiPolygon(ftrs);
-// 	  var area = poly.getGeodesicArea(projection);
-// 		var projection = new ol.Projection("EPSG:4326");
-// 		var poly = new ol.geom.MultiPolygon(evt.feature.getGeometry().getExtent());
-// 		var area = poly.getGeodesicArea( projection );
-// 	  var sphere = new ol.Sphere(6378137);
-// 	  var area = sphere.geodesicArea(evt.feature.getGeometry().getExtent()) / 1000000;
-	  //console.log(area);
   });
   
   function fillPathAndMarkers(id) {
